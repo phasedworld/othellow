@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="parkjieun.othellow.user.dao.mapper.UserMapper">
+	<insert id="addUser" parameterType="user">
+	insert into users
+	(user_id,user_password,user_nickname,user_email,user_pic,user_win,user_lose,user_exp,user_rank)
+	values(#{userId},#{userPassword},#{userNickname},#{userEmail},#{userPic},0,0,0,'baron')
+	</insert>
+	
+	<select id="getUser" parameterType="user" resultType="user">
+	select
+	user_id userId, user_nickname userNickname, user_email userEmail, user_pic userPic, user_win userWin, user_lose userLose, user_exp userExp, user_rank userRank
+	from users
+	where user_id=#{userId} and user_password=#{userPassword}
+	</select>
+	
+	<select id="idVerify" parameterType="string" resultType="int">
+	select count(user_id) from users where user_id=#{userId}
+	</select>
+	
+	<select id="nicknameVerify" parameterType="string" resultType="int">
+	select count(user_nickname) from users where user_nickname=#{userNickname}
+	</select>
+</mapper>
