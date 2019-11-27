@@ -1,5 +1,14 @@
 package parkjieun.othellow.community.dao.mapper;
 
-public interface CommunityMapper {
+import java.util.List;
 
+import parkjieun.othellow.community.domain.Community;
+
+public interface CommunityMapper {
+	List<Community> getPosts();	//커뮤니티 목록
+	Community getViewPost(); //다른사람 게시글 상세보기
+	Community getMyPost(); //내 게시글 상세보기
+	int addPost(Community community);	//게시글 등록
+	int updatePost(Community community);	//게시글 수정
+	int delPost(int seq);	//게시글 삭제
 }
