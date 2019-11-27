@@ -5,26 +5,27 @@
 <head>
 <title>오델로W</title>
 <meta charset="utf-8">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <style>
 @font-face{
   font-family:'Ddukkubi';
-  src:url('../resources/font/Ddukkubi.ttf');
+  src:url('../font/Ddukkubi.ttf');
 }
 
 @font-face{
   font-family:'NotoSansBold';
-  src:url('../resources/font/NotoSansBold.otf');
+  src:url('../font/NotoSansBold.otf');
 }
 
 @font-face{
   font-family:'YoonGothic';
-  src:url('../resources/font/YoonGothic.otf');
+  src:url('../font/YoonGothic.otf');
 }
 
 body{
   margin:0 auto;
   font-family:'YoonGothic';
-  background: url("");
+  background: lightblue;
   height:100%;
 }
 
@@ -175,14 +176,102 @@ margin:0px 10px;
   border:2px solid #aaa;
 }
 
+#make-room-modal{
+  background:white;
+  position:absolute;
+  left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  z-index:99;
+  padding:40px 80px;
+  border-radius:10px;
+  border:2px solid #999;
+  display:none;
+}
+#make-room-modal.show, .modal-shadow.show{
+  display:block;
+}
+#roomName{
+  margin:25px;
+  margin-top:20px;
+  margin-bottom:0px;
+  padding-left:15px;
+  padding-right:15px;
+  width:266px;
+  height:35px;
+  border-radius: 30px;
+  border:2px solid #999;
+  background:white;
+  font-family:'NotoSansBold';
+  font-size:18px;
+  color:#555;
+  outline: none;
+}
+.room-label{
+  text-align: center;
+  font-size:22px;
+}
+#make-room-btn{
+  margin:0 auto;
+  background:#aaa;
+  width:150px;
+  line-height:40px;
+  text-align:center;
+  border-radius:20px;
+  margin-top:30px;
+  cursor:pointer;
+  transition:0.2s ease;
+}
+#make-room-btn:hover{
+  background:#3068ff;
+}
+.modal-shadow{
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.3);
+  position:absolute;
+  z-index:33;
+  display:none;
+}
+.modal-exit{
+  position:absolute;
+  right:20px;
+  top:20px;
+  cursor:pointer;
+}
 </style>
+<script>
+window.onload = function(){
+  var roomName=['멋진 한 판!', '즐겨요 이기분','매너 게임 합시다','패배시 백돌살해후 흑돌자살','아무나~','내가 오델로 킹'];
+  var randomSeq = Math.floor(Math.random()*(roomName.length));
+  document.getElementById('roomName').value=roomName[randomSeq];
+}
+function showModal(){
+	$('#make-room-modal').addClass('show');
+	$('.modal-shadow').addClass('show');
+}
+function exitModal(){
+	$('#make-room-modal').removeClass('show');
+	$('.modal-shadow').removeClass('show');
+}
+function makeRoom(){
+	//ajax로 없는 새로운 방번호를 얻어오고자 함..
+	
+	var newRoomNo = 3;
+	location.href="./room/"+newRoomNo;
+}
+</script>
 </head>
 <body>
+<div class="modal-shadow"></div>
+  <div id="make-room-modal">
+  <span class="modal-exit" onClick="exitModal()">&times;</span>
+    <div class="room-label">생성할 방 이름을 정해주세요</div>
+    <input type="text" id="roomName" name="roomName" value="멋진 한 판!">
+    <div id="make-room-btn" onClick="makeRoom()">입장</div>
+</div>
 <div class="shadow">
-
   <div id="room_container">
     <ul>
-      <li class="room-wrapper started" onClick="location.href='02.html';">
+      <li class="room-wrapper started" onClick="location.href='./room/1';">
         <div class="room-header">
           <span class="room_status">01</span>
           <div class="room_status">멋진 한 판ㅋ</div>
@@ -195,7 +284,7 @@ margin:0px 10px;
       </li>
       <li></li>
 
-      <li class="room-wrapper" onClick="location.href='02.html';">
+      <li class="room-wrapper" onClick="location.href='./room/2';">
         <div class="room-header">
           <div class="room_status">02</div>
           <div class="room_status">스겜</div>
@@ -210,7 +299,7 @@ margin:0px 10px;
 
 	  </div><!-- room_wrapper shadow -->
 	  <div class="button_wrap">
-	    <button type="submit" id=findBtn >방만들기 </button>
+	    <button type="submit" id=findBtn onClick="showModal()">방만들기 </button>
 	    <button type="button" id="cancelBtn" onclick="history.go(-1);">나가기</button>
 	  </div>
 </div><!-- end shadow -->

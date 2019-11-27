@@ -285,7 +285,7 @@ nav li a{
       <div class="loginbox">
         <form name="loginForm" id="loginForm" method="post">
         <input class="login-input" type="text" name="userId" required/>
-        <input class="login-input" type="password" name="userPassword" required/>
+        <input class="login-input" type="password" name="userPassword" onkeypress="enterSubmit()" required/>
       </form>
       <div class="infobtn-wrap">
         <a class="infobtn" href="user/signup">회원가입</a><a class="infobtn" href="user/02.html">아이디/비밀번호찾기</a>
@@ -307,7 +307,7 @@ nav li a{
         </div>
       </div>
       <div class="btn loginbtn">
-        <span class="gamestart" onClick="location.href='game/01.html';">게임시작</span>
+        <span class="gamestart" onClick="location.href='game/lobby';">게임시작</span>
         <span class="startwave"></span>
         <span class="subwave"></span>
       </div>
@@ -341,6 +341,11 @@ function login(){
 			}
 		}
 	});
+}
+function enterSubmit(){
+	if(event.keyCode == 13){
+		login();
+	}
 }
 </script>
 <style>
