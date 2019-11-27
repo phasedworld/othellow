@@ -251,7 +251,7 @@ nav li a{
     <header>
         <nav>
           <ul>
-            <li><a href="uservice/03.html" class="nav">랭킹</a></li>
+            <li><a href="uservice/LankList" class="nav">랭킹</a></li>
             <li class="logo" style="position:relative;"><a id="logo" href="main.html" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
             <li><a href="community/02.html" class="nav">커뮤니티</a></li>
           </ul>
@@ -303,7 +303,7 @@ nav li a{
           <div class="user-winlose"><span class="winlabel">승</span><span class="winrateval">${user.userWin}</span><span class="loselabel">패</span><span class="winrateval">${user.userLose}</span></div>
         </div>
         <div class="infobtn-wrap">
-          <a class="infobtn" href="user/logout">로그아웃</a><a class="infobtn" href="uservice/01.html">정보수정</a>
+          <a class="infobtn" href="user/logout">로그아웃</a><a class="infobtn" href="uservice/mypageUpdate">정보수정</a>
         </div>
       </div>
       <div class="btn loginbtn">

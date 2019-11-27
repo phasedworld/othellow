@@ -4,13 +4,13 @@
 <mapper namespace="parkjieun.othellow.user.dao.mapper.UserMapper">
 	<insert id="addUser" parameterType="user">
 	insert into users
-	(user_id,user_password,user_nickname,user_email,user_pic,user_win,user_lose,user_exp,user_rank)
-	values(#{userId},#{userPassword},#{userNickname},#{userEmail},#{userPic},0,0,0,'baron')
+	(user_id,user_password,character_no,user_nickname,user_email,user_win,user_lose,user_exp,user_rank)
+	values(#{userId},#{userPassword},#{characterNo},#{userNickname},#{userEmail},0,0,0,'baron')
 	</insert>
 	
 	<select id="getUser" parameterType="user" resultType="user">
 	select
-	user_id userId, user_nickname userNickname, user_email userEmail, user_pic userPic, user_win userWin, user_lose userLose, user_exp userExp, user_rank userRank
+	user_id userId, character_no characterNo, user_nickname userNickname, user_email userEmail, user_win userWin, user_lose userLose, user_exp userExp, user_rank userRank
 	from users
 	where user_id=#{userId} and user_password=#{userPassword}
 	</select>

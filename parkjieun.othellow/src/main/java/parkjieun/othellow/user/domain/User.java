@@ -3,14 +3,13 @@ package parkjieun.othellow.user.domain;
 public class User {
 	private String userId;
 	private String userPassword;
+	private int characterNo;
 	private String userNickname;
 	private String userEmail;
-	private String userPic;
 	private int userWin;
 	private int userLose;
 	private int userExp;
 	private String userRank;
-	
 	public String getUserId() {
 		return userId;
 	}
@@ -23,6 +22,12 @@ public class User {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
+	public int getCharacterNo() {
+		return characterNo;
+	}
+	public void setCharacterNo(int characterNo) {
+		this.characterNo = characterNo;
+	}
 	public String getUserNickname() {
 		return userNickname;
 	}
@@ -34,12 +39,6 @@ public class User {
 	}
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
-	}
-	public String getUserPic() {
-		return userPic;
-	}
-	public void setUserPic(String userPic) {
-		this.userPic = userPic;
 	}
 	public int getUserWin() {
 		return userWin;
@@ -65,4 +64,5 @@ public class User {
 	public void setUserRank(String userRank) {
 		this.userRank = userRank;
 	}
+	
 }
