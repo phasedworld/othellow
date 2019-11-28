@@ -27,7 +27,7 @@ public class CommunityController {
 		return communityService.findViewPost(seq);
 	}
 	
-	@RequestMapping("/post")
+	@RequestMapping("/myPost")
 	@ResponseBody
 	public Community myPost(int seq){
 		return communityService.findMyPost(seq);
