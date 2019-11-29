@@ -17,7 +17,7 @@ public class CommunityController {
 	
 	@RequestMapping("/list")
 	@ResponseBody
-	public List<Community> list(){
+	public List<Community> getPosts(){
 		return communityService.getPosts();
 	}
 	

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="parkjieun.othelow.community.dao.mapper.communityMapper">
+<mapper namespace="parkjieun.othellow.community.dao.mapper.CommunityMapper">
 	<select id="getPosts" resultType="community">
 		select sort, seq, title, user_rank userRank, user_nickname userNickname, reg_date regDate, hit_count hitCount
 		from users, community
