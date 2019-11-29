@@ -131,126 +131,20 @@ nav li a {
   <table class="table-wrapper">
     <tr><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
     </tr>
-    <tr style = "cursor:pointer;" onClick="location.href='03.html'">
-      <td>
-        <div class="subject-header"><FONT style="color:#e65700;">공지</FONT> | No.123123</div>
-        <div class="subject">구체 그 자체</div>
-      </td>
-      <td>
-        <div class="author-header"><FONT style="color:#e65700;">플레2</FONT></div>
-        <div class="author">지은 the Orianna</div>
-      </td>
-      <td>2019-11-12</td>
-      <td>234234</td>
-    </tr>
-    <tr style = "cursor:pointer;" onClick="location.href='04.html'">
-      <td>
-        <div class="subject-header"><FONT style="color:#e65700;">팬아트</FONT> | No.123123</div>
-        <div class="subject">나 쫌 잘그리는듯 ㅎ</div>
-      </td>
-      <td>
-        <div class="author-header"><FONT style="color:#e65700;">바론</FONT></div>
-        <div class="author">드랍 더 HAKJUM</div>
-      </td>
-      <td>2019-11-12</td>
-      <td>234234</td>
-    </tr>
-    <tr style = "cursor:pointer;" onClick="location.href='03.html'">
-      <td>
-        <div class="subject-header"><FONT style="color:#e65700;">공지</FONT> | No.123123</div>
-        <div class="subject">구체 그 자체</div>
-      </td>
-      <td>
-        <div class="author-header"><FONT style="color:#e65700;">플레2</FONT></div>
-        <div class="author">지은 the Orianna</div>
-      </td>
-      <td>2019-11-12</td>
-      <td>234234</td>
-    </tr>
-    <tr style = "cursor:pointer;" onClick="location.href='03.html'">
-      <td>
-        <div class="subject-header"><FONT style="color:#e65700;">공지</FONT> | No.123123</div>
-        <div class="subject">구체 그 자체</div>
-      </td>
-      <td>
-        <div class="author-header"><FONT style="color:#e65700;">플레2</FONT></div>
-        <div class="author">지은 the Orianna</div>
-      </td>
-      <td>2019-11-12</td>
-      <td>234234</td>
-    </tr>
-    <tr style = "cursor:pointer;" onClick="location.href='03.html'">
-      <td>
-        <div class="subject-header"><FONT style="color:#e65700;">공지</FONT> | No.123123</div>
-        <div class="subject">구체 그 자체</div>
-      </td>
-      <td>
-        <div class="author-header"><FONT style="color:#e65700;">플레2</FONT></div>
-        <div class="author">지은 the Orianna</div>
-      </td>
-      <td>2019-11-12</td>
-      <td>234234</td>
-    </tr>
-    <tr style = "cursor:pointer;" onClick="location.href='03.html'">
-      <td>
-        <div class="subject-header"><FONT style="color:#e65700;">공지</FONT> | No.123123</div>
-        <div class="subject">구체 그 자체</div>
-      </td>
-      <td>
-        <div class="author-header"><FONT style="color:#e65700;">플레2</FONT></div>
-        <div class="author">지은 the Orianna</div>
-      </td>
-      <td>2019-11-12</td>
-      <td>234234</td>
-    </tr>
-    <tr style = "cursor:pointer;" onClick="location.href='03.html'">
-      <td>
-        <div class="subject-header"><FONT style="color:#e65700;">공지</FONT> | No.123123</div>
-        <div class="subject">구체 그 자체</div>
-      </td>
-      <td>
-        <div class="author-header"><FONT style="color:#e65700;">플레2</FONT></div>
-        <div class="author">지은 the Orianna</div>
-      </td>
-      <td>2019-11-12</td>
-      <td>234234</td>
-    </tr>
-    <tr style = "cursor:pointer;" onClick="location.href='03.html'">
-      <td>
-        <div class="subject-header"><FONT style="color:#e65700;">공지</FONT> | No.123123</div>
-        <div class="subject">구체 그 자체</div>
-      </td>
-      <td>
-        <div class="author-header"><FONT style="color:#e65700;">플레2</FONT></div>
-        <div class="author">지은 the Orianna</div>
-      </td>
-      <td>2019-11-12</td>
-      <td>234234</td>
-    </tr>
-    <tr style = "cursor:pointer;" onClick="location.href='03.html'">
-      <td>
-        <div class="subject-header"><FONT style="color:#e65700;">공지</FONT> | No.123123</div>
-        <div class="subject">구체 그 자체</div>
-      </td>
-      <td>
-        <div class="author-header"><FONT style="color:#e65700;">플레2</FONT></div>
-        <div class="author">지은 the Orianna</div>
-      </td>
-      <td>2019-11-12</td>
-      <td>234234</td>
-    </tr>
-    <tr style = "cursor:pointer;" onClick="location.href='03.html'">
-      <td>
-        <div class="subject-header"><FONT style="color:#e65700;">공지</FONT> | No.123123</div>
-        <div class="subject">구체 그 자체</div>
-      </td>
-      <td>
-        <div class="author-header"><FONT style="color:#e65700;">플레2</FONT></div>
-        <div class="author">지은 the Orianna</div>
-      </td>
-      <td>2019-11-12</td>
-      <td>234234</td>
-    </tr>
+    <c:forEach var="community" items="${getPosts}">
+    	<tr style = "cursor:pointer;" onClick="location.href='03.html'">
+      		<td>
+        		<div class="subject-header"><FONT style="color:#e65700;">${community.getSort()}</FONT> | No.${community.getSeq()}</div>
+        		<div class="subject">${community.getTitle()}</div>
+      		</td>
+      		<td>
+        		<div class="author-header"><FONT style="color:#e65700;">${community.getUserRank()}</FONT></div>
+        		<div class="author">${community.getUserNickname()}</div>
+      		</td>
+      		<td>${community.getRegDate()}</td>
+      		<td>${community.getHitCount()}</td>
+    	</tr>
+    </c:forEach>
   </table>
   <!--재활용 빈도가 아주 높을 버튼 클래스들-->
   <div class="content-footer">

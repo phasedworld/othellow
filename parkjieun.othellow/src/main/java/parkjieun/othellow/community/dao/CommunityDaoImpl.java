@@ -12,40 +12,50 @@ import parkjieun.othellow.community.domain.Community;
 public class CommunityDaoImpl implements CommunityDao{
 	@Autowired private CommunityMapper communityMapper;
 	
+	// 게시글 목록을 얻는다
+	// return: 게시글 목록
 	@Override
 	public List<Community> getPosts() {
-		// TODO Auto-generated method stub
-		return null;
+		return communityMapper.getPosts();
 	}
 
+	// 게시글 하나를 찾는다.
+	// param: 게시글 번호
 	@Override
 	public Community getViewPost(int seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return communityMapper.getViewPost(seq);
 	}
+	
 
+	// 게시글 하나를 찾는다.
+	// param: 게시글 번호
 	@Override
 	public Community getMyPost(int seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return communityMapper.getMyPost(seq);
 	}
 
+	// 게시글을 추가한다.
+	// return: 추가한 게시글 수
+	// param: 회원 아이디
 	@Override
 	public int addPost(Community community) {
-		// TODO Auto-generated method stub
-		return 0;
+		return communityMapper.addPost(community);
 	}
 
+	// 게시글을 수정한다.
+	// return: 수정한 게시글 수
+	// param : community
 	@Override
 	public int updatePost(Community community) {
-		// TODO Auto-generated method stub
-		return 0;
+		return communityMapper.updatePost(community);
 	}
 
+	// 게시글을 삭제한다.
+	// return: 삭제한 게시글수
+	// param: 삭제할 게시글 번호
 	@Override
 	public int delPost(int seq) {
-		// TODO Auto-generated method stub
-		return 0;
+		return communityMapper.delPost(seq);
 	}
 
 }
