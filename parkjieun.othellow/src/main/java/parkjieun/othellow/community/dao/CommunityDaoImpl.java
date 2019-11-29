@@ -30,7 +30,7 @@ public class CommunityDaoImpl implements CommunityDao{
 	// 게시글 하나를 찾는다.
 	// param: 게시글 번호
 	@Override
-	public Community getMyPost(int seq) {
+	public Community getMyPost(int seq){
 		return communityMapper.getMyPost(seq);
 	}
 
@@ -38,7 +38,7 @@ public class CommunityDaoImpl implements CommunityDao{
 	// return: 추가한 게시글 수
 	// param: 회원 아이디
 	@Override
-	public int addPost(Community community) {
+	public int addPost(Community community){
 		return communityMapper.addPost(community);
 	}
 
@@ -46,7 +46,7 @@ public class CommunityDaoImpl implements CommunityDao{
 	// return: 수정한 게시글 수
 	// param : community
 	@Override
-	public int updatePost(Community community) {
+	public int updatePost(Community community){
 		return communityMapper.updatePost(community);
 	}
 
@@ -54,7 +54,7 @@ public class CommunityDaoImpl implements CommunityDao{
 	// return: 삭제한 게시글수
 	// param: 삭제할 게시글 번호
 	@Override
-	public int delPost(int seq) {
+	public int delPost(int seq){
 		return communityMapper.delPost(seq);
 	}
 

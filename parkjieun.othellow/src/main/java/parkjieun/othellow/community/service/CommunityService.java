@@ -5,7 +5,7 @@ import java.util.List;
 import parkjieun.othellow.community.domain.Community;
 
 public interface CommunityService {
-	List<Community> listPosts();
+	List<Community> getPosts();
 	Community findViewPost(int seq);
 	Community findMyPost(int seq);
 	boolean register(Community community);

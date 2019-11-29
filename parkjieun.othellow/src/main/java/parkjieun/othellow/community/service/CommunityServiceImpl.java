@@ -15,7 +15,7 @@ public class CommunityServiceImpl implements CommunityService{
 	
 	//게시글 목록을 얻는다.
 	@Override
-	public List<Community> listPosts() {
+	public List<Community> getPosts() {
 		return communityDao.getPosts();
 	}
 
