@@ -5,6 +5,7 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans
@@ -14,7 +15,9 @@
 		http://mybatis.org/schema/mybatis-spring
 		http://mybatis.org/schema/mybatis-spring.xsd
 		http://www.springframework.org/schema/tx
-		http://www.springframework.org/schema/tx/spring-tx.xsd">
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/websocket
+		http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd">
 	<context:component-scan base-package="parkjieun.othellow"/>
 	<mvc:annotation-driven />
 	
@@ -79,4 +82,10 @@
 		</props>
 		</property>
 	 </bean>
+	 
+	 <bean id="myHandler" class="parkjieun.othellow.game.websocket.MyHandler"></bean>
+	 <websocket:handlers>
+			<websocket:mapping handler="myHandler" path="/gamesocket"/>
+			<websocket:sockjs></websocket:sockjs>
+	 </websocket:handlers>
 </beans>

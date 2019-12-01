@@ -1,7 +1,8 @@
+<%@page import="parkjieun.othellow.user.domain.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+<% User user = (User) session.getAttribute("user");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 <style>
 @font-face{
   font-family:'Ddukkubi';
-  src:url('../font/Ddukkubi.ttf');
+  src:url('../../font/Ddukkubi.ttf');
 }
 .readybtn{
   background:orange;
@@ -117,7 +118,9 @@
   display:flex;
   justify-content: center;
   overflow: hidden;
-  width:700px;
+  width:750px;
+  padding:10px;
+  padding-top:0px;
 }
 .username{
   padding:10px;
@@ -128,6 +131,7 @@
   text-shadow:0px 0px 10px white;
   border-radius:0px 0px 30px 30px;
   transition:0.3s ease;
+  box-shadow:0px 0px 5px grey;
 }
 .username.black{
   background:black;
@@ -139,8 +143,23 @@
   color:black;
   text-shadow:0px 0px 10px #26b899;
 }
+.username.white.btn{
+ cursor:pointer;
+ animation:readyforuser 2.5s infinite;
+}
+@keyframes readyforuser{
+0%{
+ color:rgba(0,0,0,0.2);
+}
+60%{
+ color:rgba(0,0,0,0.7);
+}
+100%{
+ color:rgba(0,0,0,0.2);
+}
+}
 .scoreboard{
-  width:130px;
+  width:140px;
   padding:10px;
   text-align:center;
   font-size:27px;
@@ -203,27 +222,87 @@ sock.onclose = onClose;
 
 
 function onOpen(){
-	sock.send("${roomNo}:enter");
-	
+	sock.send("${roomNo}:enter:<%=user.getUserNickname()%>");
 }
 
 // 메시지 전송
-
 function sendMessage() {
-
        sock.send("안녕, 나는 새로운 세션!");
-
 }
-
-
 // 서버로부터 메시지를 받았을 때
-
 function onMessage(msg) {
 
     var data = msg.data;
 	console.log(data);
-       //$("#data").append(data + "<br/>");
-
+    //데이터의 종류에 따라 컨트롤
+    var message = data.split(":");
+    //서버에서 보내는 데이터 타입 [action]:[label]:[value]
+    if(message[0]=='enter'){
+    	if(message[1]=='blackNick'){
+    		$("#blackNick").val(message[2]);
+    		$("#blackName").text(message[2]);
+    	}else if(message[1]=='whiteNick'){
+    		$('#whiteName').removeClass('btn');
+    		$("#whiteNick").val(message[2]);
+    		$("#whiteName").text(message[2]);
+    	}
+    }else if(message[0]=='side'){
+    	$('#mySide').val(message[1]);
+    	if($('#mySide').val()=='white'){
+    		//white유저일 때, 화이트 네임 박스가 시각적, 실질적으로 ready 버튼이 된다.
+    		$('#whiteName').text('클릭해서 게임 시작');
+    		$('#whiteName').bind('click',function(){
+    			sock.send("${roomNo}:ready");
+    			$('#whiteName').unbind();
+    		});
+    	}
+    }else if(message[0]=='start'){
+    	//게임 시작시, (4,4),(4,5),(5,4),(5,5)에 돌을 두고 black 유저에게 클릭할 곳(턴)을 준다.
+    	$('#28').removeClass('invisible');
+    	$('#29').removeClass('invisible');
+    	$('#36').removeClass('invisible');
+    	$('#37').removeClass('invisible');
+    	$('#29').addClass('reverse');
+    	$('#36').addClass('reverse');
+    	$('.scoreboard').text("2:2");
+    	if($('#mySide').val()=='black'){
+    		$('#20').addClass('clickable');
+        	$('#27').addClass('clickable');
+        	$('#38').addClass('clickable');
+        	$('#45').addClass('clickable');
+        	$('.clickable').off().on('click',function(){
+        		dropStone($(this).attr('id'));
+    		});
+    	}
+    }else if(message[0]=='black'){
+    	var idx = 1;
+    	var blackScore = 0; var whiteScore = 0;
+    	while(message[idx]!='white'){
+    		$('#gameboard').children().eq(message[idx]).addClass('reverse');
+			$('#gameboard').children().eq(message[idx]).removeClass('invisible');
+			idx++;
+			blackScore ++;
+		}
+    	idx++;
+    	while(message[idx]!=null){
+    		$('#gameboard').children().eq(message[idx]).removeClass('reverse');
+			$('#gameboard').children().eq(message[idx]).removeClass('invisible');
+			idx++;
+			whiteScore ++;
+    	}
+    	$('.scoreboard').text(blackScore+":"+whiteScore);
+    }else if(message[0]=='clickable'){
+    	if(message[1]==$('#mySide').val()){
+    		for(var i=2;i<message.length;i++){
+    			$('#gameboard').children().eq(message[i]).addClass('clickable');
+    		}
+    		$('.clickable').off().on('click',function(){
+        		dropStone($(this).attr('id'));
+    		});
+    	}
+    }else if(message[0]='gameend'){
+    	
+    }
 }
 
 
@@ -235,15 +314,24 @@ function onClose(evt) {
        $("#data").append("연결 끊김");
 
 }
-      </script>
+</script>
+<script>
+function dropStone(idx){
+	console.log('dropped!')
+	sock.send("${roomNo}:"+$('#mySide').val()+":"+idx);
+	$('.cell').siblings().removeClass('clickable');
+}
+</script>
 </head>
 <body>
 <div id="topnav">
-  <div class="username black">지은짱짱걸</div>
-  <div class="scoreboard">1 : 0</div>
-  <div class="username white">냠냠이!</div>
+  <div class="username black" id="blackName"></div>
+  <div class="scoreboard">0 : 0</div>
+  <div class="username white btn" id="whiteName">유저 대기중...</div>
 </div>
-<input type="text" value="${roomNo}">
+<input type="text" id="mySide" value="">
+<input type="text" id="blackNick" value="">
+<input type="text" id="whiteNick" value="">
   <div id="gameboard">
 
     <div class="cell invisible" id="1">
@@ -398,7 +486,7 @@ function onClose(evt) {
 	    <div class="side black"></div>
   	</div>
 
-	<div class="cell invisible clickable" id="20">
+	<div class="cell invisible" id="20">
 	    <div class="side white"></div>
 	    <div class="inner white"></div>
 	    <div class="cellpanel"></div>
@@ -454,7 +542,7 @@ function onClose(evt) {
 	    <div class="side black"></div>
   	</div>
 
-	<div class="cell invisible clickable" id="27">
+	<div class="cell invisible" id="27">
 	    <div class="side white"></div>
 	    <div class="inner white"></div>
 	    <div class="cellpanel"></div>
@@ -462,7 +550,7 @@ function onClose(evt) {
 	    <div class="side black"></div>
   	</div>
 
-	<div class="cell" id="28">
+	<div class="cell invisible" id="28">
 	    <div class="side white"></div>
 	    <div class="inner white"></div>
 	    <div class="cellpanel"></div>
@@ -470,7 +558,7 @@ function onClose(evt) {
 	    <div class="side black"></div>
   	</div>
 
-	<div class="cell reverse" id="29">
+	<div class="cell invisible" id="29">
 	    <div class="side white"></div>
 	    <div class="inner white"></div>
 	    <div class="cellpanel"></div>
@@ -526,7 +614,7 @@ function onClose(evt) {
 	    <div class="side black"></div>
   	</div>
 
-	<div class="cell reverse" id="36">
+	<div class="cell invisible" id="36">
 	    <div class="side white"></div>
 	    <div class="inner white"></div>
 	    <div class="cellpanel"></div>
@@ -534,7 +622,7 @@ function onClose(evt) {
 	    <div class="side black"></div>
   	</div>
 
-	<div class="cell" id="37">
+	<div class="cell invisible" id="37">
 	    <div class="side white"></div>
 	    <div class="inner white"></div>
 	    <div class="cellpanel"></div>
@@ -542,7 +630,7 @@ function onClose(evt) {
 	    <div class="side black"></div>
   	</div>
 
-	<div class="cell invisible  clickable" id="38">
+	<div class="cell invisible" id="38">
 	    <div class="side white"></div>
 	    <div class="inner white"></div>
 	    <div class="cellpanel"></div>
@@ -598,7 +686,7 @@ function onClose(evt) {
 	    <div class="side black"></div>
   	</div>
 
-	<div class="cell invisible clickable" id="45">
+	<div class="cell invisible" id="45">
 	    <div class="side white"></div>
 	    <div class="inner white"></div>
 	    <div class="cellpanel"></div>
@@ -759,6 +847,7 @@ function onClose(evt) {
   	</div>
 
   </div>
+  
   <div class="button_wrap">
     <button type="button" id="cancelBtn" onclick="location.href='../main_02.html';">나가기</button>
   </div>
