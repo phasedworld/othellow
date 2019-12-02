@@ -1,5 +1,10 @@
 package parkjieun.othellow.game.service;
 
-public interface GameService {
+import java.util.List;
 
+import parkjieun.othellow.game.domain.Lobby;
+
+public interface GameService {
+	List<Lobby> listLobby();
+	int makeRoom(Lobby lobby);
 }

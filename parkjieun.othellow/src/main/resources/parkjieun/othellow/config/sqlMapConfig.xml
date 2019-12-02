@@ -5,5 +5,6 @@
 	<typeAliases>
 		<typeAlias alias="user" type="parkjieun.othellow.user.domain.User"/>
 		<typeAlias alias="community" type="parkjieun.othellow.community.domain.Community"/>
+		<typeAlias alias="lobby" type="parkjieun.othellow.game.domain.Lobby"/>
 	</typeAliases>
 </configuration>
