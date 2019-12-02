@@ -299,9 +299,10 @@ function onMessage(msg) {
     		$('.clickable').off().on('click',function(){
         		dropStone($(this).attr('id'));
     		});
+    	}else{
+    		$('.clickable').off();
     	}
     }else if(message[0]='gameend'){
-    	
     }
 }
 
@@ -319,6 +320,7 @@ function onClose(evt) {
 function dropStone(idx){
 	console.log('dropped!')
 	sock.send("${roomNo}:"+$('#mySide').val()+":"+idx);
+	$('.clickable').off();
 	$('.cell').siblings().removeClass('clickable');
 }
 </script>

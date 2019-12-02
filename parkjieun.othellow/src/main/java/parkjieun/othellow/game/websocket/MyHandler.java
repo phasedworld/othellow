@@ -16,8 +16,8 @@ public class MyHandler extends TextWebSocketHandler{
 			{0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0},
-			{0,0,0,2,1,0,0,0},
-			{0,0,0,1,2,0,0,0},
+			{0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0}
@@ -54,7 +54,17 @@ public class MyHandler extends TextWebSocketHandler{
 			//2. action> ready(백돌 유저의 게임 레디로 게임을 시작)
 			//방 번호를 가져와 기본 배열을 세팅
 			Room thisRoom = rooms.get(received[0]);
-			thisRoom.setMatrix(matrix);
+			int startMatrix[][] = {
+					{0,0,0,0,0,0,0,0},
+					{0,0,0,0,0,0,0,0},
+					{0,0,0,0,0,0,0,0},
+					{0,0,0,2,1,0,0,0},
+					{0,0,0,1,2,0,0,0},
+					{0,0,0,0,0,0,0,0},
+					{0,0,0,0,0,0,0,0},
+					{0,0,0,0,0,0,0,0}
+			};
+			thisRoom.setMatrix(startMatrix);
 			//'ready' 메시지를 보낸 백돌 유저의 아이디와 게임 시작을 알림
 			thisRoom.getBlackUser().sendMessage(new TextMessage("enter:whiteNick:"+thisRoom.getWhiteNick()));
 			thisRoom.getWhiteUser().sendMessage(new TextMessage("enter:whiteNick:"+thisRoom.getWhiteNick()));
