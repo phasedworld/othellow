@@ -2,6 +2,8 @@ package parkjieun.othellow.community.domain;
 
 import java.sql.Date;
 
+import parkjieun.othellow.user.domain.User;
+
 public class Community {
 	private int seq;
 	private String title;
@@ -13,9 +15,9 @@ public class Community {
 	private String contents;
 	private int likeCount;
 	private String likeUser;
+	private User user;
 	
 	//getter&setter
-	
 	public int getSeq() {
 		return seq;
 	}
@@ -76,12 +78,10 @@ public class Community {
 	public void setLikeUser(String likeUser) {
 		this.likeUser = likeUser;
 	}
-	
-	// toString()
-	
-	@Override
-	public String toString(){
-		return String.format("%d, %s, %s, %s, %d, %s, %s, %s, %d, %s", seq, title, userId, regDate, hitCount, sort, image, contents, likeCount, likeUser);
+	public User getUserNickname() {
+		return user;
 	}
-	
+	public void setUserNickname(User user) {
+		this.user = user;
+	}
 }

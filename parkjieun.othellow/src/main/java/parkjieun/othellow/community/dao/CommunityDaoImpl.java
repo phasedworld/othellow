@@ -15,8 +15,8 @@ public class CommunityDaoImpl implements CommunityDao{
 	// 게시글 목록을 얻는다
 	// return: 게시글 목록
 	@Override
-	public List<Community> getPosts() {
-		return communityMapper.getPosts();
+	public List<Community> communityList() {
+		return communityMapper.communityList();
 	}
 
 	// 게시글 하나를 찾는다.

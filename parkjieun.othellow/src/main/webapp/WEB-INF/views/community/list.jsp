@@ -4,21 +4,27 @@
 <html>
 <head>
 <title>오델로W</title>
-<meta charset="utf-8">
+<meta charset=UTF-8">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet'
+	href='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css' />
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script>
+<script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
 <style>
 @font-face {
 	font-family: 'Ddukkubi';
-	src: url('../resources/font/Ddukkubi.ttf');
+	src: url('../font/Ddukkubi.ttf');
 }
 
 @font-face {
 	font-family: 'NotoSansBold';
-	src: url('../resources/font/NotoSansBold.otf');
+	src: url('../font/NotoSansBold.otf');
 }
 
 @font-face {
 	font-family: 'YoonGothic';
-	src: url('../resources/font/YoonGothic.otf');
+	src: url('../font/YoonGothic.otf');
 }
 
 body {
@@ -111,6 +117,47 @@ nav li a {
 	background-size: 11.31px 11.31px;
 }
 </style>
+<script type="text/javascript">
+	var alert = function(msg, type){
+		swal({
+			title : "오델로W",
+			text : msg,
+			type: type,
+			timer : 1000,
+			customClass : 'sweet-size',
+			showConfirmButton : false
+		});
+	}
+	function communityList(){
+		$.ajax({
+			url : "communityList",
+			method : "get",
+			success : function(result){
+				$("tbody").empty();
+				$(result).each(
+						function(idx){
+							$("tbody").append(
+									'<tr style = "cursor:pointer;" onClick="location.href="#"> <td>'
+									+ '<div class="subject-header"><font style="color:#e65700;">' + result[idx].sort
+									+ '</font> | No.' + result[idx].seq + '</div><div class="subject">'
+									+ result[idx].title + '</div></td>'
+									+ '<td> <div class="author-header"><font style="color:#e65700;">'
+									+ result[idx].userRank + '</font></div>'
+									+ '<div class="author">' + result[idx].userNickname + '</div></td>'
+									+ '<td>' + result[idx].regDate + '</td>'
+									+ '<td>' + result[idx].hitCount + '</td></tr>'
+									);
+						});
+			},
+			error : function(a, b, errMsg){
+				alert('리스트 출력 실패' + errMsg);
+			}
+		})
+	}
+	window.onload=function(){
+		communityList();
+	}
+</script>
 </head>
 <body>
   <div class="header-wrapper">
@@ -119,7 +166,7 @@ nav li a {
 				<ul>
 					<li><a href="../uservice/03.html" class="nav">랭킹</a></li>
 					<li class="logo"><a id="logo" href="../main.html" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
-					<li><a href="02.html" class="nav">커뮤니티</a></li>
+					<li><a href='/list' class="nav">커뮤니티</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -129,22 +176,16 @@ nav li a {
 
   <div class="table-header"><FONT style="font-size:28px;">커뮤니티</FONT> | <FONT style="color:#06a545;">전체</FONT> | 공지 | 잡담 | 팬아트 </div>
   <table class="table-wrapper">
-    <tr><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
+  <thead>
+    <tr>
+    	<th>제목</th>
+    	<th>작성자</th>
+    	<th>작성일</th>
+    	<th>조회수</th>
     </tr>
-    <c:forEach var="community" items="${getPosts}">
-    	<tr style = "cursor:pointer;" onClick="location.href='03.html'">
-      		<td>
-        		<div class="subject-header"><FONT style="color:#e65700;">${community.getSort()}</FONT> | No.${community.getSeq()}</div>
-        		<div class="subject">${community.getTitle()}</div>
-      		</td>
-      		<td>
-        		<div class="author-header"><FONT style="color:#e65700;">${community.getUserRank()}</FONT></div>
-        		<div class="author">${community.getUserNickname()}</div>
-      		</td>
-      		<td>${community.getRegDate()}</td>
-      		<td>${community.getHitCount()}</td>
-    	</tr>
-    </c:forEach>
+    </thead>
+    <tbody id='communityList'>
+    </tbody>
   </table>
   <!--재활용 빈도가 아주 높을 버튼 클래스들-->
   <div class="content-footer">

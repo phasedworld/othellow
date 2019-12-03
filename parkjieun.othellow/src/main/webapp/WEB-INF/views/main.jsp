@@ -253,7 +253,7 @@ nav li a{
           <ul>
             <li><a href="uservice/LankList" class="nav">랭킹</a></li>
             <li class="logo" style="position:relative;"><a id="logo" href="main.html" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
-            <li><a href="community/02.html" class="nav">커뮤니티</a></li>
+            <li><a href='community/list' class="nav">커뮤니티</a></li>
           </ul>
         </nav>
       </header>

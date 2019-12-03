@@ -2,11 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="parkjieun.othellow.community.dao.mapper.CommunityMapper">
-	<select id="getPosts" resultType="community">
-		select sort, seq, title, user_rank userRank, user_nickname userNickname, reg_date regDate, hit_count hitCount
-		from users, community
-		where users.user_id=community.user_id
-		order by seq desc
+	<select id="communityList" resultType="community">
+		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
+		from users u join community c
+		on u.user_id = c.user_id
+		where u.user_id=c.user_id
+		order by c.seq desc
 	</select>
 	
 	<select id="getViewPost" resultType="community">
