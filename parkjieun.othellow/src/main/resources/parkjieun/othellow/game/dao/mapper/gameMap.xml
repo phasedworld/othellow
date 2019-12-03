@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="parkjieun.othellow.game.dao.mapper.GameMapper">
+	<select id="getLobby" resultType="lobby">
+		select room_id roomId, room_name roomName, room_headcount roomHeadcount, room_status roomStatus
+		from lobby
+		where room_status=0 or room_status=1
+		order by room_id
+	</select>
+	<insert id="makeRoom" parameterType="lobby">
+		insert into lobby (room_id, room_name, room_headcount, room_status)
+		values
+		(nvl((select min(room_id)+1 from lobby
+		where (room_id+1) not in (select room_id from lobby)),1)
+		,#{roomName},1,0)
+		<selectKey keyProperty="roomId" resultType="int" order="BEFORE">
+			select nvl(min(room_id)+1,1)
+			from lobby where (room_id+1)
+			not in (select room_id from lobby)
+		</selectKey>
+	</insert>
+	<insert id="gamerIn" parameterType="gamer">
+		insert into rooms (room_id, user_id, user_side)
+		values
+		(#{roomId}, #{userId}, #{userSide})
+	</insert>
+	<update id="joinRoom" parameterType="int">
+		update lobby set room_headcount = (room_headcount+1)
+		where room_id=#{roomId}
+	</update>
+</mapper>

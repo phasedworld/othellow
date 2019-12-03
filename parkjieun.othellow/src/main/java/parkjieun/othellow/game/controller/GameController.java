@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import parkjieun.othellow.game.domain.Gamer;
 import parkjieun.othellow.game.domain.Lobby;
 import parkjieun.othellow.game.service.GameService;
 
@@ -35,8 +36,14 @@ public class GameController {
 	
 	@RequestMapping("game/makeRoom")
 	@ResponseBody
-	public int makeRoom(Lobby lobby){
-		return gameService.makeRoom(lobby);
+	public int makeRoom(Lobby lobby, Gamer gamer){
+		return gameService.makeRoom(lobby, gamer);
+	}
+	
+	@RequestMapping("game/joinRoom")
+	@ResponseBody
+	public int joinRoom(int roomId, Gamer gamer){
+		return gameService.joinRoom(roomId, gamer);
 	}
 	
 }

@@ -1,5 +1,7 @@
+<%@page import="parkjieun.othellow.user.domain.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% User user = (User) session.getAttribute("user");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -65,6 +67,7 @@ html{
   width:415px;
   margin:0 auto;
   cursor:pointer;
+  margin-bottom:20px;
 }
 
 .room-header{ /*div 방번호, 방제목 묶음*/
@@ -258,7 +261,7 @@ function listLobby(){
 						roomClass=" started";
 						roomLabel = "Playing...";
 					}
-					roomList.push("<li class=\'room-wrapper"+roomClass+"\' onClick='location.href=\'.\/room\/"+gameroom.roomId+"\';\'>"
+					roomList.push("<li class=\'room-wrapper"+roomClass+"\' onClick='joinRoom("+gameroom.roomId+")'>"
 					+"<div class=\'room-header\'><span class=\'room_status\'>"+gameroom.roomId+"</span>"
 					+"<div class=\'room_status\'>"+gameroom.roomName+"</div></div>"
 					+"<div class=\'room-body\'><div class=\'room_status\'>"+
@@ -282,11 +285,22 @@ function exitModal(){
 	$('.modal-shadow').removeClass('show');
 }
 function makeRoom(){
+	var allRoomData = {"roomName":$('#roomName').val(), "userId":"<%=user.getUserId()%>", "userSide":"black"};
 	$.ajax({
 		url:'makeRoom',
-		data:$('#roomName').serialize(),
+		data:allRoomData,
 		success:function(resNo){
 			location.href="./room/"+resNo;
+		}
+	});
+}
+function joinRoom(roomNo){
+	var allRoomData = {"roomId":roomNo, "userId":"<%=user.getUserId()%>", "userSide":"white"}
+	$.ajax({
+		url:'joinRoom',
+		data:allRoomData,
+		success:function(){
+			location.href="./room/"+roomNo;
 		}
 	});
 }
