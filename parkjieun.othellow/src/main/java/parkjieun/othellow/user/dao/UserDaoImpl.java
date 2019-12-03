@@ -30,4 +30,9 @@ public class UserDaoImpl implements UserDao{
 		return userMapper.nicknameVerify(userNickname);
 	}
 
+	@Override
+	public String findId(String userEmail){;
+		return userMapper.findId(userEmail);
+	}
+
 }

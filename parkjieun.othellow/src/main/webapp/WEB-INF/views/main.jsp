@@ -288,7 +288,7 @@ nav li a{
         <input class="login-input" type="password" name="userPassword" onkeypress="enterSubmit()" required/>
       </form>
       <div class="infobtn-wrap">
-        <a class="infobtn" href="user/signup">회원가입</a><a class="infobtn" href="user/02.html">아이디/비밀번호찾기</a>
+        <a class="infobtn" href="user/signup">회원가입</a><a class="infobtn" href="uservice/findIdForm">아이디/비밀번호찾기</a>
       </div>
       <div class="btn loginbtn" onClick="login()">
         <span class="gamestart">로그인</span>

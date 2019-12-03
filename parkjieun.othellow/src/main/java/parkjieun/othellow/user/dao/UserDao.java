@@ -7,4 +7,6 @@ public interface UserDao {
 	User getUser(User user);
 	int idVerify(String userId);
 	int nicknameVerify(String userNickname);
+	//주리
+	String findId(String userEmail);
 }
