@@ -240,9 +240,38 @@ margin:0px 10px;
 </style>
 <script>
 window.onload = function(){
-  var roomName=['멋진 한 판!', '즐겨요 이기분','매너 게임 합시다','패배시 백돌살해후 흑돌자살','아무나~','내가 오델로 킹'];
+  var roomName=['멋진 한 판!', '즐겨요 이기분','매너 게임 합시다','패배시 백돌살해','아무나~','내가 오델로 킹'];
   var randomSeq = Math.floor(Math.random()*(roomName.length));
   document.getElementById('roomName').value=roomName[randomSeq];
+  listLobby();
+}
+function listLobby(){
+	$.ajax({
+		url:'listlobby',
+		success:function(list){
+			if(list.length>0){
+				var roomList = [];
+				$(list).each(function(idx,gameroom){
+					var roomClass = "";
+					var roomLabel = "Waiting...";
+					if(gameroom.roomStatus==1){
+						roomClass=" started";
+						roomLabel = "Playing...";
+					}
+					roomList.push("<li class=\'room-wrapper"+roomClass+"\' onClick='location.href=\'.\/room\/"+gameroom.roomId+"\';\'>"
+					+"<div class=\'room-header\'><span class=\'room_status\'>"+gameroom.roomId+"</span>"
+					+"<div class=\'room_status\'>"+gameroom.roomName+"</div></div>"
+					+"<div class=\'room-body\'><div class=\'room_status\'>"+
+					roomLabel+"</div><div class=\'room_status\'>"+gameroom.roomHeadcount+"/2</div></div>"
+					);
+					if(idx%2==0){
+						roomList.push("<li></li>");
+					}
+				});
+				$('#lobby_wrap').html(roomList.join(''));
+			}
+		}
+	});
 }
 function showModal(){
 	$('#make-room-modal').addClass('show');
@@ -253,10 +282,13 @@ function exitModal(){
 	$('.modal-shadow').removeClass('show');
 }
 function makeRoom(){
-	//ajax로 없는 새로운 방번호를 얻어오고자 함..
-	
-	var newRoomNo = 3;
-	location.href="./room/"+newRoomNo;
+	$.ajax({
+		url:'makeRoom',
+		data:$('#roomName').serialize(),
+		success:function(resNo){
+			location.href="./room/"+resNo;
+		}
+	});
 }
 </script>
 </head>
@@ -270,7 +302,7 @@ function makeRoom(){
 </div>
 <div class="shadow">
   <div id="room_container">
-    <ul>
+    <ul id="lobby_wrap">
       <li class="room-wrapper started" onClick="location.href='./room/1';">
         <div class="room-header">
           <span class="room_status">01</span>
@@ -283,7 +315,6 @@ function makeRoom(){
         </div>
       </li>
       <li></li>
-
       <li class="room-wrapper" onClick="location.href='./room/2';">
         <div class="room-header">
           <div class="room_status">02</div>
