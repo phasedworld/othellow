@@ -12,9 +12,10 @@ public class Room {
 	private String blackNick;
 	private String whiteNick;
 	
-	public Room(WebSocketSession blackUser, String blackNick) {
+	public Room(WebSocketSession blackUser, String blackNick, int gameStatus) {
 		this.blackUser = blackUser;
 		this.blackNick = blackNick;
+		this.gameStatus = gameStatus;
 	}
 	public WebSocketSession getBlackUser() {
 		return blackUser;

@@ -10,4 +10,6 @@ public interface GameDao {
 	int makeRoom(Lobby lobby);
 	int gamerIn(Gamer gamer);
 	int joinRoom(int roomId);
+	int gamerOut(Gamer gamer);
+	int deleteRoom(Gamer gamer);
 }

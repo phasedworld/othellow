@@ -1,16 +1,25 @@
 package parkjieun.othellow.game.websocket;
 
 import java.util.HashMap;
+import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import parkjieun.othellow.game.dao.GameDao;
+import parkjieun.othellow.game.domain.Gamer;
 import parkjieun.othellow.game.domain.Room;
 
+@Service
 @Component
 public class MyHandler extends TextWebSocketHandler{
+	@Autowired GameDao gameDao;
+	
 	HashMap<String,Room> rooms = new HashMap<String, Room>();
 	int matrix[][] = {
 			{0,0,0,0,0,0,0,0},
@@ -33,7 +42,7 @@ public class MyHandler extends TextWebSocketHandler{
 			Room thisRoom = rooms.get(received[0]);
 			if(thisRoom==null){
 				//새 방이 없으면, 새 방을 생성 후 흑돌 유저로 지정
-				thisRoom = new Room(session,received[2]);
+				thisRoom = new Room(session, received[2], 0);
 				rooms.put(received[0], thisRoom);
 				session.sendMessage(new TextMessage("side:black"));
 			}else{
@@ -65,12 +74,13 @@ public class MyHandler extends TextWebSocketHandler{
 					{0,0,0,0,0,0,0,0}
 			};
 			thisRoom.setMatrix(startMatrix);
+			thisRoom.setGameStatus(1);
 			//'ready' 메시지를 보낸 백돌 유저의 아이디와 게임 시작을 알림
 			thisRoom.getBlackUser().sendMessage(new TextMessage("enter:whiteNick:"+thisRoom.getWhiteNick()));
 			thisRoom.getWhiteUser().sendMessage(new TextMessage("enter:whiteNick:"+thisRoom.getWhiteNick()));
 			thisRoom.getBlackUser().sendMessage(new TextMessage("start"));
 			thisRoom.getWhiteUser().sendMessage(new TextMessage("start"));
-			
+			rooms.put(received[0], thisRoom);
 		}
 		else if(received[0]!=null&&received[1].equals("black")){
 			//black의 턴 넘김 메시지 받음 ex) 3:black:41
@@ -87,6 +97,10 @@ public class MyHandler extends TextWebSocketHandler{
 			thisRoom.getWhiteUser().sendMessage(new TextMessage(boardRecord(matrix)));
 			//black, white의 행동 가능 여부 계산 ->black,white 행동불가시 게임종료, white 행동불가시 black턴, white 행동가능시 white턴
 			String turnOverMsg = getClickable(matrix, "white",0);
+			if(turnOverMsg.equals("gameend")){
+				thisRoom.setGameStatus(2);
+				rooms.put(received[0],thisRoom);
+			}
 			thisRoom.getBlackUser().sendMessage(new TextMessage(turnOverMsg));
 			thisRoom.getWhiteUser().sendMessage(new TextMessage(turnOverMsg));
 		}
@@ -105,6 +119,10 @@ public class MyHandler extends TextWebSocketHandler{
 			thisRoom.getWhiteUser().sendMessage(new TextMessage(boardRecord(matrix)));
 			//black, white의 행동 가능 여부 계산 ->black,white 행동불가시 게임종료, black 행동불가시 white턴, black 행동가능시 black턴
 			String turnOverMsg = getClickable(matrix, "black",0);
+			if(turnOverMsg.equals("gameend")){
+				thisRoom.setGameStatus(2);
+				rooms.put(received[0],thisRoom);
+			}
 			thisRoom.getBlackUser().sendMessage(new TextMessage(turnOverMsg));
 			thisRoom.getWhiteUser().sendMessage(new TextMessage(turnOverMsg));
 		}
@@ -120,7 +138,39 @@ public class MyHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(WebSocketSession session,
 			CloseStatus status) throws Exception {
+		
 		//탈주, 방 퇴장 처리
+		Set<String> keys = rooms.keySet();
+		for(String key:keys){
+			if(rooms.get(key).getBlackUser()==session){
+				//탈주자가 블랙 [runaway]:[black]
+				//[탈주] [게임 시작 전, 종료 후 퇴장] 여부에 따른 처리
+				System.out.println(key+"번 방 블랙 유저 퇴장");
+				//여기서 sql처리를 어캐해; 개빡쳐 ->되네?
+				Gamer gamer = new Gamer();
+				gamer.setRoomId(Integer.parseInt(key));
+				gamer.setUserSide("black");
+				gameDao.deleteRoom(gamer);
+				
+				if(rooms.get(key).getWhiteUser()!=null){
+					rooms.get(key).getWhiteUser().sendMessage(new TextMessage("runaway:black"));
+				}rooms.remove(key); //흑은 방장이므로 탈주시 방이 깨진다.
+				
+			}else if(rooms.get(key).getWhiteUser()==session){
+				//탈주자가 화이트 [runaway]:[white]
+				System.out.println(key+"번 방 화이트 유저 퇴장");
+				rooms.get(key).setWhiteUser(null);
+				
+				Gamer gamer = new Gamer();
+				gamer.setRoomId(Integer.parseInt(key));
+				gamer.setUserSide("white");
+				gameDao.gamerOut(gamer);
+				
+				if(rooms.get(key).getBlackUser()!=null){
+					rooms.get(key).getBlackUser().sendMessage(new TextMessage("runaway:white"));
+				}
+			}
+		}
 		System.out.println("연결 끊김");
 	}
 	
@@ -714,15 +764,14 @@ public class MyHandler extends TextWebSocketHandler{
 			if(clickableMsg.equals("clickable:black")){
 				if(endCnt==1){
 					clickableMsg = "gameend";
+//					for(int i=0;i<8;i++){
+//						for(int j=0;j<8;j++){
+//							
+//						}
+//					}
 				}else{
 					clickableMsg = getClickable(matrix, "white", 1);
 				}
-				/*String otherSide = getClickable(matrix,"white");
-				if(otherSide.equals("clickable:white")){
-					clickableMsg = "gameend";
-				}else{
-					clickableMsg = otherSide;
-				}*/
 			}
 		}else if(side.equals("white")){
 			clickableMsg = clickableMsg+":white";

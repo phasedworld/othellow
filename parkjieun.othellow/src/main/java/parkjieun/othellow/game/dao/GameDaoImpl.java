@@ -34,4 +34,17 @@ public class GameDaoImpl implements GameDao{
 		return gameMapper.joinRoom(roomId);
 	}
 
+	@Override
+	public int gamerOut(Gamer gamer) {
+		gameMapper.gamerOut(gamer);
+		return gameMapper.secedeRoom(gamer.getRoomId());
+	}
+
+	@Override
+	public int deleteRoom(Gamer gamer) {
+		gameMapper.gamerOut(gamer);
+		return gameMapper.deleteRoom(gamer.getRoomId());
+	}
+
+
 }

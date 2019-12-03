@@ -295,7 +295,7 @@ function makeRoom(){
 	});
 }
 function joinRoom(roomNo){
-	var allRoomData = {"roomId":roomNo, "userId":"<%=user.getUserId()%>", "userSide":"white"}
+	var allRoomData = {"roomId":roomNo, "userId":"<%=user.getUserId()%>", "userSide":"white"};
 	$.ajax({
 		url:'joinRoom',
 		data:allRoomData,
