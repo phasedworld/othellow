@@ -43,4 +43,22 @@
 	<delete id="deleteRoom" parameterType="int">
 		delete from lobby where room_id=#{roomId}
 	</delete>
+	<update id="gainExp" parameterType="user">
+		update users
+		set
+		<if test="userExp gt 1">
+			user_win=user_win+1,
+		</if>
+		<if test="userExp == 1">
+			user_lose=user_lose+1,
+		</if>
+		user_exp = user_exp+#{userExp}
+		where user_id=#{userId}
+	</update>
+	<select id="getCurGamer" parameterType="int" resultType="gamer">
+		select room_id roomId, user_id userId, user_side userSide
+		from rooms
+		where room_id=#{roomId}
+		order by user_side
+	</select>
 </mapper>

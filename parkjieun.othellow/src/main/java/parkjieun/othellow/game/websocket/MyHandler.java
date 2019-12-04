@@ -1,6 +1,7 @@
 package parkjieun.othellow.game.websocket;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import parkjieun.othellow.game.dao.GameDao;
 import parkjieun.othellow.game.domain.Gamer;
 import parkjieun.othellow.game.domain.Room;
+import parkjieun.othellow.user.domain.User;
 
 @Service
 @Component
@@ -146,28 +148,45 @@ public class MyHandler extends TextWebSocketHandler{
 				//탈주자가 블랙 [runaway]:[black]
 				//[탈주] [게임 시작 전, 종료 후 퇴장] 여부에 따른 처리
 				System.out.println(key+"번 방 블랙 유저 퇴장");
-				//여기서 sql처리를 어캐해; 개빡쳐 ->되네?
+				//0,2 ->leave, 1->runaway
+				String action="";
+				if(rooms.get(key).getGameStatus()==1){
+					action = "runaway";
+					List<Gamer> gamer = gameDao.getCurGamer(Integer.parseInt(key));
+					gameDao.gainExp(new User(gamer.get(0).getUserId(),1));
+					gameDao.gainExp(new User(gamer.get(1).getUserId(),10));
+				}else{
+					action = "leave";
+				}
 				Gamer gamer = new Gamer();
 				gamer.setRoomId(Integer.parseInt(key));
 				gamer.setUserSide("black");
 				gameDao.deleteRoom(gamer);
 				
 				if(rooms.get(key).getWhiteUser()!=null){
-					rooms.get(key).getWhiteUser().sendMessage(new TextMessage("runaway:black"));
+					rooms.get(key).getWhiteUser().sendMessage(new TextMessage(action+":black"));
 				}rooms.remove(key); //흑은 방장이므로 탈주시 방이 깨진다.
 				
 			}else if(rooms.get(key).getWhiteUser()==session){
 				//탈주자가 화이트 [runaway]:[white]
 				System.out.println(key+"번 방 화이트 유저 퇴장");
+				String action="";
+				if(rooms.get(key).getGameStatus()==1){
+					action = "runaway";
+					List<Gamer> gamer = gameDao.getCurGamer(Integer.parseInt(key));
+					gameDao.gainExp(new User(gamer.get(0).getUserId(),10));
+					gameDao.gainExp(new User(gamer.get(1).getUserId(),1));
+				}else{
+					action = "leave";
+				}
 				rooms.get(key).setWhiteUser(null);
-				
 				Gamer gamer = new Gamer();
 				gamer.setRoomId(Integer.parseInt(key));
 				gamer.setUserSide("white");
 				gameDao.gamerOut(gamer);
 				
 				if(rooms.get(key).getBlackUser()!=null){
-					rooms.get(key).getBlackUser().sendMessage(new TextMessage("runaway:white"));
+					rooms.get(key).getBlackUser().sendMessage(new TextMessage(action+":white"));
 				}
 			}
 		}

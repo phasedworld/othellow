@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import parkjieun.othellow.game.dao.mapper.GameMapper;
 import parkjieun.othellow.game.domain.Gamer;
 import parkjieun.othellow.game.domain.Lobby;
+import parkjieun.othellow.user.domain.User;
 
 @Repository
 public class GameDaoImpl implements GameDao{
@@ -44,6 +45,16 @@ public class GameDaoImpl implements GameDao{
 	public int deleteRoom(Gamer gamer) {
 		gameMapper.gamerOut(gamer);
 		return gameMapper.deleteRoom(gamer.getRoomId());
+	}
+
+	@Override
+	public int gainExp(User user) {
+		return gameMapper.gainExp(user);
+	}
+
+	@Override
+	public List<Gamer> getCurGamer(int roomId) {
+		return gameMapper.getCurGamer(roomId);
 	}
 
 

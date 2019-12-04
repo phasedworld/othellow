@@ -10,6 +10,13 @@ public class User {
 	private int userLose;
 	private int userExp;
 	private String userRank;
+	
+	public User() {}
+	public User(String userId, int userExp) {
+		super();
+		this.userId = userId;
+		this.userExp = userExp;
+	}
 	public String getUserId() {
 		return userId;
 	}

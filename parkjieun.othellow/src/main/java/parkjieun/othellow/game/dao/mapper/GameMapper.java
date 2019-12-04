@@ -4,6 +4,7 @@ import java.util.List;
 
 import parkjieun.othellow.game.domain.Gamer;
 import parkjieun.othellow.game.domain.Lobby;
+import parkjieun.othellow.user.domain.User;
 
 public interface GameMapper {
 	List<Lobby> getLobby();
@@ -13,4 +14,6 @@ public interface GameMapper {
 	int gamerOut(Gamer gamer);
 	int secedeRoom(int roomNo);
 	int deleteRoom(int roomNo);
+	int gainExp(User user);
+	List<Gamer> getCurGamer(int roomId);
 }

@@ -202,6 +202,55 @@ margin:0px 10px;
   background: #aaa;
   border:2px solid #aaa;
 }
+
+/*modal css*/
+
+#make-room-modal{
+  display:none;
+  background:white;
+  position:absolute;
+  left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  z-index:99;
+  padding:40px 80px;
+  border-radius:10px;
+  border:2px solid #999;
+  font-family:'YoonGothic';
+}
+.room-label{
+  text-align: center;
+  font-size:28px;
+}
+.totalscore{
+  font-size:75px;
+  width:350px;
+  padding-top:25px;
+  text-align: center;
+}
+.exit-label{
+  margin:0 auto;
+  text-align: center;
+  background:#333;
+  color:white;
+  width:120px;
+  padding:5px;
+  margin-top:20px;
+  font-size:18px;
+  cursor:pointer;
+}
+.modal-shadow{
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.3);
+  position:absolute;
+  z-index:33;
+  display:none;
+}
+.modal-exit{
+  position:absolute;
+  right:20px;
+  top:20px;
+  cursor:pointer;
+}
 </style>
 <script>
 window.onload = function(){
@@ -312,7 +361,7 @@ function onMessage(msg) {
 
 function onClose(evt) {
 
-       $("#data").append("연결 끊김");
+       console.log("웹소켓 서버와의 연결 끊김");
 
 }
 </script>
@@ -326,6 +375,13 @@ function dropStone(idx){
 </script>
 </head>
 <body>
+<div class="modal-shadow"></div>
+  <div id="make-room-modal">
+    <span class="modal-exit">&times;</span>
+    <div class="room-label">BLACK WIN!</div>
+    <div class="totalscore">36:30</div>
+    <div class="exit-label">EXIT</div>
+</div>
 <div id="topnav">
   <div class="username black" id="blackName"></div>
   <div class="scoreboard">0 : 0</div>
