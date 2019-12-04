@@ -102,6 +102,7 @@ public class MyHandler extends TextWebSocketHandler{
 			if(turnOverMsg.equals("gameend")){
 				thisRoom.setGameStatus(2);
 				rooms.put(received[0],thisRoom);
+				turnOverMsg = turnOverMsg + endGame(received[0]);
 			}
 			thisRoom.getBlackUser().sendMessage(new TextMessage(turnOverMsg));
 			thisRoom.getWhiteUser().sendMessage(new TextMessage(turnOverMsg));
@@ -124,6 +125,7 @@ public class MyHandler extends TextWebSocketHandler{
 			if(turnOverMsg.equals("gameend")){
 				thisRoom.setGameStatus(2);
 				rooms.put(received[0],thisRoom);
+				turnOverMsg = turnOverMsg + endGame(received[0]);
 			}
 			thisRoom.getBlackUser().sendMessage(new TextMessage(turnOverMsg));
 			thisRoom.getWhiteUser().sendMessage(new TextMessage(turnOverMsg));
@@ -209,11 +211,41 @@ public class MyHandler extends TextWebSocketHandler{
 		return black+white;
 	}
 	
+	public String endGame(String roomId){
+		matrix = rooms.get(roomId).getMatrix();
+		int bScore = 0; int wScore = 0;
+		int bExp = 0; int wExp = 0;
+		for(int i=0;i<8;i++){
+			for(int j=0;j<8;j++){
+				if(matrix[i][j]==1){
+					bScore++;
+				}else if(matrix[i][j]==2){
+					wScore++;
+				}
+			}
+		}
+		//승패 처리
+		if(bScore == wScore){
+			bExp = (bScore/10) + 10;
+			wExp = (wScore/10) + 10;
+		}else if(bScore > wScore){
+			bExp = (bScore/10) + 10;
+			wExp = 1;
+		}else{
+			wExp = (bScore/10) + 10;
+			bExp = 1;
+		}
+		List<Gamer> gamer = gameDao.getCurGamer(Integer.parseInt(roomId));
+		gameDao.gainExp(new User(gamer.get(0).getUserId(),bExp));
+		gameDao.gainExp(new User(gamer.get(1).getUserId(),wExp));
+		return ":"+bScore+":"+wScore;
+	}
+	
 	public void flipStone(int[][] matrix, int x, int y, String side){
 		if(side.equals("black")){
 			
 			//left-top
-			int counter=0; //뒤집을 개수를 세어준다! 모든 플립작업 전 필요
+			int counter=0;
 			int tempX; int tempY;
 			if(x>1&&y>1){
 				tempX = x; tempY= y;
@@ -252,7 +284,7 @@ public class MyHandler extends TextWebSocketHandler{
 			}
 			
 			//right-bottom
-			counter=0; //뒤집을 개수를 세어준다! 모든 플립작업 전 필요
+			counter=0;
 			if(x<6&&y<6){
 				tempX = x; tempY= y;
 				while(tempX+1<8&&tempY+1<8&&counter!=-1){
@@ -271,7 +303,7 @@ public class MyHandler extends TextWebSocketHandler{
 			}
 
 			//left-bottom
-			counter=0; //뒤집을 개수를 세어준다! 모든 플립작업 전 필요
+			counter=0;
 			if(x<6&&y>1){
 				tempX = x; tempY= y;
 				while(tempX+1<8&&tempY-1>=0&&counter!=-1){
@@ -366,7 +398,7 @@ public class MyHandler extends TextWebSocketHandler{
 		}else if(side.equals("white")){
 			
 			//left-top
-			int counter=0; //뒤집을 개수를 세어준다! 모든 플립작업 전 필요
+			int counter=0;
 			int tempX; int tempY;
 			if(x>1&&y>1){
 				tempX = x; tempY= y;
@@ -386,7 +418,7 @@ public class MyHandler extends TextWebSocketHandler{
 			}
 			
 			//right-top
-			counter=0; //뒤집을 개수를 세어준다! 모든 플립작업 전 필요
+			counter=0;
 			if(x>1&&y<6){
 				tempX = x; tempY= y;
 				while(tempX-1>=0&&tempY+1<8&&counter!=-1){
@@ -405,7 +437,7 @@ public class MyHandler extends TextWebSocketHandler{
 			}
 			
 			//right-bottom
-			counter=0; //뒤집을 개수를 세어준다! 모든 플립작업 전 필요
+			counter=0;
 			if(x<6&&y<6){
 				tempX = x; tempY= y;
 				while(tempX+1<8&&tempY+1<8&&counter!=-1){
@@ -424,7 +456,7 @@ public class MyHandler extends TextWebSocketHandler{
 			}
 
 			//left-bottom
-			counter=0; //뒤집을 개수를 세어준다! 모든 플립작업 전 필요
+			counter=0;
 			if(x<6&&y>1){
 				tempX = x; tempY= y;
 				while(tempX+1<8&&tempY-1>=0&&counter!=-1){

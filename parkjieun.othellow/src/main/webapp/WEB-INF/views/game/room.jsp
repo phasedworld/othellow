@@ -15,6 +15,10 @@
   font-family:'Ddukkubi';
   src:url('../../font/Ddukkubi.ttf');
 }
+@font-face{
+  font-family:'YoonGothic';
+  src:url('../../font/YoonGothic.otf');
+}
 .readybtn{
   background:orange;
   display:inline-block;
@@ -217,11 +221,11 @@ margin:0px 10px;
   border:2px solid #999;
   font-family:'YoonGothic';
 }
-.room-label{
+#room-label{
   text-align: center;
   font-size:28px;
 }
-.totalscore{
+#totalscore{
   font-size:75px;
   width:350px;
   padding-top:25px;
@@ -250,6 +254,9 @@ margin:0px 10px;
   right:20px;
   top:20px;
   cursor:pointer;
+}
+#make-room-modal.show, .modal-shadow.show{
+  display:block;
 }
 </style>
 <script>
@@ -351,7 +358,21 @@ function onMessage(msg) {
     	}else{
     		$('.clickable').off();
     	}
-    }else if(message[0]='gameend'){
+    }else if(message[0]=='gameend'){
+    	var resultLabel = "";
+    	if(message[1]==message[2]){
+    		resultLabel = "DRAW!";
+    	}else if(message[1]>message[2]){
+    		resultLabel = "BLACK WIN!";
+    	}else{
+    		resultLabel = "WHITE WIN!";
+    	}
+    	$('#room-label').text(resultLabel);
+    	$('#totalscore').text(message[1]+":"+message[2]);
+    	$('#make-room-modal').addClass('show');
+    	$('.modal-shadow').addClass('show');
+    }else{
+    	
     }
 }
 
@@ -378,8 +399,8 @@ function dropStone(idx){
 <div class="modal-shadow"></div>
   <div id="make-room-modal">
     <span class="modal-exit">&times;</span>
-    <div class="room-label">BLACK WIN!</div>
-    <div class="totalscore">36:30</div>
+    <div id="room-label"></div>
+    <div id="totalscore"></div>
     <div class="exit-label">EXIT</div>
 </div>
 <div id="topnav">
