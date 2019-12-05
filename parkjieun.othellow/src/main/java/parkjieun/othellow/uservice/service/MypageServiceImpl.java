@@ -1,14 +1,16 @@
 package parkjieun.othellow.uservice.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import parkjieun.othellow.user.domain.User;
 import parkjieun.othellow.uservice.dao.UserviceDao;
+
 @Service
 public class MypageServiceImpl implements MypageService{
-	@Autowired private UserviceDao userviceDao;
+	@Autowired 
+	private UserviceDao userviceDao;
 
 	@Override
 	public int nicknameUpdate(User user) {
@@ -21,6 +23,11 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
+	public int emailUpdate(User user) {
+		return userviceDao.emailUpdate(user);
+	}
+
+	@Override
 	public int nicknameVerify(String userNickname) {
 		return userviceDao.nicknameVerify(userNickname);
 	}
@@ -29,10 +36,4 @@ public class MypageServiceImpl implements MypageService{
 	public int passwordVerify(String userPassword) {
 		return userviceDao.passwordVerify(userPassword);
 	}
-
-	/*@Override
-	public int emailUpdate(String userEmail) {
-		return userviceDao.emailUpdate(userEmail);
-	}*/
-
 }

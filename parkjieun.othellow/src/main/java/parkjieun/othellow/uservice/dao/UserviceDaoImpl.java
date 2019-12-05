@@ -16,7 +16,6 @@ public class UserviceDaoImpl implements UserviceDao{
 		return userviceMapper.rankUsers();
 	}
 
-	
 	@Override
 	public int nicknameUpdate(User user) {
 		return userviceMapper.nicknameUpdate(user);
@@ -26,12 +25,17 @@ public class UserviceDaoImpl implements UserviceDao{
 	public int passwordUpdate(User user) {
 		return userviceMapper.passwordUpdate(user);
 	}
-	
+
+	@Override
+	public int emailUpdate(User user) {
+		return userviceMapper.emailUpdate(user);
+	}
 
 	@Override
 	public int nicknameVerify(String userNickname) {
 		return userviceMapper.nicknameVerify(userNickname);
 	}
+	
 
 	@Override
 	public int passwordVerify(String userPassword) {
@@ -49,10 +53,7 @@ public class UserviceDaoImpl implements UserviceDao{
 	}*/
 	
 
-	/*@Override
-	public int emailUpdate(String userEmail) {
-		return userviceMapper.emailUpdate(userEmail);
-	}*/
+	
 
 	
 

@@ -10,125 +10,115 @@
 <title>오델로W</title>
 <meta charset=UTF-8">
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<link rel='stylesheet'href='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script>
+<link rel='stylesheet'
+	href='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css' />
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script>
 <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
-<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 @font-face {
-	font-family: 'Ddukkubi';
-	src: url('../font/Ddukkubi.ttf');
+   font-family: 'Ddukkubi';
+   src: url('../font/Ddukkubi.ttf');
 }
 
 @font-face {
-	font-family: 'NotoSansBold';
-	src: url('../font/NotoSansBold.otf');
+   font-family: 'NotoSansBold';
+   src: url('../font/NotoSansBold.otf');
 }
 
 @font-face {
-	font-family: 'YoonGothic';
-	src: url('../font/YoonGothic.otf');
+   font-family: 'YoonGothic';
+   src: url('../font/YoonGothic.otf');
 }
 
 body {
-	margin: 0;
-	font-family: 'NotoSansBold';
+   margin: 0;
+   font-family: 'NotoSansBold';
 }
 
-header {
-	width: 1200px;
-	margin: 0 auto;
-	height: 200px;
-	background: url('');
-	background-size: cover;
-	background-position: center;
+header{
+  width:1200px;
+  margin:0 auto;
+  height:200px;
+  background:url("");
+  background-size:cover;
+  background-position: center;
 }
-
-.header-wrapper {
-	background: linear-gradient(90deg, #11998e, #38ef7d);
+.header-wrapper{
+  background: linear-gradient(90deg, #11998e, #38ef7d);
 }
 
 nav {
-	height: 180px;
+   height: 180px;
 }
 
 nav ul {
-	list-style: none;
-	padding: 0px;
-	margin: 0px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+   list-style: none;
+   padding: 0px;
+   margin: 0px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 nav li a {
-	font-size: 25px;
-	color: white;
-	text-decoration: none;
-	text-shadow: 2px 2px 0px black;
-	font-family: 'NotoSansBold';
+   font-size: 25px;
+   color: white;
+   text-decoration: none;
+   text-shadow: 2px 2px 0px black;
+   font-family: 'NotoSansBold';
 }
+#logo{
+  font-style: italic;
+  -webkit-text-stroke: 2px #000;
+  background-color:black;
 
-#logo {
-	font-style: italic;
-	-webkit-text-stroke: 2px #000;
-	background-color: black;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	text-shadow: none;
-	display: inline-block;
-	width: 380px;
-	text-align: center;
-	position: relative;
-	left: 10px;
-	top: 5px;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:none;
+  display:inline-block;
+  width:380px;
+  text-align: center;
+  position:relative;
+  left:10px; top:5px;
 }
-
-#logo:before {
-	content: "오델로";
-	position: absolute;
-	left: -60px;
-	top: -5px;
-	text-align: center;
-	background: -webkit-linear-gradient(white 0%, #aaa 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	width: 370px;
+#logo:before{
+  content:"오델로";
+  position:absolute;
+  left:-15px; top:-5px;
+  text-align: center;
+  background:-webkit-linear-gradient(white 0%, #aaa 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  width:280px;
 }
-
-#w-word {
-	font-style: italic;
-	-webkit-text-stroke: 2px #000;
-	background: black;
-	display: inline-block;
-	width: 120px;
-	text-align: center;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	text-shadow: none;
-	position: relative;
+#w-word{
+  font-style: italic;
+  -webkit-text-stroke: 2px #000;
+  background:black;
+  display:inline-block;
+  width:120px;
+  text-align: center;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:none;
+  position:relative;
 }
-
-#w-word:before {
-	content: "W";
-	position: absolute;
-	left: -5px;
-	top: -5px;
-	background: -webkit-linear-gradient(rgb(10, 155, 135) 0%,
-		rgb(214, 211, 20) 100%);
-	width: 120px;
-	text-align: center;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+#w-word:before{
+  content:"W";
+  position:absolute;
+  left:-5px; top:-5px;
+  background:-webkit-linear-gradient(rgb(10,155,135) 0%, rgb(214,211,20) 100%);
+  width:120px;
+  text-align: center;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
-
 .header-divider {
-	height: 20px;
-	background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
-		#383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
-	background-size: 11.31px 11.31px;
+   height: 20px;
+   background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
+      #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
+   background-size: 11.31px 11.31px;
 }
 </style>
 <style>
@@ -408,6 +398,7 @@ a {
 
 .confirmmsg.success {
 	color: #06a545;
+	width: 400px;
 }
 
 .confirmmsg.failed {
@@ -629,22 +620,22 @@ a {
 	function sendEmail() {
 		$('#email-msg').text('이메일을 보내는 중...');
 		$.ajax({
-			method : "GET",
-			url : "emailAuth",
-			data : {
-				email : $('#userEmail').val()
-			},
+			method:"GET",
+			url:"../user/emailAuth",
+			data:{email:$('#userEmail').val()},
 			success : function() {
-				$('#email-authnum').css('display', 'inline-block');
 				$('#email-msg').text('이메일을 보냈습니다. 이메일을 확인해주세요');
 				emailVerify = 1;
+			},error: function(){
+				$('#email-msg').text('이메일이 전송되지 않았습니다');
+				emailVerify = 0;
 			}
 		});
 	}
 	function emailAuth(){
 		$.ajax({
 			method:"GET",
-			url:"emailVerify",
+			url:"../user/emailVerify",
 			data:{auth:$('#email-authnum').val()},
 			success:function(data){
 				if(data==0){
@@ -658,19 +649,33 @@ a {
 				}
 			}
 		});
-		
 	}
-	
+	function emailUpdate(){
+		if(emailVerify == 1){
+			alert('이메일 검증이 필요합니다', 'warning');
+		}else{
+			$.ajax({
+				method:"GET",
+				url:"email",
+				data:$('#emailForm').serialize(),
+				success:function(data){
+					alert('이메일 변경 성공!', 'warning')
+					return;
+				},error: function(){
+					alert('이메일 변경 실패!', 'warning')
+				}
+			});
+		}
+	}
 </script>
 <body>
 	<div class="header-wrapper">
 		<header>
 			<nav>
 				<ul>
-					<li><a href="/RankList" class="nav">랭킹</a></li>
-					<li class="logo"><a href=".."
-						style="font-size: 75px; font-family: 'Ddukkubi'">오델로W</a></li>
-					<li><a href="/community/communityList" class="nav">커뮤니티</a></li>
+					<li><a href="../uservice/RankList" class="nav">랭킹</a></li>
+					<li class="logo"><a id="logo" href="../" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
+					<li><a href='list' class="nav">커뮤니티</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -726,9 +731,7 @@ a {
 						</td>
 						<!--띄울창-->
 						<div id="show-modal">
-
 							<div id="modal-content">
-
 								<span id="close-button" onclick="pic_upload_btn()">&times;</span>
 								<div id="picture_select_txt">
 									<h2>사진을 선택해 주세요</h2>
@@ -844,7 +847,7 @@ a {
 								</div>
 								<div class="btn_box2">
 									<div class="n-btn2" onclick="email_change_btn_click()">취소</div>
-									<div class="submit_btn">완료</div>
+									<div class="submit_btn" onclick="emailUpdate()">완료</div>
 								</div>
 							</div></td>
 						<td><div class="n-btn" id="email-btn"

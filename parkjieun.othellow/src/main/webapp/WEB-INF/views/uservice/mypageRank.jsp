@@ -5,23 +5,33 @@
 <head>
 <title>오델로W</title>
 <meta charset="utf-8">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet'
+	href='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css' />
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script>
+<script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
 <style>
-@font-face{
-  font-family:'Ddukkubi';
-  src:url('../resources/font/Ddukkubi.ttf');
+@font-face {
+   font-family: 'Ddukkubi';
+   src: url('../font/Ddukkubi.ttf');
 }
-@font-face{
-  font-family:'NotoSansBold';
-  src:url('../resources/font/NotoSansBold.otf');
+
+@font-face {
+   font-family: 'NotoSansBold';
+   src: url('../font/NotoSansBold.otf');
 }
-@font-face{
-  font-family:'YoonGothic';
-  src:url('../resources/font/YoonGothic.otf');
+
+@font-face {
+   font-family: 'YoonGothic';
+   src: url('../font/YoonGothic.otf');
 }
-body{
-  margin:0;
-  font-family:'NotoSansBold';
+
+body {
+   margin: 0;
+   font-family: 'NotoSansBold';
 }
+
 header{
   width:1200px;
   margin:0 auto;
@@ -31,32 +41,82 @@ header{
   background-position: center;
 }
 .header-wrapper{
+  background: linear-gradient(90deg, #11998e, #38ef7d);
+}
+
+nav {
+   height: 180px;
+}
+
+nav ul {
+   list-style: none;
+   padding: 0px;
+   margin: 0px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+nav li a {
+   font-size: 25px;
+   color: white;
+   text-decoration: none;
+   text-shadow: 2px 2px 0px black;
+   font-family: 'NotoSansBold';
+}
+#logo{
+  font-style: italic;
+  -webkit-text-stroke: 2px #000;
+  background-color:black;
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:none;
+  display:inline-block;
+  width:380px;
+  text-align: center;
+  position:relative;
+  left:10px; top:5px;
+}
+#logo:before{
+  content:"오델로";
+  position:absolute;
+  left:-15px; top:-5px;
+  text-align: center;
+  background:-webkit-linear-gradient(white 0%, #aaa 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  width:280px;
+}
+#w-word{
+  font-style: italic;
+  -webkit-text-stroke: 2px #000;
   background:black;
+  display:inline-block;
+  width:120px;
+  text-align: center;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:none;
+  position:relative;
 }
-nav{
-  height:180px;
+#w-word:before{
+  content:"W";
+  position:absolute;
+  left:-5px; top:-5px;
+  background:-webkit-linear-gradient(rgb(10,155,135) 0%, rgb(214,211,20) 100%);
+  width:120px;
+  text-align: center;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
-nav ul{
-  list-style: none;
-  padding:0px; margin:0px;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-nav li a{
-  font-size:25px;
-  color:white;
-  text-decoration:none;
-  text-shadow:2px 2px 0px black;
-  font-family:'NotoSansBold';
-}
-.header-divider{
-  height:20px;
-  background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%, #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
-  background-size: 11.31px 11.31px;
+.header-divider {
+   height: 20px;
+   background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
+      #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
+   background-size: 11.31px 11.31px;
 }
 </style>
-
 <style>
 
 .container {
@@ -182,16 +242,16 @@ a {
 
 <body>
   <div class="header-wrapper">
-    <header>
-        <nav>
-          <ul>
-            <li><a href="/RankList" class="nav">랭킹</a></li>
-            <li class="logo"><a href=".." style="font-size:75px; font-family:'Ddukkubi'">오델로W</a></li>
-            <li><a href="/community/communityList" class="nav">커뮤니티</a></li>
-          </ul>
-        </nav>
-      </header>
-  </div>
+		<header>
+			<nav>
+				<ul>
+					<li><a href="../uservice/RankList" class="nav">랭킹</a></li>
+					<li class="logo"><a id="logo" href="../" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
+					<li><a href='list' class="nav">커뮤니티</a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
 	<div class="header-divider"></div>
 	<div class="container">
 	<%
