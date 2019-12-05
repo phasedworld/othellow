@@ -5,22 +5,26 @@
 <head>
 <title>오델로W</title>
 <style>
-@font-face{
-  font-family:'Ddukkubi';
-  src:url('../resources/font/Ddukkubi.ttf');
+@font-face {
+   font-family: 'Ddukkubi';
+   src: url('../font/Ddukkubi.ttf');
 }
-@font-face{
-  font-family:'NotoSansBold';
-  src:url('../resources/font/NotoSansBold.otf');
+
+@font-face {
+   font-family: 'NotoSansBold';
+   src: url('../font/NotoSansBold.otf');
 }
-@font-face{
-  font-family:'YoonGothic';
-  src:url('../resources/font/YoonGothic.otf');
+
+@font-face {
+   font-family: 'YoonGothic';
+   src: url('../font/YoonGothic.otf');
 }
-body{
-  margin:0;
-  font-family:'NotoSansBold';
+
+body {
+   margin: 0;
+   font-family: 'NotoSansBold';
 }
+
 header{
   width:1200px;
   margin:0 auto;
@@ -32,22 +36,26 @@ header{
 .header-wrapper{
   background: linear-gradient(90deg, #11998e, #38ef7d);
 }
-nav{
-  height:180px;
+
+nav {
+   height: 180px;
 }
-nav ul{
-  list-style: none;
-  padding:0px; margin:0px;
-  display:flex;
-  justify-content: center;
-  align-items: center;
+
+nav ul {
+   list-style: none;
+   padding: 0px;
+   margin: 0px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
-nav li a{
-  font-size:25px;
-  color:white;
-  text-decoration:none;
-  text-shadow:2px 2px 0px black;
-  font-family:'NotoSansBold';
+
+nav li a {
+   font-size: 25px;
+   color: white;
+   text-decoration: none;
+   text-shadow: 2px 2px 0px black;
+   font-family: 'NotoSansBold';
 }
 #logo{
   font-style: italic;
@@ -95,21 +103,22 @@ nav li a{
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
-.header-divider{
-  height:20px;
-  background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%, #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
-  background-size: 11.31px 11.31px;
+.header-divider {
+   height: 20px;
+   background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
+      #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
+   background-size: 11.31px 11.31px;
 }
 </style>
 </head>
-<body>
+<body onLoad="startFindId()">
   <div class="header-wrapper">
     <header>
         <nav>
           <ul>
-            <li><a href="../uservice/03.html" class="nav">랭킹</a></li>
+            <li><a href="../uservice/RankList" class="nav">랭킹</a></li>
             <li class="logo" style="position:relative;"><a id="logo" href="../main.html" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
-            <li><a href="../community/02.html" class="nav">커뮤니티</a></li>
+            <li><a href="../community/list" class="nav">커뮤니티</a></li>
           </ul>
         </nav>
       </header>
@@ -119,25 +128,65 @@ nav li a{
   <div class="title">
     <h3 class="real_title">오델로W 계정 찾기</h3>
   </div>
-	<div class="find_wrap">
-		<form action="./findId" method="POST">
-			<div class="input_title">
-				<div class="label">Email</div>
-           		<div class="label_help">오델로W에서 사용한 Email주소를 입력해주세요.</div>
-        	</div>
-         	<div class="txt_wrap">
-				<input class="txt_in" type="text" id="email" name="userEmail" placeholder="이메일주소를 입력하세요." required>
-         	</div>
-
-			<div class="button_wrap">
-				<button type="submit" id=findBtn href="uservice/findId">find</button>
-				<button type="button" id="cancelBtn" onclick="history.go(-1);">Cancel</button>
-			</div>
-			
-         	<a class="find-id-pw" href="findPasswd">비밀번호를 잊어버리셨나요?</a>
-		</form>
+	<div id="find_wrap" class="find_wrap">
+		<div id="change-box">
+			<form name="findIdForm" action="./findId" method="POST">
+				<div class="input_title">
+					<div class="label">아이디 찾기</div>
+	           		<div class="label_help">오델로W에서 사용한 Email주소를 입력해주세요.</div>
+	        	</div>
+	         	<div class="txt_wrap">
+					<input class="txt_in" type="text" id="userEmail" name="userEmail" placeholder="이메일주소를 입력하세요." required>
+	         	</div>
+	      		
+				<div class="button_wrap">
+					<button type="button" id="findBtn" >find</button>
+					<button type="button" id="cancelBtn" onclick="history.go(-1);">Cancel</button>
+				</div>
+		</div>		
+				
+	         	<a class="find-id-pw" href="findPasswdForm">비밀번호를 잊어버리셨나요?</a>
+			</form>		
 	</div>
 </body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script>
+var alert = function(msg, type){
+	swal({
+		title:'',
+		text:msg,
+		icon:type,
+		timer:3000,
+		customClass:'sweet-size',
+		showConfirmButton:false
+	});
+}
+function startFindId(){
+$('#findBtn').on('click',function(){
+	$.ajax({
+		method:'POST',
+		url:'findId',
+		data:{userEmail:$('#userEmail').val()},
+		dataType:'json',
+		success:function(data){
+			if(data==0)
+				alert('이메일 주소를 한번 더 확인해주세요.')
+			else
+				$('#change-box').html("<div class='label'>ID찾기 결과 </div>"+
+									  "<div class='label_help'>입력하신 이메일과 일치하는 ID 입니다. </div>" +
+									  "<h2 class='foundId'>"+data+"</h2>" +
+									  "<div class='button_wrap'>" +
+									  "<button type='button' id='loginBtn' onclick='history.go(-1);'>login</button>" +
+									  "</div>");				
+		},
+		complete:function(){
+			console.log($('#userEmail').val()+'를 userEmail로 송신!');
+		}
+	});
+});
+}
+</script>
 <style>
 .title{
   width:800px;
@@ -189,11 +238,35 @@ nav li a{
   width:380px;
   font-family: YoonGothic;
 }
-
+/*ajax*/
+.foundId{
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom:50px;
+  width: 400px;
+}
 .button_wrap{
-    margin-top:10px;
-    text-align:center;
+  margin-top:10px;
+  text-align:center;
   }
+#loginBtn{
+  display:inline-block;
+  background: #c0c962;
+  width:400px;
+  padding:17px 30px;
+  font-size:19px;
+  font-weight:900px;
+  border:2px solid #c0c962;
+  border-radius:30px;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+#loginBtn:hover{
+  background: #959f2c;
+  border:2px solid #959f2c;
+}
+/*end ajax*/
   
 #findBtn{
 display:inline-block;
@@ -208,12 +281,10 @@ color:white;
 cursor:pointer;
 transition:0.3s;
 }
-
 #findBtn:hover{
   background: #959f2c;
   border:2px solid #959f2c;
 }
-
 #cancelBtn{
 display:inline-block;
 background: #ccc;

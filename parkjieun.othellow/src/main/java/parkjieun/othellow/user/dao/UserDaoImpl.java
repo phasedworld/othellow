@@ -1,5 +1,7 @@
 package parkjieun.othellow.user.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -31,7 +33,7 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public String findId(String userEmail){;
+	public List<String> findId(String userEmail){;
 		return userMapper.findId(userEmail);
 	}
 

@@ -1,11 +1,14 @@
 package parkjieun.othellow.user.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,19 +26,25 @@ public class UserController {
 		return "user/01";
 	}
 	
-	//주리
 	//아이디 찾기 페이지로 이동하기. 
 	@RequestMapping("uservice/findIdForm")
 	public String findIdForm(){
 		return "uservice/findIdForm";
 	}
 	
-	@RequestMapping(value="uservice/findId", method= RequestMethod.POST)
-	public String findId(HttpServletResponse response, @RequestParam("userEmail")
-					String userEmail, Model md)throws Exception{
-		md.addAttribute("id", userService.findId(response, userEmail));
-		return "/uservice/findId";
-	}	
+	//입력한 이메일주소에 맞는 아이디리스트를 리턴
+	@RequestMapping(value="uservice/findId", method=RequestMethod.POST, produces="application/json;")
+	@ResponseBody
+	public ArrayList<String> findId(@ModelAttribute("userEmail") String userEmail){		
+		ArrayList<String> idList = userService.findId(userEmail);
+		return idList;
+	}
+	
+	//비밀번호 찾기 페이지로 이동하기. 
+	@RequestMapping("uservice/findPasswdForm")
+	public String findPasswdForm(){
+		return "uservice/findPasswdForm";
+	}
 	
 	@RequestMapping("user/addUser")
 	@ResponseBody
