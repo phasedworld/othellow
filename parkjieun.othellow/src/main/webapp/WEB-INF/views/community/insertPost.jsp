@@ -5,21 +5,26 @@
 <head>
 <title>오델로W</title>
 <meta charset="utf-8">
+<link rel='stylesheet'
+	href='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css' />
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script>
+<script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
 <script src="//cdn.ckeditor.com/4.12.1/full/ckeditor.js"></script>
 <style>
 @font-face {
 	font-family: 'Ddukkubi';
-	src: url('../resources/font/Ddukkubi.ttf');
+	src: url('../font/Ddukkubi.ttf');
 }
 
 @font-face {
 	font-family: 'NotoSansBold';
-	src: url('../resources/font/NotoSansBold.otf');
+	src: url('../font/NotoSansBold.otf');
 }
 
 @font-face {
 	font-family: 'YoonGothic';
-	src: url('../resources/font/YoonGothic.otf');
+	src: url('../font/YoonGothic.otf');
 }
 
 body {
@@ -27,17 +32,16 @@ body {
 	font-family: 'NotoSansBold';
 }
 
-header {
-	width: 1200px;
-	margin: 0 auto;
-	height: 200px;
-	background: url("");
-	background-size: cover;
-	background-position: center;
+header{
+  width:1200px;
+  margin:0 auto;
+  height:200px;
+  background:url("");
+  background-size:cover;
+  background-position: center;
 }
-
-.header-wrapper {
-	background: linear-gradient(90deg, #11998e, #38ef7d);
+.header-wrapper{
+  background: linear-gradient(90deg, #11998e, #38ef7d);
 }
 
 nav {
@@ -60,7 +64,6 @@ nav li a {
 	text-shadow: 2px 2px 0px black;
 	font-family: 'NotoSansBold';
 }
-
 #logo{
   font-style: italic;
   -webkit-text-stroke: 2px #000;
@@ -114,17 +117,69 @@ nav li a {
 	background-size: 11.31px 11.31px;
 }
 </style>
+<script type="text/javascript">
+	var alert = function(msg, type) {
+		swal({
+			title : "오델로W",
+			text : msg,
+			type : type,
+			timer : 1000,
+			customClass : 'sweet-size',
+			showConfirmButton : false
+		});
+	}
+	
+	var isTitle = function(){
+		var result = false;
+		if($('#title').val())
+			result = true;
+		return result;
+	}
+	var isContents = function(){
+		var result = false;
+		if($('#contents').val())
+			result = true;
+		return result;
+	}
+	
+	function register(){
+		if (isTitle() && iscontents()){
+			$.ajax({
+				url : "register",
+				method : "get",
+				data : {
+					title : $('#title').val(),
+					contents : $('#contents').val()
+				},
+				success : function(result){
+					alert('게시글 등록을 성공하였습니다.', 'success');
+				},
+				error : function(a, b, errMsg){
+					alert('게시글 등록을 실패하였습니다.', 'error');
+				},
+				complete : function(data){
+					url : $("#list")
+				}
+			})
+		}else {
+			alert("제목이나 내용을 입력하지 않았습니다", "warning");
+		}
+	}
+	window.onload=function(){
+		register();
+	}
+</script>
 </head>
 <body>
 	<div class="header-wrapper">
 		<header>
 			<nav>
 				<ul>
-					<li><a href="../uservice/03.html" class="nav">랭킹</a></li>
-					<li class="logo"><a id="logo" href="../main.html"
+					<li><a href="../uservice/RankList" class="nav">랭킹</a></li>
+					<li class="logo"><a id="logo" href="../main"
 						style="font-size: 75px; font-family: 'Ddukkubi'">오델로<span
 							id="w-word">W</span></a></li>
-					<li><a href="02.html" class="nav">커뮤니티</a></li>
+					<li><a href="/list" class="nav">커뮤니티</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -134,23 +189,23 @@ nav li a {
 
 	<div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT> | <FONT
-			style="color: #06a545;"><a href="#">전체</a></FONT> | <a href="#">공지</a>
+			style="color: #06a545;"><a href="list">전체</a></FONT> | <a href="#">공지</a>
 		| <a href="#">잡담</a> | <a href="#">팬아트</a>
 	</div>
 	<div class="board-wrapper">
 		<div class="select-wrapper">
-			<select>
+			<select id="sort" name="sort">
 				<option>잡담</option>
 				<option>팬아트</option>
-			</select> <input placeholder="제목을 입력하세요" />
+			</select> <input type="text" name="title" id="title" placeholder="제목을 입력하세요" />
 		</div>
 		<div class="line-div"></div>
 		<div class="edit_wrapper">
 			<form>
 				<div class="inputArea">
-					<textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
+					<textarea name="contents" id="contents" rows="10" cols="80"></textarea>
 					<script>
-						CKEDITOR.replace('editor1', {
+						CKEDITOR.replace('contents', {
 							width : '1200px',
 							height : '500px',
 							uploadUrl : "/image/drag",
@@ -166,8 +221,8 @@ nav li a {
 
 	<!--재활용 빈도가 아주 높을 버튼 클래스들-->
 	<div class="content-footer">
-		<div class="write-button" onClick="location.href='02.html'">등록하기</div>
-		<div class="back-button" onClick="location.href='02.html'">목록으로</div>
+		<div class="write-button" onClick="register()">등록하기</div>
+		<div class="back-button" onClick="location.href='list'">목록으로</div>
 	</div>
 
 </body>

@@ -6,38 +6,24 @@
 <title>오델로W</title>
 <meta charset="utf-8">
 <style>
-@font-face{
-  font-family:'Ddukkubi';
-  src:url('../resources/font/Ddukkubi.ttf');
+@font-face {
+	font-family: 'Ddukkubi';
+	src: url('../font/Ddukkubi.ttf');
 }
-@font-face{
-  font-family:'NotoSansBold';
-  src:url('../resources/font/NotoSansBold.otf');
+
+@font-face {
+	font-family: 'NotoSansBold';
+	src: url('../font/NotoSansBold.otf');
 }
-@font-face{
-  font-family:'YoonGothic';
-  src:url('../resources/font/YoonGothic.otf');
+
+@font-face {
+	font-family: 'YoonGothic';
+	src: url('../font/YoonGothic.otf');
 }
-body{
-  margin:0;
-  font-family:'NotoSansBold';
-}
-nav{
-  height:180px;
-}
-nav ul{
-  list-style: none;
-  padding:0px; margin:0px;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-nav li a{
-  font-size:25px;
-  color:white;
-  text-decoration:none;
-  text-shadow:2px 2px 0px black;
-  font-family:'NotoSansBold';
+
+body {
+	margin: 0;
+	font-family: 'NotoSansBold';
 }
 
 header{
@@ -50,6 +36,27 @@ header{
 }
 .header-wrapper{
   background: linear-gradient(90deg, #11998e, #38ef7d);
+}
+
+nav {
+	height: 180px;
+}
+
+nav ul {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+nav li a {
+	font-size: 25px;
+	color: white;
+	text-decoration: none;
+	text-shadow: 2px 2px 0px black;
+	font-family: 'NotoSansBold';
 }
 #logo{
   font-style: italic;
@@ -97,10 +104,11 @@ header{
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
-.header-divider{
-  height:20px;
-  background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%, #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
-  background-size: 11.31px 11.31px;
+.header-divider {
+	height: 20px;
+	background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
+		#383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
+	background-size: 11.31px 11.31px;
 }
 </style>
 </head>
@@ -109,9 +117,9 @@ header{
     <header>
         <nav>
           <ul>
-            <li><a href="../uservice/03.html" class="nav">랭킹</a></li>
-            <li class="logo"><a id="logo" href="../main.html" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
-            <li><a href="02.html" class="nav">커뮤니티</a></li>
+            <li><a href="../uservice/RankList" class="nav">랭킹</a></li>
+            <li class="logo"><a id="logo" href="../" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
+            <li><a href="/list" class="nav">커뮤니티</a></li>
           </ul>
         </nav>
       </header>

@@ -22,6 +22,11 @@ public class CommunityController {
 		return "community/list";
 	}
 	
+	@RequestMapping("/insertPost")
+	public String boardInsert(){
+		return "community/insertPost";
+	}
+	
 	@RequestMapping(value="/communityList", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Community> communityList(){

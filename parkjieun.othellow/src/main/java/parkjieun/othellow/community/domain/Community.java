@@ -17,6 +17,12 @@ public class Community {
 	private String likeUser;
 	private User user;
 	
+	public Community(){}
+	public Community(String userId){
+		super();
+		this.userId = userId;
+	}
+	
 	//getter&setter
 	public int getSeq() {
 		return seq;
@@ -82,6 +88,12 @@ public class Community {
 		return user;
 	}
 	public void setUserNickname(User user) {
+		this.user = user;
+	}
+	public User getUserRank(){
+		return user;
+	}
+	public void setUserRank(User user){
 		this.user = user;
 	}
 }

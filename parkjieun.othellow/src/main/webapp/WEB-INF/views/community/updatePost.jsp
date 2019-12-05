@@ -9,22 +9,34 @@
 <style>
 @font-face {
 	font-family: 'Ddukkubi';
-	src: url('../resources/font/Ddukkubi.ttf');
+	src: url('../font/Ddukkubi.ttf');
 }
 
 @font-face {
 	font-family: 'NotoSansBold';
-	src: url('../resources/font/NotoSansBold.otf');
+	src: url('../font/NotoSansBold.otf');
 }
 
 @font-face {
 	font-family: 'YoonGothic';
-	src: url('../resources/font/YoonGothic.otf');
+	src: url('../font/YoonGothic.otf');
 }
 
 body {
 	margin: 0;
 	font-family: 'NotoSansBold';
+}
+
+header{
+  width:1200px;
+  margin:0 auto;
+  height:200px;
+  background:url("");
+  background-size:cover;
+  background-position: center;
+}
+.header-wrapper{
+  background: linear-gradient(90deg, #11998e, #38ef7d);
 }
 
 nav {
@@ -47,20 +59,6 @@ nav li a {
 	text-shadow: 2px 2px 0px black;
 	font-family: 'NotoSansBold';
 }
-
-header {
-	width: 1200px;
-	margin: 0 auto;
-	height: 200px;
-	background: url("");
-	background-size: cover;
-	background-position: center;
-}
-
-.header-wrapper {
-	background: linear-gradient(90deg, #11998e, #38ef7d);
-}
-
 #logo{
   font-style: italic;
   -webkit-text-stroke: 2px #000;
@@ -120,11 +118,11 @@ header {
 		<header>
 			<nav>
 				<ul>
-					<li><a href="../uservice/03.html" class="nav">랭킹</a></li>
-					<li class="logo"><a id="logo" href="../main.jsp"
+					<li><a href="../uservice/RankList" class="nav">랭킹</a></li>
+					<li class="logo"><a id="logo" href="../"
 						style="font-size: 75px; font-family: 'Ddukkubi'">오델로<span
 							id="w-word">W</span></a></li>
-					<li><a href="communityList.jsp" class="nav">커뮤니티</a></li>
+					<li><a href="/list" class="nav">커뮤니티</a></li>
 				</ul>
 			</nav>
 		</header>
