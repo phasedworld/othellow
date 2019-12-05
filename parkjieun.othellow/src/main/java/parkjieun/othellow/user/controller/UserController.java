@@ -23,7 +23,7 @@ public class UserController {
 	
 	@RequestMapping("user/signup")
 	public String signin(){
-		return "user/01";
+		return "user/signUp";
 	}
 	
 	//아이디 찾기 페이지로 이동하기. 
