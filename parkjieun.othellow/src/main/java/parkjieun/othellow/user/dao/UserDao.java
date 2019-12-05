@@ -1,5 +1,7 @@
 package parkjieun.othellow.user.dao;
 
+import java.util.List;
+
 import parkjieun.othellow.user.domain.User;
 
 public interface UserDao {
@@ -7,6 +9,6 @@ public interface UserDao {
 	User getUser(User user);
 	int idVerify(String userId);
 	int nicknameVerify(String userNickname);
-	//주리
-	String findId(String userEmail);
+	
+	List<String> findId(String userEmail);
 }
