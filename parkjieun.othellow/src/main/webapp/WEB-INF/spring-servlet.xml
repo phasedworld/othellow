@@ -21,9 +21,9 @@
 	<context:component-scan base-package="parkjieun.othellow"/>
 	<mvc:annotation-driven />
 	
-	<mvc:resources mapping="/font/**" location="/WEB-INF/resources/font/"/>
-	<mvc:resources mapping="/css/**" location="/WEB-INF/resources/css/"/>
-	<mvc:resources mapping="/img/**" location="/WEB-INF/resources/img/"/>
+	<mvc:resources mapping="/font/**" location="/WEB-INF/res/font/"/>
+	<mvc:resources mapping="/css/**" location="/WEB-INF/res/css/"/>
+	<mvc:resources mapping="/img/**" location="/WEB-INF/res/img/"/>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>
