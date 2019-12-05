@@ -131,8 +131,8 @@ nav li a {
 	<!--본문-->
 	<div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT> | <FONT
-			style="color: #06a545;"><a href="02.html">전체</a></FONT> | <a
-			href="02.html">공지</a> | <a href="02.html">잡담</a> | <a href="02.html">팬아트</a>
+			style="color: #06a545;"><a href="list">전체</a></FONT> | <a
+			href="list">공지</a> | <a href="list">잡담</a> | <a href="list">팬아트</a>
 	</div>
 	<div class="board-wrapper">
 		<div class="select-wrapper">
@@ -145,14 +145,14 @@ nav li a {
 		<div class="edit_wrapper">
 			<form>
 				<div class="inputArea">
-					<textarea name="editor1" id="editor1" rows="10" cols="80">
+					<textarea name="contents" id="contents" rows="10" cols="80">
 						<img src="../resources/img/stone.png"><br>
         				돌 그려봤는데 좋아요 많이 눌러주세요><<br>
         				제가 생각해도 저 너무 존잘인듯..ㅠㅠ<br><br>
         				p,s 불펌 ㄴㄴ해
 					</textarea>
 					<script>
-						CKEDITOR.replace('editor1', {
+						CKEDITOR.replace('contents', {
 							width : '1200px',
 							height : '500px',
 							uploadUrl : "/image/drag",
@@ -168,8 +168,8 @@ nav li a {
 
 	<!--재활용 빈도가 아주 높을 버튼 클래스들-->
 	<div class="content-footer">
-		<div class="write-button" onClick="location.href='02.html'">수정하기</div>
-		<div class="back-button" onClick="location.href='02.html'">목록으로</div>
+		<div class="write-button" onClick="location.href='list'">수정하기</div>
+		<div class="back-button" onClick="location.href='list'">목록으로</div>
 	</div>
 
 </body>

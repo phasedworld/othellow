@@ -192,7 +192,7 @@ nav li a {
 			</div>
 		</div>
 		<div class="content-footer">
-			<div class="back-button" onClick="location.href='02.html'">목록으로</div>
+			<div class="back-button" onClick="location.href='list'">목록으로</div>
 		</div>
 	</div>
 </body>

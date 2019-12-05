@@ -129,8 +129,8 @@ nav li a {
 
   <div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT> | <FONT
-			style="color: #06a545;"><a href="#">전체</a></FONT> | <a href="#">공지</a>
-		| <a href="#">잡담</a> | <a href="#">팬아트</a>
+			style="color: #06a545;"><a href="list">전체</a></FONT> | <a href="list">공지</a>
+		| <a href="list">잡담</a> | <a href="list">팬아트</a>
 	</div>
 
   <div class="post-wrap">
@@ -140,8 +140,8 @@ nav li a {
           <div class="subject-bottom"><FONT style="color:#9999;">2019-11-13 | 조회수 : 35 |</FONT><FONT style="color: red; font-size: 18pt;"> ♡</FONT><FONT style="color:#9999;"> 15</FONT></div>
         </div>
         <div class="btn-wrap">
-          <div class="update-button" onClick="location.href='05.html'">수정</div>
-		      <div class="delete-button" onClick="location.href='02.html'">삭제</div>
+          <div class="update-button" onClick="location.href='updatePost'">수정</div>
+		      <div class="delete-button" onClick="location.href='list'">삭제</div>
         </div>
     </div>
     <div class="content-wrap">
@@ -153,7 +153,7 @@ nav li a {
       </div>
     </div>
     <div class="content-footer">
-      <div class="back-button" onClick="location.href='02.html'">목록으로</div>
+      <div class="back-button" onClick="location.href='list'">목록으로</div>
     </div>
   </div>
 </body>
