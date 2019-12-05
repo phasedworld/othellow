@@ -9,117 +9,108 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
 @font-face {
-	font-family: 'Ddukkubi';
-	src: url('../font/Ddukkubi.ttf');
+   font-family: 'Ddukkubi';
+   src: url('../font/Ddukkubi.ttf');
 }
 
 @font-face {
-	font-family: 'NotoSansBold';
-	src: url('../font/NotoSansBold.otf');
+   font-family: 'NotoSansBold';
+   src: url('../font/NotoSansBold.otf');
 }
 
 @font-face {
-	font-family: 'YoonGothic';
-	src: url('../font/YoonGothic.otf');
+   font-family: 'YoonGothic';
+   src: url('../font/YoonGothic.otf');
 }
 
 body {
-	margin: 0;
-	font-family: 'NotoSansBold';
+   margin: 0;
+   font-family: 'NotoSansBold';
 }
 
-header {
-	width: 1200px;
-	margin: 0 auto;
-	height: 200px;
-	background: url("");
-	background-size: cover;
-	background-position: center;
+header{
+  width:1200px;
+  margin:0 auto;
+  height:200px;
+  background:url("");
+  background-size:cover;
+  background-position: center;
 }
-
-.header-wrapper {
-	background: linear-gradient(90deg, #11998e, #38ef7d);
+.header-wrapper{
+  background: linear-gradient(90deg, #11998e, #38ef7d);
 }
 
 nav {
-	height: 180px;
+   height: 180px;
 }
 
 nav ul {
-	list-style: none;
-	padding: 0px;
-	margin: 0px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+   list-style: none;
+   padding: 0px;
+   margin: 0px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 nav li a {
-	font-size: 25px;
-	color: white;
-	text-decoration: none;
-	text-shadow: 2px 2px 0px black;
-	font-family: 'NotoSansBold';
+   font-size: 25px;
+   color: white;
+   text-decoration: none;
+   text-shadow: 2px 2px 0px black;
+   font-family: 'NotoSansBold';
 }
+#logo{
+  font-style: italic;
+  -webkit-text-stroke: 2px #000;
+  background-color:black;
 
-#logo {
-	font-style: italic;
-	-webkit-text-stroke: 2px #000;
-	background-color: black;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	text-shadow: none;
-	display: inline-block;
-	width: 380px;
-	text-align: center;
-	position: relative;
-	left: 10px;
-	top: 5px;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:none;
+  display:inline-block;
+  width:380px;
+  text-align: center;
+  position:relative;
+  left:10px; top:5px;
 }
-
-#logo:before {
-	content: "오델로";
-	position: absolute;
-	left: -60px;
-	top: -5px;
-	text-align: center;
-	background: -webkit-linear-gradient(white 0%, #aaa 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	width: 370px;
+#logo:before{
+  content:"오델로";
+  position:absolute;
+  left:-15px; top:-5px;
+  text-align: center;
+  background:-webkit-linear-gradient(white 0%, #aaa 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  width:280px;
 }
-
-#w-word {
-	font-style: italic;
-	-webkit-text-stroke: 2px #000;
-	background: black;
-	display: inline-block;
-	width: 120px;
-	text-align: center;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	text-shadow: none;
-	position: relative;
+#w-word{
+  font-style: italic;
+  -webkit-text-stroke: 2px #000;
+  background:black;
+  display:inline-block;
+  width:120px;
+  text-align: center;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:none;
+  position:relative;
 }
-
-#w-word:before {
-	content: "W";
-	position: absolute;
-	left: -5px;
-	top: -5px;
-	background: -webkit-linear-gradient(rgb(10, 155, 135) 0%,
-		rgb(214, 211, 20) 100%);
-	width: 120px;
-	text-align: center;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+#w-word:before{
+  content:"W";
+  position:absolute;
+  left:-5px; top:-5px;
+  background:-webkit-linear-gradient(rgb(10,155,135) 0%, rgb(214,211,20) 100%);
+  width:120px;
+  text-align: center;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
-
 .header-divider {
-	height: 20px;
-	background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
-		#383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
-	background-size: 11.31px 11.31px;
+   height: 20px;
+   background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
+      #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
+   background-size: 11.31px 11.31px;
 }
 </style>
 </head>

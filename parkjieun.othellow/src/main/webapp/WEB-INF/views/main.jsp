@@ -69,12 +69,12 @@ nav li a{
 #logo:before{
   content:"오델로";
   position:absolute;
-  left:-60px; top:-5px;
+  left:-15px; top:-5px;
   text-align: center;
   background:-webkit-linear-gradient(white 0%, #aaa 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  width:370px;
+  width:280px;
 }
 #w-word{
   font-style: italic;
