@@ -252,7 +252,7 @@ nav li a{
         <nav>
           <ul>
             <li><a href="uservice/RankList" class="nav">랭킹</a></li>
-            <li class="logo" style="position:relative;"><a id="logo" href="/" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
+            <li class="logo" style="position:relative;"><a id="logo" href="./" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
             <li><a href='community/list' class="nav">커뮤니티</a></li>
           </ul>
         </nav>
