@@ -132,7 +132,7 @@ nav li a {
 					<li class="logo"><a id="logo" href="../"
 						style="font-size: 75px; font-family: 'Ddukkubi'">오델로<span
 							id="w-word">W</span></a></li>
-					<li><a href="/list" class="nav">커뮤니티</a></li>
+					<li><a href="list" class="nav">커뮤니티</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -143,8 +143,8 @@ nav li a {
 
 	<div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT> | <FONT
-			style="color: #06a545;"><a href="02.html">전체</a></FONT> | <a
-			href="02.html">공지</a> | <a href="02.html">잡담</a> | <a href="02.html">팬아트</a>
+			style="color: #06a545;"><a href="list">전체</a></FONT> | <a
+			href="02.html">공지</a> | <a href="list">잡담</a> | <a href="list">팬아트</a>
 	</div>
 
 	<div class="post-wrap">

@@ -119,7 +119,7 @@ nav li a {
           <ul>
             <li><a href="../uservice/RankList" class="nav">랭킹</a></li>
             <li class="logo"><a id="logo" href="../" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
-            <li><a href="/list" class="nav">커뮤니티</a></li>
+            <li><a href="list" class="nav">커뮤니티</a></li>
           </ul>
         </nav>
       </header>
