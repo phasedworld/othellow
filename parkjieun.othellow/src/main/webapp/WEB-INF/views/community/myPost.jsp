@@ -6,38 +6,24 @@
 <title>오델로W</title>
 <meta charset="utf-8">
 <style>
-@font-face{
-  font-family:'Ddukkubi';
-  src:url('../resources/font/Ddukkubi.ttf');
+@font-face {
+   font-family: 'Ddukkubi';
+   src: url('../font/Ddukkubi.ttf');
 }
-@font-face{
-  font-family:'NotoSansBold';
-  src:url('../resources/font/NotoSansBold.otf');
+
+@font-face {
+   font-family: 'NotoSansBold';
+   src: url('../font/NotoSansBold.otf');
 }
-@font-face{
-  font-family:'YoonGothic';
-  src:url('../resources/font/YoonGothic.otf');
+
+@font-face {
+   font-family: 'YoonGothic';
+   src: url('../font/YoonGothic.otf');
 }
-body{
-  margin:0;
-  font-family:'NotoSansBold';
-}
-nav{
-  height:180px;
-}
-nav ul{
-  list-style: none;
-  padding:0px; margin:0px;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-nav li a{
-  font-size:25px;
-  color:white;
-  text-decoration:none;
-  text-shadow:2px 2px 0px black;
-  font-family:'NotoSansBold';
+
+body {
+   margin: 0;
+   font-family: 'NotoSansBold';
 }
 
 header{
@@ -50,6 +36,27 @@ header{
 }
 .header-wrapper{
   background: linear-gradient(90deg, #11998e, #38ef7d);
+}
+
+nav {
+   height: 180px;
+}
+
+nav ul {
+   list-style: none;
+   padding: 0px;
+   margin: 0px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+nav li a {
+   font-size: 25px;
+   color: white;
+   text-decoration: none;
+   text-shadow: 2px 2px 0px black;
+   font-family: 'NotoSansBold';
 }
 #logo{
   font-style: italic;
@@ -68,12 +75,12 @@ header{
 #logo:before{
   content:"오델로";
   position:absolute;
-  left:-60px; top:-5px;
+  left:-15px; top:-5px;
   text-align: center;
   background:-webkit-linear-gradient(white 0%, #aaa 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  width:370px;
+  width:280px;
 }
 #w-word{
   font-style: italic;
@@ -97,10 +104,11 @@ header{
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
-.header-divider{
-  height:20px;
-  background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%, #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
-  background-size: 11.31px 11.31px;
+.header-divider {
+   height: 20px;
+   background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
+      #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
+   background-size: 11.31px 11.31px;
 }
 </style>
 </head>
@@ -109,9 +117,9 @@ header{
     <header>
         <nav>
           <ul>
-            <li><a href="../uservice/03.html" class="nav">랭킹</a></li>
-            <li class="logo"><a id="logo" href="../main.html" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
-            <li><a href="02.html" class="nav">커뮤니티</a></li>
+            <li><a href="../uservice/RankList" class="nav">랭킹</a></li>
+            <li class="logo"><a id="logo" href="../" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
+            <li><a href="list" class="nav">커뮤니티</a></li>
           </ul>
         </nav>
       </header>
@@ -121,8 +129,8 @@ header{
 
   <div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT> | <FONT
-			style="color: #06a545;"><a href="#">전체</a></FONT> | <a href="#">공지</a>
-		| <a href="#">잡담</a> | <a href="#">팬아트</a>
+			style="color: #06a545;"><a href="list">전체</a></FONT> | <a href="list">공지</a>
+		| <a href="list">잡담</a> | <a href="list">팬아트</a>
 	</div>
 
   <div class="post-wrap">
@@ -132,8 +140,8 @@ header{
           <div class="subject-bottom"><FONT style="color:#9999;">2019-11-13 | 조회수 : 35 |</FONT><FONT style="color: red; font-size: 18pt;"> ♡</FONT><FONT style="color:#9999;"> 15</FONT></div>
         </div>
         <div class="btn-wrap">
-          <div class="update-button" onClick="location.href='05.html'">수정</div>
-		      <div class="delete-button" onClick="location.href='02.html'">삭제</div>
+          <div class="update-button" onClick="location.href='updatePost'">수정</div>
+		      <div class="delete-button" onClick="location.href='list'">삭제</div>
         </div>
     </div>
     <div class="content-wrap">
@@ -145,7 +153,7 @@ header{
       </div>
     </div>
     <div class="content-footer">
-      <div class="back-button" onClick="location.href='02.html'">목록으로</div>
+      <div class="back-button" onClick="location.href='list'">목록으로</div>
     </div>
   </div>
 </body>

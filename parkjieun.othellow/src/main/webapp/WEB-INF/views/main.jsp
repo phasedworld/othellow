@@ -69,12 +69,12 @@ nav li a{
 #logo:before{
   content:"오델로";
   position:absolute;
-  left:-60px; top:-5px;
+  left:-15px; top:-5px;
   text-align: center;
   background:-webkit-linear-gradient(white 0%, #aaa 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  width:370px;
+  width:280px;
 }
 #w-word{
   font-style: italic;
@@ -251,8 +251,8 @@ nav li a{
     <header>
         <nav>
           <ul>
-            <li><a href="uservice/LankList" class="nav">랭킹</a></li>
-            <li class="logo" style="position:relative;"><a id="logo" href="main.html" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
+            <li><a href="uservice/RankList" class="nav">랭킹</a></li>
+            <li class="logo" style="position:relative;"><a id="logo" href="./" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
             <li><a href='community/list' class="nav">커뮤니티</a></li>
           </ul>
         </nav>

@@ -256,8 +256,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x-k][y-k] = 1;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 2: counter++; break;
 					}
 					tempX--; tempY--;
@@ -275,8 +275,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x-k][y+k] = 1;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 2: counter++; break;
 					}
 					tempX--; tempY++;
@@ -289,13 +289,13 @@ public class MyHandler extends TextWebSocketHandler{
 				tempX = x; tempY= y;
 				while(tempX+1<8&&tempY+1<8&&counter!=-1){
 					switch(matrix[tempX+1][tempY+1]){
-					case 0: counter=-1; break;
+					case 0: counter=-1;
 					case 1: if(counter==0) counter =-1;
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x+k][y+k] = 1;
 								} counter=-1; break;
-							}
+							} break;
 					case 2: counter++; break;
 					}
 					tempX++; tempY++;
@@ -313,8 +313,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x+k][y-k] = 1;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 2: counter++; break;
 					}
 					tempX++; tempY--;
@@ -332,8 +332,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x][y-k] = 1;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 2: counter++; break;
 					}
 					tempY--;
@@ -351,8 +351,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x][y+k] = 1;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 2: counter++; break;
 					}
 					tempY++;
@@ -369,8 +369,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x-k][y] = 1;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 2: counter++; break;
 					}
 					tempX--;
@@ -387,8 +387,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x+k][y] = 1;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 2: counter++; break;
 					}
 					tempX++;
@@ -409,8 +409,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x-k][y-k] = 2;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 1: counter++; break;
 					}
 					tempX--; tempY--;
@@ -428,8 +428,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x-k][y+k] = 2;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 1: counter++; break;
 					}
 					tempX--; tempY++;
@@ -447,8 +447,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x+k][y+k] = 2;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 1: counter++; break;
 					}
 					tempX++; tempY++;
@@ -466,8 +466,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x+k][y-k] = 2;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 1: counter++; break;
 					}
 					tempX++; tempY--;
@@ -485,8 +485,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x][y-k] = 2;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 1: counter++; break;
 					}
 					tempY--;
@@ -504,8 +504,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x][y+k] = 2;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 1: counter++; break;
 					}
 					tempY++;
@@ -522,8 +522,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x-k][y] = 2;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 1: counter++; break;
 					}
 					tempX--;
@@ -540,8 +540,8 @@ public class MyHandler extends TextWebSocketHandler{
 							else{
 								for(int k=1;k<=counter;k++){
 									matrix[x+k][y] = 2;
-								} counter=-1; break;
-							}
+								} counter=-1;
+							} break;
 					case 1: counter++; break;
 					}
 					tempX++;

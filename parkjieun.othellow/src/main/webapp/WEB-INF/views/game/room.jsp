@@ -371,19 +371,21 @@ function onMessage(msg) {
     	$('#totalscore').text(message[1]+":"+message[2]);
     	$('#make-room-modal').addClass('show');
     	$('.modal-shadow').addClass('show');
-    }else{
-    	
+    }else if(message[0]=='runaway'){
+    	$('#room-label').text('상대 탈주!');
+    	$('#totalscore').text('부전승');
+    	$('#make-room-modal').addClass('show');
+    	$('.modal-shadow').addClass('show');
     }
 }
-
-
-
 // 서버와 연결을 끊었을 때
-
 function onClose(evt) {
-
        console.log("웹소켓 서버와의 연결 끊김");
+}
 
+function exitModal(){
+	$('#make-room-modal').removeClass('show');
+	$('.modal-shadow').removeClass('show');
 }
 </script>
 <script>
@@ -398,19 +400,19 @@ function dropStone(idx){
 <body>
 <div class="modal-shadow"></div>
   <div id="make-room-modal">
-    <span class="modal-exit">&times;</span>
+    <span class="modal-exit" onClick="exitModal()">&times;</span>
     <div id="room-label"></div>
     <div id="totalscore"></div>
-    <div class="exit-label">EXIT</div>
+    <div class="exit-label" onclick="location.href='../lobby';">EXIT</div>
 </div>
 <div id="topnav">
   <div class="username black" id="blackName"></div>
   <div class="scoreboard">0 : 0</div>
   <div class="username white btn" id="whiteName">유저 대기중...</div>
 </div>
-<input type="text" id="mySide" value="">
-<input type="text" id="blackNick" value="">
-<input type="text" id="whiteNick" value="">
+<input type="hidden" id="mySide" value="">
+<input type="hidden" id="blackNick" value="">
+<input type="hidden" id="whiteNick" value="">
   <div id="gameboard">
 
     <div class="cell invisible" id="1">
@@ -928,7 +930,7 @@ function dropStone(idx){
   </div>
   
   <div class="button_wrap">
-    <button type="button" id="cancelBtn" onclick="location.href='../main_02.html';">나가기</button>
+    <button type="button" id="cancelBtn" onclick="location.href='../lobby';">나가기</button>
   </div>
 </body>
 </html>

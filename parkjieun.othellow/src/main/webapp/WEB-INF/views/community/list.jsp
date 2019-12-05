@@ -13,23 +13,23 @@
 <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
 <style>
 @font-face {
-	font-family: 'Ddukkubi';
-	src: url('../font/Ddukkubi.ttf');
+   font-family: 'Ddukkubi';
+   src: url('../font/Ddukkubi.ttf');
 }
 
 @font-face {
-	font-family: 'NotoSansBold';
-	src: url('../font/NotoSansBold.otf');
+   font-family: 'NotoSansBold';
+   src: url('../font/NotoSansBold.otf');
 }
 
 @font-face {
-	font-family: 'YoonGothic';
-	src: url('../font/YoonGothic.otf');
+   font-family: 'YoonGothic';
+   src: url('../font/YoonGothic.otf');
 }
 
 body {
-	margin: 0;
-	font-family: 'NotoSansBold';
+   margin: 0;
+   font-family: 'NotoSansBold';
 }
 
 header{
@@ -45,24 +45,24 @@ header{
 }
 
 nav {
-	height: 180px;
+   height: 180px;
 }
 
 nav ul {
-	list-style: none;
-	padding: 0px;
-	margin: 0px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+   list-style: none;
+   padding: 0px;
+   margin: 0px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 nav li a {
-	font-size: 25px;
-	color: white;
-	text-decoration: none;
-	text-shadow: 2px 2px 0px black;
-	font-family: 'NotoSansBold';
+   font-size: 25px;
+   color: white;
+   text-decoration: none;
+   text-shadow: 2px 2px 0px black;
+   font-family: 'NotoSansBold';
 }
 #logo{
   font-style: italic;
@@ -81,12 +81,12 @@ nav li a {
 #logo:before{
   content:"오델로";
   position:absolute;
-  left:-60px; top:-5px;
+  left:-15px; top:-5px;
   text-align: center;
   background:-webkit-linear-gradient(white 0%, #aaa 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  width:370px;
+  width:280px;
 }
 #w-word{
   font-style: italic;
@@ -111,10 +111,10 @@ nav li a {
   -webkit-text-fill-color:transparent;
 }
 .header-divider {
-	height: 20px;
-	background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
-		#383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
-	background-size: 11.31px 11.31px;
+   height: 20px;
+   background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
+      #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
+   background-size: 11.31px 11.31px;
 }
 </style>
 <script type="text/javascript">
@@ -164,9 +164,9 @@ nav li a {
 		<header>
 			<nav>
 				<ul>
-					<li><a href="../uservice/03.html" class="nav">랭킹</a></li>
-					<li class="logo"><a id="logo" href="../main.html" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
-					<li><a href='/list' class="nav">커뮤니티</a></li>
+					<li><a href="../uservice/RankList" class="nav">랭킹</a></li>
+					<li class="logo"><a id="logo" href="../" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
+					<li><a href='list' class="nav">커뮤니티</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -189,7 +189,7 @@ nav li a {
   </table>
   <!--재활용 빈도가 아주 높을 버튼 클래스들-->
   <div class="content-footer">
-    <div class="write-button" style="cursor:pointer;" onClick="location.href='01.html'">글쓰기</div>
+    <div class="write-button" style="cursor:pointer;" onClick="location.href='insertPost'">글쓰기</div>
     <div>
        <ul class="paging">
           <li>&lt;</li><li class="selected">1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>&gt;</li>

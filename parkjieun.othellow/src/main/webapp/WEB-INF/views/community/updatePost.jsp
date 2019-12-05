@@ -8,59 +8,57 @@
 <script src="//cdn.ckeditor.com/4.12.1/full/ckeditor.js"></script>
 <style>
 @font-face {
-	font-family: 'Ddukkubi';
-	src: url('../resources/font/Ddukkubi.ttf');
+   font-family: 'Ddukkubi';
+   src: url('../font/Ddukkubi.ttf');
 }
 
 @font-face {
-	font-family: 'NotoSansBold';
-	src: url('../resources/font/NotoSansBold.otf');
+   font-family: 'NotoSansBold';
+   src: url('../font/NotoSansBold.otf');
 }
 
 @font-face {
-	font-family: 'YoonGothic';
-	src: url('../resources/font/YoonGothic.otf');
+   font-family: 'YoonGothic';
+   src: url('../font/YoonGothic.otf');
 }
 
 body {
-	margin: 0;
-	font-family: 'NotoSansBold';
+   margin: 0;
+   font-family: 'NotoSansBold';
+}
+
+header{
+  width:1200px;
+  margin:0 auto;
+  height:200px;
+  background:url("");
+  background-size:cover;
+  background-position: center;
+}
+.header-wrapper{
+  background: linear-gradient(90deg, #11998e, #38ef7d);
 }
 
 nav {
-	height: 180px;
+   height: 180px;
 }
 
 nav ul {
-	list-style: none;
-	padding: 0px;
-	margin: 0px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+   list-style: none;
+   padding: 0px;
+   margin: 0px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 nav li a {
-	font-size: 25px;
-	color: white;
-	text-decoration: none;
-	text-shadow: 2px 2px 0px black;
-	font-family: 'NotoSansBold';
+   font-size: 25px;
+   color: white;
+   text-decoration: none;
+   text-shadow: 2px 2px 0px black;
+   font-family: 'NotoSansBold';
 }
-
-header {
-	width: 1200px;
-	margin: 0 auto;
-	height: 200px;
-	background: url("");
-	background-size: cover;
-	background-position: center;
-}
-
-.header-wrapper {
-	background: linear-gradient(90deg, #11998e, #38ef7d);
-}
-
 #logo{
   font-style: italic;
   -webkit-text-stroke: 2px #000;
@@ -78,12 +76,12 @@ header {
 #logo:before{
   content:"오델로";
   position:absolute;
-  left:-60px; top:-5px;
+  left:-15px; top:-5px;
   text-align: center;
   background:-webkit-linear-gradient(white 0%, #aaa 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  width:370px;
+  width:280px;
 }
 #w-word{
   font-style: italic;
@@ -108,10 +106,10 @@ header {
   -webkit-text-fill-color:transparent;
 }
 .header-divider {
-	height: 20px;
-	background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
-		#383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
-	background-size: 11.31px 11.31px;
+   height: 20px;
+   background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
+      #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
+   background-size: 11.31px 11.31px;
 }
 </style>
 </head>
@@ -120,11 +118,11 @@ header {
 		<header>
 			<nav>
 				<ul>
-					<li><a href="../uservice/03.html" class="nav">랭킹</a></li>
-					<li class="logo"><a id="logo" href="../main.jsp"
+					<li><a href="../uservice/RankList" class="nav">랭킹</a></li>
+					<li class="logo"><a id="logo" href="../"
 						style="font-size: 75px; font-family: 'Ddukkubi'">오델로<span
 							id="w-word">W</span></a></li>
-					<li><a href="communityList.jsp" class="nav">커뮤니티</a></li>
+					<li><a href="list" class="nav">커뮤니티</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -133,8 +131,8 @@ header {
 	<!--본문-->
 	<div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT> | <FONT
-			style="color: #06a545;"><a href="02.html">전체</a></FONT> | <a
-			href="02.html">공지</a> | <a href="02.html">잡담</a> | <a href="02.html">팬아트</a>
+			style="color: #06a545;"><a href="list">전체</a></FONT> | <a
+			href="list">공지</a> | <a href="list">잡담</a> | <a href="list">팬아트</a>
 	</div>
 	<div class="board-wrapper">
 		<div class="select-wrapper">
@@ -147,14 +145,14 @@ header {
 		<div class="edit_wrapper">
 			<form>
 				<div class="inputArea">
-					<textarea name="editor1" id="editor1" rows="10" cols="80">
+					<textarea name="contents" id="contents" rows="10" cols="80">
 						<img src="../resources/img/stone.png"><br>
         				돌 그려봤는데 좋아요 많이 눌러주세요><<br>
         				제가 생각해도 저 너무 존잘인듯..ㅠㅠ<br><br>
         				p,s 불펌 ㄴㄴ해
 					</textarea>
 					<script>
-						CKEDITOR.replace('editor1', {
+						CKEDITOR.replace('contents', {
 							width : '1200px',
 							height : '500px',
 							uploadUrl : "/image/drag",
@@ -170,8 +168,8 @@ header {
 
 	<!--재활용 빈도가 아주 높을 버튼 클래스들-->
 	<div class="content-footer">
-		<div class="write-button" onClick="location.href='02.html'">수정하기</div>
-		<div class="back-button" onClick="location.href='02.html'">목록으로</div>
+		<div class="write-button" onClick="location.href='list'">수정하기</div>
+		<div class="back-button" onClick="location.href='list'">목록으로</div>
 	</div>
 
 </body>

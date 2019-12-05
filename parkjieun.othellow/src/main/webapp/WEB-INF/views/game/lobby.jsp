@@ -317,7 +317,8 @@ function joinRoom(roomNo){
 <div class="shadow">
   <div id="room_container">
     <ul id="lobby_wrap">
-      <li class="room-wrapper started" onClick="location.href='./room/1';">
+    <div style="position:absolute; width:900px; left:0; top:330px; text-align:center; color:#333; font-family: YoonGothic; line-height:200%;">현재 진행중인 게임방이 없습니다.<br>새로운 방을 생성해주세요.</div>
+     <!--  <li class="room-wrapper started" onClick="location.href='./room/1';">
         <div class="room-header">
           <span class="room_status">01</span>
           <div class="room_status">멋진 한 판ㅋ</div>
@@ -339,7 +340,7 @@ function joinRoom(roomNo){
           <div class="room_status">Waiting...</div>
           <div class="room_status">1/2</div>
         </div>
-      </li>
+      </li> -->
     </ul>
 
 	  </div><!-- room_wrapper shadow -->
