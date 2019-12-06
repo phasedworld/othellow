@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import parkjieun.othellow.user.domain.User;
 import parkjieun.othellow.user.service.MailService;
 
 @Controller
@@ -30,4 +31,7 @@ public class MailController {
 			return 1;
 		}
 	}
+	
+	/*@RequestMapping(value="")
+	void sendEmailPw(User user, String userEmail);*/
 }

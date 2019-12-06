@@ -47,4 +47,11 @@ public class UserServiceImpl implements UserService{
 		}
 		return findId;
 	}
+
+	@Override
+	public int pwCheckList(User user) {
+		return userDao.pwCheckList(user);
+	}
+	
+		
 }

@@ -111,7 +111,7 @@ nav li a {
 }
 </style>
 </head>
-<body onLoad="startFindId()">
+<body onLoad="startFindPw()">
   <div class="header-wrapper">
     <header>
         <nav>
@@ -130,7 +130,7 @@ nav li a {
   </div>
 	<div id="find_wrap" class="find_wrap">
 		<div id="change-box">
-			<form name="findIdForm" action="./findId" method="POST">
+			<form name="findPasswdForm" action="./findPw method="POST">
 				<div class="input_title">
 					<div class="label">비밀번호 찾기</div>
 	           		<div class="label_help">오델로W에서 사용한 Email주소와 ID를 입력해주세요.</div>
@@ -155,6 +155,34 @@ nav li a {
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script>
+var alert = function(msg, type){
+	swal({
+		title:'',
+		text:msg,
+		icon:type,
+		timer:3000,
+		customClass:'sweet-size',
+		showConfirmButton:false
+	});
+}
+function startFindPw(){
+	$('#findBtn').on('click',function(){
+	$.ajax({
+		method:'POST',
+		url:'pwCheckList',
+		data:{
+			"userEmail":$('#userEmail').val(),
+			"userId":$('#userId').val()},
+		success:function(data){
+			if(data==0){
+				alert('Email과 ID를 다시 확인해주세요.', 'warning')
+			}else{
+				sendEmailPw()
+			}
+		}
+		});
+	});
+}
 
 </script>
 <style>

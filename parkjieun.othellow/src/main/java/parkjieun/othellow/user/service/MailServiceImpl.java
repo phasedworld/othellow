@@ -11,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import parkjieun.othellow.user.domain.User;
+
 @Service
 public class MailServiceImpl implements MailService{
 	@Autowired private JavaMailSender mailSender;
+	@Autowired private UserService userService;
 	
 	@Override
 	public void sendEmail(HttpSession session, String email) {
@@ -30,10 +33,10 @@ public class MailServiceImpl implements MailService{
 		}
 		
 		String text = "<div style='width:350px;padding:100px;background:linear-gradient(135deg, #c3ec52, #0ba29d);"
-				+"border-radius:8px;text-align:center;font-weight:bold;line-height:50px;'>"
-				+"<FONT style='font-size:21px;'>캐주얼 온라인 보드게임! 오델로W</FONT><br>회원님을 위한 계정 생성 인증코드입니다 :"
-				+"<div style='padding:5px; background:white; border-radius:5px; box-shadow:3px 3px 0px #333; font-size:23px;'>"
-				+ emailAuth+"</div></div>";
+					 +"border-radius:8px;text-align:center;font-weight:bold;line-height:50px;'>"
+					 +"<FONT style='font-size:21px;'>캐주얼 온라인 보드게임! 오델로W</FONT><br>회원님을 위한 계정 생성 인증코드입니다 :"
+					 +"<div style='padding:5px; background:white; border-radius:5px; box-shadow:3px 3px 0px #333; font-size:23px;'>"
+					 + emailAuth+"</div></div>";
 		session.setAttribute("emailAuth", emailAuth);
 				
 		try{
@@ -43,5 +46,34 @@ public class MailServiceImpl implements MailService{
 		}catch(Exception e){}
 		mailSender.send(message);
 	}
-
+	
+	//비밀번호 찾기 - 임시비밀번호생성메일
+	@Override
+	public void sendEmailPw(User user, String userEmail){
+		MimeMessage message = mailSender.createMimeMessage();
+		String emailAuth ="";
+		Random r = new Random();
+		for(int i=0;i<8;i++){
+			int pick = r.nextInt(36);
+			if(pick>9){
+				emailAuth += (char) (pick+87);
+			}else{
+				emailAuth += pick;
+			}
+		}
+		user.setUserPassword(emailAuth);			
+		//userService.updatePw(user);
+		
+		String text = "<div style='width:350px;padding:100px;background:linear-gradient(135deg, #c3ec52, #0ba29d);"
+					 +"border-radius:8px;text-align:center;font-weight:bold;line-height:50px;'>"
+					 +"<FONT style='font-size:21px;'>캐주얼 온라인 보드게임! 오델로W</FONT><br>"+user.getUserId()+"님을 위한 임시 비밀번호입니다 :"
+					 +"<div style='padding:5px; background:white; border-radius:5px; box-shadow:3px 3px 0px #333; font-size:23px;'>"
+					 + user.getUserPassword()+"</div></div>";				
+		try{
+			message.addRecipient(RecipientType.TO, new InternetAddress(userEmail));
+			message.setSubject("[오델로W] 임시 비밀번호입니다.");
+			message.setText(text,"utf-8","html");
+		}catch(Exception e){}
+		mailSender.send(message);
+	}
 }
