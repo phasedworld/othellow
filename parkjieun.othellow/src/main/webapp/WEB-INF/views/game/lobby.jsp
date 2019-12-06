@@ -293,7 +293,6 @@ function makeRoom(){
 			$('#gameIn').attr("action","./room/"+resNo);
 			$('#gameIn').attr("method","post");
 			$('#gameIn').submit();
-			//location.href="./room/"+resNo;
 		}
 	});
 }
@@ -306,7 +305,6 @@ function joinRoom(roomNo){
 			$('#gameIn').attr("action","./room/"+roomNo);
 			$('#gameIn').attr("method","post");
 			$('#gameIn').submit();
-			//location.href="./room/"+roomNo;
 		}
 	});
 }
