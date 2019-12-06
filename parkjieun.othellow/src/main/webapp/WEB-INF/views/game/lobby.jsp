@@ -290,7 +290,10 @@ function makeRoom(){
 		url:'makeRoom',
 		data:allRoomData,
 		success:function(resNo){
-			location.href="./room/"+resNo;
+			$('#gameIn').attr("action","./room/"+resNo);
+			$('#gameIn').attr("method","post");
+			$('#gameIn').submit();
+			//location.href="./room/"+resNo;
 		}
 	});
 }
@@ -300,7 +303,10 @@ function joinRoom(roomNo){
 		url:'joinRoom',
 		data:allRoomData,
 		success:function(){
-			location.href="./room/"+roomNo;
+			$('#gameIn').attr("action","./room/"+roomNo);
+			$('#gameIn').attr("method","post");
+			$('#gameIn').submit();
+			//location.href="./room/"+roomNo;
 		}
 	});
 }
@@ -342,7 +348,8 @@ function joinRoom(roomNo){
         </div>
       </li> -->
     </ul>
-
+    <form name="gameIn" id="gameIn" method="POST">
+	</form>
 	  </div><!-- room_wrapper shadow -->
 	  <div class="button_wrap">
 	    <button type="submit" id=findBtn onClick="showModal()">방만들기 </button>

@@ -362,7 +362,7 @@ function onMessage(msg) {
     	var resultLabel = "";
     	if(message[1]==message[2]){
     		resultLabel = "DRAW!";
-    	}else if(message[1]>message[2]){
+    	}else if(Number(message[1])>Number(message[2])){
     		resultLabel = "BLACK WIN!";
     	}else{
     		resultLabel = "WHITE WIN!";
