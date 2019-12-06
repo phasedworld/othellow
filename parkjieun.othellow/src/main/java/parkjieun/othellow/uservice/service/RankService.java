@@ -11,6 +11,6 @@ import parkjieun.othellow.user.domain.User;
 @Service
 public interface RankService {
 	List<User> rankUsers();
-	//User searchUser(String userNickname);
+	List<User> searchUser(String userNickname);
 	
 }

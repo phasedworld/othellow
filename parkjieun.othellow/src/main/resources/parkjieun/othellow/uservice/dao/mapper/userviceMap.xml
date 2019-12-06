@@ -9,6 +9,12 @@
 		from users
 		order by user_exp desc
 	</select>
+	
+	<select id="searchUser" parameterType="int" resultType="user"> 
+		select character_no characterNo, user_nickname userNickname, user_win userWin, user_lose 
+		userLose, user_exp userExp, user_rank userRank from users 
+		where user_nickname like '%'||#{userNickname}||'%' 
+	</select>
 
 	<update id="nicknameUpdate" parameterType="user">
 		update users
@@ -24,7 +30,7 @@
 	
 	<update id="emailUpdate" parameterType="user"> 
 		update users 
-		set user_email=${userEmail}, 
+		set user_email=#{userEmail}
 		where user_id=#{userId} 
 	</update>
 
@@ -39,12 +45,4 @@
 		from users
 		where user_id = #{userId} and user_password=#{userPassword}
 	</select>
-	
-
-	<!-- <select id="searchUser" parameterType="int" resultType="user"> select 
-		character_no characterNo, user_nickname userNickname, user_win userWin, user_lose 
-		userLose, user_exp userExp, user_rank userRank from users where user_nickname 
-		like '%#{userNickname}%' </select> -->
-
-	
 </mapper>

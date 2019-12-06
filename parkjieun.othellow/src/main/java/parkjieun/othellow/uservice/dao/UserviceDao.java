@@ -7,7 +7,7 @@ import parkjieun.othellow.user.domain.User;
 public interface UserviceDao {
 	//1.랭크
 	List<User> rankUsers(); 	//랭크 목록찾기
-	//User searchUser(String userNickname);	//랭크 닉네임 찾기
+	List<User> searchUser(String userNickname);	//랭크 닉네임 찾기
 	
 	//2.마이페이지 수정
 	int nicknameUpdate(User user);		//닉네임수정
