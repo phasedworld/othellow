@@ -37,4 +37,9 @@ public class UserDaoImpl implements UserDao{
 		return userMapper.findId(userEmail);
 	}
 
+	@Override
+	public int pwCheckList(User user) {
+		return userMapper.pwCheckList(user);
+	}
+
 }

@@ -171,7 +171,7 @@ $('#findBtn').on('click',function(){
 		dataType:'json',
 		success:function(data){
 			if(data==0)
-				alert('이메일 주소를 한번 더 확인해주세요.')
+				alert('이메일 주소를 한번 더 확인해주세요.', 'warning')
 			else
 				$('#change-box').html("<div class='label'>ID찾기 결과 </div>"+
 									  "<div class='label_help'>입력하신 이메일과 일치하는 ID 입니다. </div>" +

@@ -46,6 +46,13 @@ public class UserController {
 		return "uservice/findPasswdForm";
 	}
 	
+	//비밀번호찾을때 조건이 맞는지 확인
+	@RequestMapping(value="uservice/pwCheckList", method=RequestMethod.POST)
+	@ResponseBody
+	public int pwCheckList(User user){
+		return userService.pwCheckList(user);
+	}
+	
 	@RequestMapping("user/addUser")
 	@ResponseBody
 	public int addUser(User user){
