@@ -154,6 +154,32 @@ nav li a {
 			}
 		})
 	}
+	function informList(){
+		$.ajax({
+			url : "communityList",
+			method : "get",
+			success : function(result){
+				$("tbody").empty();
+				$(result).each(
+						function(idx){
+							$("tbody").append(
+									'<tr style = "cursor:pointer;" onClick="location.href="#"> <td>'
+									+ '<div class="subject-header"><font style="color:#e65700;">' + result[idx].sort
+									+ '</font> | No.' + result[idx].seq + '</div><div class="subject">'
+									+ result[idx].title + '</div></td>'
+									+ '<td> <div class="author-header"><font style="color:#e65700;">'
+									+ result[idx].userRank + '</font></div>'
+									+ '<div class="author">' + result[idx].userNickname + '</div></td>'
+									+ '<td>' + result[idx].regDate + '</td>'
+									+ '<td>' + result[idx].hitCount + '</td></tr>'
+									);
+						});
+			},
+			error : function(a, b, errMsg){
+				alert('리스트 출력 실패' + errMsg);
+			}
+		})
+	}
 	window.onload=function(){
 		communityList();
 	}
@@ -174,7 +200,9 @@ nav li a {
   <div class="header-divider"></div>
   <!--본문-->
 
-  <div class="table-header"><FONT style="font-size:28px;">커뮤니티</FONT> | <FONT style="color:#06a545;">전체</FONT> | 공지 | 잡담 | 팬아트 </div>
+  <div class="table-header"><FONT style="font-size:28px;">커뮤니티</FONT> | 
+  <a href="list"><FONT style="color:#06a545;">전체</FONT></a> | 
+  <a onClick="informList();">공지</a> | <a onClick="chatList();">잡담</a> | <a onClick="artList();">팬아트 </a></div>
   <table class="table-wrapper">
   <thead>
     <tr>
