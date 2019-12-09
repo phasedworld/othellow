@@ -144,7 +144,7 @@ nav li a {
 	      		
 				<div class="button_wrap">
 					<button type="button" id="findBtn" >find</button>
-					<button type="button" id="cancelBtn" onclick="history.go(-1);">Cancel</button>
+					<button type="button" id="cancelBtn" onclick="location.href='../'">Cancel</button>
 				</div>
 		</div>		
 				
@@ -165,14 +165,14 @@ var alert = function(msg, type){
 		showConfirmButton:false
 	});
 }
+
 function startFindPw(){
 	$('#findBtn').on('click',function(){
 	$.ajax({
 		method:'POST',
 		url:'pwCheckList',
-		data:{
-			"userEmail":$('#userEmail').val(),
-			"userId":$('#userId').val()},
+		data:{	"userEmail":$('#userEmail').val(),
+				"userId":$('#userId').val()		},
 		success:function(data){
 			if(data==0){
 				alert('Email과 ID를 다시 확인해주세요.', 'warning')
@@ -184,6 +184,22 @@ function startFindPw(){
 	});
 }
 
+function sendEmailPw(){
+	$.ajax({
+		method:'GET',
+		url:"rearrangePw",
+		data:{"userEmail":$('#userEmail').val(),
+			  "userId":$('#userId').val()},
+		success:function(){
+			$('#change-box').html("<div class='label'>비밀번호찾기 결과 </div>"+
+					  "<div class='label_help'>이메일을 보냈습니다. 이메일을 확인해주세요.</div>" 	+
+					  "<h3 class='foundPw'> 입력하신 Email로 임시 비밀번호를 보내드렸습니다.</h3>" 	+
+					  "<div class='button_wrap'>" +
+					  "<button type='button' id='loginBtn' onclick='location.href=\"../\";'>login</button>" +
+					  "</div>");
+		}
+	})
+}
 </script>
 <style>
 .title{
@@ -245,11 +261,11 @@ function startFindPw(){
   font-family: YoonGothic;
 }
 /*ajax*/
-.foundId{
+.foundPw{
   margin-left: 20px;
   margin-top: 20px;
   margin-bottom:50px;
-  width: 400px;
+  width: 500px;
 }
 .button_wrap{
   margin-top:10px;

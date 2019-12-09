@@ -52,6 +52,9 @@ public class UserServiceImpl implements UserService{
 	public int pwCheckList(User user) {
 		return userDao.pwCheckList(user);
 	}
-	
-		
+
+	@Override
+	public boolean rearrangePw(User user) {
+		return userDao.updatePw(user) > 0;
+	}		
 }

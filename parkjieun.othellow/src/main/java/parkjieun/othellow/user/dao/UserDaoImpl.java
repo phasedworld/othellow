@@ -42,4 +42,9 @@ public class UserDaoImpl implements UserDao{
 		return userMapper.pwCheckList(user);
 	}
 
+	@Override
+	public int updatePw(User user) {
+		return userMapper.updatePw(user);
+	}
+
 }

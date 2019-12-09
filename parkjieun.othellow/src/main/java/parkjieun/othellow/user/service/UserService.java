@@ -13,6 +13,7 @@ public interface UserService {
 	int idVerify(String userId);
 	int nicknameVerify(String userNickname);
 	
-	ArrayList<String> findId(String userEmail);
-	int pwCheckList(User user);		//비밀번호찾을 때 아이디 메일주소 확인용
+	ArrayList<String> findId(String userEmail);	//아이디찾기
+	int pwCheckList(User user);					//비밀번호찾기(이메일,아이디 확인)
+	boolean rearrangePw(User user);				//임시 비밀번호로 비밀번호 변경하기
 }

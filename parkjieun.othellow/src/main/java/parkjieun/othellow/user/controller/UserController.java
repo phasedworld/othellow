@@ -26,33 +26,6 @@ public class UserController {
 		return "user/signUp";
 	}
 	
-	//아이디 찾기 페이지로 이동하기. 
-	@RequestMapping("uservice/findIdForm")
-	public String findIdForm(){
-		return "uservice/findIdForm";
-	}
-	
-	//입력한 이메일주소에 맞는 아이디리스트를 리턴
-	@RequestMapping(value="uservice/findId", method=RequestMethod.POST, produces="application/json;")
-	@ResponseBody
-	public ArrayList<String> findId(@ModelAttribute("userEmail") String userEmail){		
-		ArrayList<String> idList = userService.findId(userEmail);
-		return idList;
-	}
-	
-	//비밀번호 찾기 페이지로 이동하기. 
-	@RequestMapping("uservice/findPasswdForm")
-	public String findPasswdForm(){
-		return "uservice/findPasswdForm";
-	}
-	
-	//비밀번호찾을때 조건이 맞는지 확인
-	@RequestMapping(value="uservice/pwCheckList", method=RequestMethod.POST)
-	@ResponseBody
-	public int pwCheckList(User user){
-		return userService.pwCheckList(user);
-	}
-	
 	@RequestMapping("user/addUser")
 	@ResponseBody
 	public int addUser(User user){
@@ -95,4 +68,30 @@ public class UserController {
 		return userService.nicknameVerify(userNickname);
 	}
 	
+	//ID찾기 페이지로 이동한다. 
+	@RequestMapping("uservice/findIdForm")
+	public String findIdForm(){
+		return "uservice/findIdForm";
+	}
+	
+	//입력받은 Email과 일치하는 ID를 리턴한다. 
+	@RequestMapping(value="uservice/findId", method=RequestMethod.POST, produces="application/json;")
+	@ResponseBody
+	public ArrayList<String> findId(@ModelAttribute("userEmail") String userEmail){		
+		ArrayList<String> idList = userService.findId(userEmail);
+		return idList;
+	}
+	
+	//Password찾기 페이지로 이동한다. 
+	@RequestMapping("uservice/findPasswdForm")
+	public String findPasswdForm(){
+		return "uservice/findPasswdForm";
+	}
+	
+	//Password찾을 때 입력받은 Email과 ID가 올바른 값인지 확인한다.
+	@RequestMapping(value="uservice/pwCheckList", method=RequestMethod.POST)
+	@ResponseBody
+	public int pwCheckList(User user){
+		return userService.pwCheckList(user);
+	}
 }

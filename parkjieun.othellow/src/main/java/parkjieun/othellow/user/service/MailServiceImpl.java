@@ -11,12 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import parkjieun.othellow.user.dao.UserDao;
 import parkjieun.othellow.user.domain.User;
 
 @Service
 public class MailServiceImpl implements MailService{
 	@Autowired private JavaMailSender mailSender;
-	@Autowired private UserService userService;
+	@Autowired private UserDao userDao;
 	
 	@Override
 	public void sendEmail(HttpSession session, String email) {
@@ -47,28 +48,29 @@ public class MailServiceImpl implements MailService{
 		mailSender.send(message);
 	}
 	
-	//비밀번호 찾기 - 임시비밀번호생성메일
+	//Password찾기 발송메일이다.(임시 비밀번호 생성 메일)
 	@Override
 	public void sendEmailPw(User user, String userEmail){
 		MimeMessage message = mailSender.createMimeMessage();
-		String emailAuth ="";
+		String tmpPw ="";
 		Random r = new Random();
 		for(int i=0;i<8;i++){
 			int pick = r.nextInt(36);
 			if(pick>9){
-				emailAuth += (char) (pick+87);
+				tmpPw += (char) (pick+87);
 			}else{
-				emailAuth += pick;
+				tmpPw += pick;
 			}
 		}
-		user.setUserPassword(emailAuth);			
-		//userService.updatePw(user);
+		user.setUserPassword(tmpPw);		
+		userDao.updatePw(user);			
 		
 		String text = "<div style='width:350px;padding:100px;background:linear-gradient(135deg, #c3ec52, #0ba29d);"
 					 +"border-radius:8px;text-align:center;font-weight:bold;line-height:50px;'>"
-					 +"<FONT style='font-size:21px;'>캐주얼 온라인 보드게임! 오델로W</FONT><br>"+user.getUserId()+"님을 위한 임시 비밀번호입니다 :"
+					 +"<FONT style='font-size:21px;'>캐주얼 온라인 보드게임! 오델로W</FONT><br>"+ user.getUserId() +"님을 위한 임시 비밀번호입니다."
 					 +"<div style='padding:5px; background:white; border-radius:5px; box-shadow:3px 3px 0px #333; font-size:23px;'>"
-					 + user.getUserPassword()+"</div></div>";				
+					 + user.getUserPassword()+"</div>"
+					 +"로그인 후 비밀번호를 다시 설정해주세요 :)"+"</div>";				
 		try{
 			message.addRecipient(RecipientType.TO, new InternetAddress(userEmail));
 			message.setSubject("[오델로W] 임시 비밀번호입니다.");

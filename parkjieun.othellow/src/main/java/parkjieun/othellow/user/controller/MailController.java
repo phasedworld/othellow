@@ -32,6 +32,10 @@ public class MailController {
 		}
 	}
 	
-	/*@RequestMapping(value="")
-	void sendEmailPw(User user, String userEmail);*/
+	@RequestMapping(value="uservice/rearrangePw", method=RequestMethod.GET)
+	@ResponseBody
+	public int sendTmpPw(User user,String userEmail){
+		mailService.sendEmailPw(user, userEmail);
+		return 0;
+	}
 }
