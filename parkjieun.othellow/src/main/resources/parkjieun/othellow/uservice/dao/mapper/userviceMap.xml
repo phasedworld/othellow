@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="parkjieun.othellow.uservice.dao.mapper.UserviceMapper">
+<mapper namespace="parkjieun.othellow.uservice.dao.mapper.UserviceMapper">	
 	
 	<select id="rankUsers" resultType="user">
 		select character_no characterNo, user_nickname userNickname, user_win
 		userWin, user_lose userLose, user_exp userExp, user_rank userRank
 		from users
+		where user_id != 'admin'
 		order by user_exp desc
 	</select>
-	
-	<select id="searchUser" parameterType="int" resultType="user"> 
+
+	<select id="searchUser" parameterType="string" resultType="user"> 
 		select character_no characterNo, user_nickname userNickname, user_win userWin, user_lose 
 		userLose, user_exp userExp, user_rank userRank from users 
 		where user_nickname like '%'||#{userNickname}||'%' 
 	</select>
-
+	
 	<update id="nicknameUpdate" parameterType="user">
 		update users
 		set user_nickname=#{userNickname}

@@ -10,6 +10,30 @@
 		order by c.seq desc
 	</select>
 	
+	<select id="informList" resultType="community">
+		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
+		from users u join community c
+		on u.user_id = c.user_id
+		where u.user_id=c.user_id and c.sort="공지"
+		order by c.seq desc
+	</select>
+	
+	<select id="chatList" resultType="community">
+		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
+		from users u join community c
+		on u.user_id = c.user_id
+		where u.user_id=c.user_id and c.sort="잡담"
+		order by c.seq desc
+	</select>
+	
+	<select id="artList" resultType="community">
+		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
+		from users u join community c
+		on u.user_id = c.user_id
+		where u.user_id=c.user_id and c.sort="팬아트"
+		order by c.seq desc
+	</select>
+	
 	<select id="getViewPost" resultType="community">
 		select sort, title, reg_date regDate, hit_count hitCount, like_count likeCount, user_rank userRank, user_nickname userNickname, contents
 		from users, community, character
