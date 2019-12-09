@@ -14,15 +14,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import parkjieun.othellow.admin.domain.Character;
+import parkjieun.othellow.admin.service.CharacterService;
 import parkjieun.othellow.user.domain.User;
 import parkjieun.othellow.user.service.UserService;
 
 @Controller
 public class UserController {
+	@Autowired CharacterService characterService;
 	@Autowired UserService userService;
 	
 	@RequestMapping("user/signup")
-	public String signin(){
+	public String signin(Model model, Character character){
+		characterService.getCharacters();
+		model.addAttribute("character", character);
 		return "user/signUp";
 	}
 	

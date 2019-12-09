@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="parkjieun.othellow.community.dao.mapper.CommunityMapper">
+	<select id="communityList" resultType="community">
+		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
+		from users u join community c
+		on u.user_id = c.user_id
+		where u.user_id=c.user_id
+		order by c.seq desc
+	</select>
+	
+	<select id="informList" resultType="community">
+		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
+		from users u join community c
+		on u.user_id = c.user_id
+		where u.user_id=c.user_id and c.sort="공지"
+		order by c.seq desc
+	</select>
+	
+	<select id="chatList" resultType="community">
+		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
+		from users u join community c
+		on u.user_id = c.user_id
+		where u.user_id=c.user_id and c.sort="잡담"
+		order by c.seq desc
+	</select>
+	
+	<select id="artList" resultType="community">
+		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
+		from users u join community c
+		on u.user_id = c.user_id
+		where u.user_id=c.user_id and c.sort="팬아트"
+		order by c.seq desc
+	</select>
+	
+	<select id="getViewPost" resultType="community">
+		select sort, title, reg_date regDate, hit_count hitCount, like_count likeCount, user_rank userRank, user_nickname userNickname, contents
+		from users, community, character
+		where users.user_id = community.user_id
+		and users.character_no = character.character_no and seq = #{seq}
+	</select>
+	
+	<select id="getMyPost" resultType="community">
+		select sort, title, reg_date regDate, hit_count hitCount, like_count likeCount, contents, users.user_id userID
+		from users, community
+		where users.user_id = community.user_id and seq = #{seq}
+	</select>
+	
+	<insert id="addPost" parameterType="string">
+		insert into community(seq, title, contents, image) values (seq.nextval, #{title}, #{content}, #{image})
+	</insert>
+	
+	<update id="updatePost" parameterType="community">
+		update community
+		set title=#{title}, contents=#{contents}, image=#{image}
+		where seq=#{seq}
+	</update>
+	
+	<delete id="delPost" parameterType="int">
+		delete community where seq=#{seq}
+	</delete>
+	
+	
+</mapper>

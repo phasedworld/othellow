@@ -58,8 +58,13 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
+	<bean id="loginInterceptor" class="parkjieun.othellow.interceptor.LoginInterceptor"></bean>
 	<bean id="gameInterceptor" class="parkjieun.othellow.interceptor.GameInterceptor"></bean>
 	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/"/>
+			<ref bean="loginInterceptor"/>
+		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/game/room/**"/>
 			<ref bean="gameInterceptor"/>
@@ -87,4 +92,7 @@
 			<websocket:mapping handler="myHandler" path="/gamesocket"/>
 			<websocket:sockjs></websocket:sockjs>
 	 </websocket:handlers>
+	 
+	 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	 <context:property-placeholder location="classpath:parkjieun/othellow/config/upload.properties"/>
 </beans>

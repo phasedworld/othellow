@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% User user = (User) session.getAttribute("user");%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <title>오델로W</title>
@@ -293,7 +293,6 @@ function makeRoom(){
 			$('#gameIn').attr("action","./room/"+resNo);
 			$('#gameIn').attr("method","post");
 			$('#gameIn').submit();
-			//location.href="./room/"+resNo;
 		}
 	});
 }
@@ -306,7 +305,6 @@ function joinRoom(roomNo){
 			$('#gameIn').attr("action","./room/"+roomNo);
 			$('#gameIn').attr("method","post");
 			$('#gameIn').submit();
-			//location.href="./room/"+roomNo;
 		}
 	});
 }
