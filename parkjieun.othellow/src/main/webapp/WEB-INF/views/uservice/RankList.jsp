@@ -300,39 +300,6 @@ body {
 			}
 		})
 	}
-	function searchUser(){
-		if("$('#search_input').val()" != null){
-			alert('닉네임을 입력하세요!', 'warning')
-		}else{ 
-			$.ajax({
-				method:"GET",
-				url:"searchUser",
-				data:{
-					userNickname:$('#search_input').val()
-					Console.
-					},
-				success:function(data){
-					$("tbody").empty();
-					$(search).each(
-							function(idx){
-								$("tbody").append(
-										'<tr><td class="rank">'+(idx+1) +'</td><td class="character">'
-										+'<div class="character_child"><div class="character_child1"><img height="60px" src=""></div>'
-										+'<div class="character_child2">'+data[idx].userNickname + '</div></div></td>'
-										+'<td>'+ data[idx].userRank + '</td>'
-										+'<td class="exp">' + data[idx].userExp +'</td>'
-										+'<td class="win_lose">'+ (data[idx].userWin+data[idx].userLose)+'전'+'&nbsp'
-										+data[idx].userWin + '승'+'&nbsp' + data[idx].userLose+ '패' 
-										+'</td></tr>'
-								);
-							});
-				},error: function(a, b, errMsg){
-					alert('실패'+ errMsg);
-				}
-				
-			})
-		}
-	}
 	window.onload = function(){
 		rankUsers();
 	}
@@ -345,9 +312,9 @@ body {
 		<header>
 			<nav>
 				<ul>
-					<li><a href="../uservice/RankList" class="nav">랭킹</a></li>
-					<li class="logo"><a id="logo" href="../" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
-					<li><a href='../community/list' class="nav">커뮤니티</a></li>
+					<li><a href="../uservice/03.html" class="nav">랭킹</a></li>
+					<li class="logo"><a id="logo" href="../main.html" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
+					<li><a href='/list' class="nav">커뮤니티</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -360,8 +327,8 @@ body {
 					<div class="search_txt1">랭킹 검색</div>
 					<div class="rk_search_form">
 						<h4 class="search_txt2">검색</h4>
-						<input id="search_input" class="search_input" type="text" placeholder="닉네임을 입력하세요">
-						<input class="search_btn" value="검색" type="submit" onclick="searchUser()">
+						<input class="search_input" type="text" placeholder="닉네임을 입력하세요">
+						<input class="search_btn" value="검색" type="submit">
 					</div>
 				</div>
 			</div>
