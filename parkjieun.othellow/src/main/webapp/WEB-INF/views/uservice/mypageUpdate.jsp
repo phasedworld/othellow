@@ -4,6 +4,7 @@
 <%
 	User user = (User) session.getAttribute("user");
 %>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -280,7 +281,7 @@ a {
 }
 
 .pp {
-	margin-top: 30px;
+	margin-top: 5px;
 	font-style: normal;
 	border-top: 1px solid gray;
 }
@@ -398,7 +399,6 @@ a {
 
 .confirmmsg.success {
 	color: #06a545;
-	width: 400px;
 }
 
 .confirmmsg.failed {
@@ -407,6 +407,7 @@ a {
 
 .confirmmsg {
 	margin: 10px 0 0 10px;
+	width:300px;
 }
 
 .confirm-input {
@@ -474,6 +475,7 @@ a {
 #pic-btn.exit {
 	display: none;
 }
+
 </style>
 </head>
 <script>
@@ -495,18 +497,25 @@ a {
 		document.getElementById('change-passwd-area').classList.toggle('open');
 		document.getElementById('passwd-area').classList.toggle('exit');
 		document.getElementById('passwd-btn').classList.toggle('exit');
+		document.getElementById('passwordForm').reset();
+		$('#pwre-msg1').text(''); 
+		$('#pwre-msg2').text('');
 	}
 	function nicname_change_btn_click() {
 		//div를 display: none으로 , innerHtml를 display:none취소
 		document.getElementById('change-nicName-area').classList.toggle('open');
 		document.getElementById('nicName-area').classList.toggle('exit');
 		document.getElementById('nicName-btn').classList.toggle('exit');
+		document.getElementById("nicknameForm").reset();
+		$('#nickname-msg').text('');
 	}
 	function email_change_btn_click() {
 		//div를 display: none으로 , innerHtml를 display:none취소
 		document.getElementById('change-email-area').classList.toggle('open');
 		document.getElementById('email-area').classList.toggle('exit');
 		document.getElementById('email-btn').classList.toggle('exit');
+		document.getElementById("emailForm").reset();
+		$('#email-msg').text('');
 	}
 </script>
 <script type="text/javascript">
@@ -532,7 +541,7 @@ a {
 				userId: '<%=user.getUserId()%>',
 				userPassword : $('#userPassword').val()
 			},
-			success : function(data) {
+			success : function() {
 				if (data == 1) {
 					$('#pwre-msg1').text('비밀번호가 다릅니다');
 					$('#pwre-msg1').css('color','#e74c3c');
@@ -562,18 +571,18 @@ a {
 	}
 	
 	function passwordUpdate() {
-		if ("<%=user.getUserId()%>" != "${user.userId}") {
-			alert('로그인이 안되어있다', 'warning');
-		}else if(passVerify==1){
+		if(passVerify==1){
 			alert('비밀번호와 비밀번호 확인값이 다릅니다', 'warning');
 		}else if(passVerify==0){
+			var newPw = '';
+			newPw= {"userId":"<%=user.getUserId()%>",  "userPassword": $('#newPassword').val() }
 			$.ajax({
 				method:"GET",
-				url:"password",
-				data:$('#passwordForm').serialize(),
-				success:function(data){
-					alert('비밀번호 변경 성공!', 'warning')
-					return;
+				url:"passwordUpdate",
+				data:newPw,
+				success:function (){
+					alert('비밀번호 변경확인', 'warning');
+					passwd_change_btn_click();
 				}
 			});
 		}
@@ -599,18 +608,16 @@ a {
 		});
 	}
 	function nicknameUpdate() {
-		if ("<%=user.getUserId()%>" != "${user.userId}") {
-			console.log('로그인이 안되어있는데?!');
-			alert('로그인이 안되어있당', 'warning');
-		} else if(nickDuplicate == 1){
-			console.log('이미 사용중인 닉네임입니다');
+		if(nickDuplicate == 1){
 			alert('이미 사용중인 닉네임입니다', 'warning');
-		}else{
+		}else if(nickDuplicate == 0){
+			var newNick = '';
+			newNick ={"userId": "<%=user.getUserId()%>", "userNickname": $('#userNickname').val()}
 			$.ajax({
 				method:"GET",
-				url:"nickname",
-				data:$('#nicknameForm').serialize(),
-				success:function(data){
+				url:"nicknameUpdate",
+				data:newNick,
+				success:function(){
 					location.href="../uservice/mypageUpdate";
 				}
 			});
@@ -654,19 +661,19 @@ a {
 		if(emailVerify == 1){
 			alert('이메일 검증이 필요합니다', 'warning');
 		}else{
+			var newMail = '';
+			newMail ={"userId":"<%=user.getUserId()%>", "userEmail": $('#userEmail').val()}
 			$.ajax({
 				method:"GET",
-				url:"email",
-				data:$('#emailForm').serialize(),
-				success:function(data){
-					alert('이메일 변경 성공!', 'warning')
-					return;
-				},error: function(){
-					alert('이메일 변경 실패!', 'warning')
+				url:"emailUpdate",
+				data:newMail,
+				success:function(){
+					location.href="../uservice/mypageUpdate";
 				}
 			});
 		}
 	}
+	
 </script>
 <body>
 	<div class="header-wrapper">
@@ -761,13 +768,12 @@ a {
 						<td></td>
 					</tr>
 					<tr>
-						<form id="passwordForm">
 							<th>비밀번호</th>
-
 							<td>
 								<div id="passwd-area">
 									<strong>******</strong>
 								</div>
+								<form id="passwordForm">
 								<div id="change-passwd-area">
 									<div class="input">
 										<div class="input_txt">현재 비밀번호</div>
@@ -792,20 +798,21 @@ a {
 											onclick="passwordUpdate()">완료</div>
 									</div>
 								</div>
+								</form>
 							</td>
 							<td>
 								<div class="n-btn" id="passwd-btn"
 									onclick="passwd_change_btn_click()">비밀번호 변경</div>
 							</td>
-						</form>
 					</tr>
 					<tr>
-						<form id="nicknameForm">
+						
 							<th>닉네임</th>
 							<td>
 								<div id="nicName-area">
 									<strong>${user.userNickname}</strong>
 								</div>
+								<form id="nicknameForm">
 								<div id="change-nicName-area">
 									<div class="input">
 										<input type="text" name="userNickname" id="userNickname"
@@ -818,17 +825,18 @@ a {
 										<div class="submit_btn" onclick="nicknameUpdate()">변경</div>
 									</div>
 								</div>
+								</form>
 							</td>
 							<td><div class="n-btn" id="nicName-btn"
 									onclick="nicname_change_btn_click()">닉네임 변경</div></td>
-						</form>
+						
 					</tr>
 					<tr>
-						<form id="emailForm">
 						<th>이메일</th>
 						<td><div id="email-area">
 								<strong>${user.userEmail}</strong>
 							</div>
+							<form id="emailForm">
 							<div id="change-email-area">
 								<p>
 									-회원님의 이메일로 이메일인증번호가 적힌 메일이 발송됩니다. <br>
@@ -849,10 +857,11 @@ a {
 									<div class="n-btn2" onclick="email_change_btn_click()">취소</div>
 									<div class="submit_btn" onclick="emailUpdate()">완료</div>
 								</div>
-							</div></td>
+							</div>
+							</form>
+							</td>
 						<td><div class="n-btn" id="email-btn"
 								onclick="email_change_btn_click()">이메일 변경</div></td>
-					</form>
 					</tr>
 				</tbody>
 			</table>

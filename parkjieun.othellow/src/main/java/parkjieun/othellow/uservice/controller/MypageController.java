@@ -1,5 +1,8 @@
 package parkjieun.othellow.uservice.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,21 +28,33 @@ public class MypageController {
 		return "uservice/mypageUpdate";
 	}
 
-	@RequestMapping("/nickname")
+	@RequestMapping("/nicknameUpdate")
 	@ResponseBody
-	public int nicknameUpdate(User user) {
+	public int nicknameUpdate(User user, HttpSession session) {
+		//session.setAttribute("user", user);
+		//보완
+		User curUser = (User) session.getAttribute("user");
+		curUser.setUserNickname(user.getUserNickname());			//user의 바뀐 유저 닉네임만 curUser에 넣어준다. 
+		session.setAttribute("user", curUser);
 		return mypageService.nicknameUpdate(user);
 	}
 
-	@RequestMapping("/password")
+	@RequestMapping("/passwordUpdate")
 	@ResponseBody
-	public int passwordUpdate(User user) {
+	public int passwordUpdate(User user, HttpSession session) {
+		User userPwd = (User) session.getAttribute("user");
+		userPwd.setUserPassword(user.getUserPassword());
+		session.setAttribute("user", userPwd);
 		return mypageService.passwordUpdate(user);
 	}
 	
-	@RequestMapping("/email")
+	@RequestMapping("/emailUpdate")
 	@ResponseBody
-	public int emailUpdate(User user) {
+	public int emailUpdate(User user, HttpSession session) {
+
+		User userMail = (User) session.getAttribute("user");
+		userMail.setUserEmail(user.getUserEmail());		//userMail에 바뀐 user.getUserEmail()를 넣어준다.
+		session.setAttribute("user", userMail);				//session.setAttrivb
 		return mypageService.emailUpdate(user);
 	}
 	
@@ -51,7 +66,11 @@ public class MypageController {
 	
 	@RequestMapping("/passwordVerify")
 	@ResponseBody
-	public int passwordVerify(String userPassword) {
+	public int passwordVerify(String userPassword, HttpSession session) {
+		User user = new User();
+		User selUser = (User) session.getAttribute("user");
+		selUser.setUserPassword(user.getUserPassword());
+		session.setAttribute("user", selUser);
 		return mypageService.passwordVerify(userPassword);
 	}
 	

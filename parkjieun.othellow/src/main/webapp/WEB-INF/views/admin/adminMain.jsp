@@ -5,18 +5,19 @@
 <head>
 <title>오델로W</title>
 <meta charset="utf-8">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <style>
 @font-face{
   font-family:'Ddukkubi';
-  src:url('../resources/font/Ddukkubi.ttf');
+  src:url('./font/Ddukkubi.ttf');
 }
 @font-face{
   font-family:'NotoSansBold';
-  src:url('../resources/font/NotoSansBold.otf');
+  src:url('./font/NotoSansBold.otf');
 }
 @font-face{
   font-family:'YoonGothic';
-  src:url('../resources/font/YoonGothic.otf');
+  src:url('./font/YoonGothic.otf');
 }
 body{
   margin:0;
@@ -102,6 +103,31 @@ nav li a{
   background-size: 11.31px 11.31px;
 }
 </style>
+<script>
+var imgView = function(input){
+	if(input.files && input.files[0]){
+		var reader = new FileReader();
+		reader.readAsDataURL(input.files[0]);
+		reader.addEventListener('load',function(){
+			$('.previewImg').attr('src',reader.result);
+			$('.file-name').val(input.files[0].name);
+		},false);
+	}
+}
+function upImg(){
+	var charImg = new FormData($("#charForm")[0]);
+	$.ajax({
+		url:'uploadchar',
+		method:'post',
+		data:charImg,
+		processData:false,
+		contentType:false,
+		success:function(){
+			console.log('성공적으로 이미지 업로드!');
+		}
+	});
+}
+</script>
 </head>
 <body>
   <div class="header-wrapper">
@@ -124,17 +150,19 @@ nav li a{
     <div class="button-wrap">
       <div class="nav-btn selected">캐릭터 추가</div>
       <div class="nav-btn" onClick="location.href='02.html';">캐릭터 삭제</div>
-      <div class="nav-btn" style="float:right; margin:0px;">로그아웃</div>
+      <div class="nav-btn" style="float:right; margin:0px;" onClick="location.href='user/logout'">로그아웃</div>
     </div>
     <div class="char-sheet">
       <div class="img-wrapper">
-        preview
+        preview<img class="previewImg"/>
       </div>
       <div class="char-info">
-        <input type="text" class="char-name" placeholder="캐릭터 이름"/>
-        <input type="text" class="file-name" placeholder="디렉토리 주소" readonly/>
-        <label class="upload-btn">이미지 업로드<input type="file"></label>
-        <div class="confirm-btn">등록하기</div>
+      <form id="charForm">
+        <input type="text" class="char-name" name="characterName" placeholder="캐릭터 이름"/>
+        <input type="text" class="file-name" name="imageLink" placeholder="디렉토리 주소" readonly/>
+        <label class="upload-btn">이미지 업로드<input type="file" name="charImg" onChange="imgView(this)"></label>
+        <div class="confirm-btn" onClick="upImg()">등록하기</div>
+      </form>
       </div>
     </div>
 
@@ -170,6 +198,11 @@ nav li a{
   justify-content: center;
   align-items: center;
 }
+.previewImg{
+  max-width:300px;
+  max-height:350px;
+  position:absolute;
+}
 .char-info{
   padding:0px 20px;
   width:660px;
@@ -192,6 +225,8 @@ nav li a{
   left:0px; top:0px;
   width:230px;
   opacity:0;
+  line-height:48px;
+  cursor:pointer;
 }
 input:focus{
   outline:none;
@@ -232,11 +267,10 @@ input:focus{
   right:100px;
   top:150px;
   border:1px solid #333;
-  cursor
+  cursor:pointer;
 }
 .header-replace:hover{
   background:rgba(255,255,255,0.5);
-  cursor:pointer;
 }
 </style>
 </html>
