@@ -2,6 +2,8 @@ package parkjieun.othellow.uservice.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,12 +12,17 @@ import parkjieun.othellow.uservice.dao.mapper.UserviceMapper;
 @Repository
 public class UserviceDaoImpl implements UserviceDao{
 	@Autowired UserviceMapper userviceMapper;
-
+	//1.랭킹페이지
 	@Override
 	public List<User> rankUsers() {
 		return userviceMapper.rankUsers();
 	}
-
+	@Override
+	public List<User> searchUser(String userNickname) {
+		return userviceMapper.searchUser(userNickname);
+	}
+	
+	//2.마이페이지
 	@Override
 	public int nicknameUpdate(User user) {
 		return userviceMapper.nicknameUpdate(user);
@@ -45,16 +52,4 @@ public class UserviceDaoImpl implements UserviceDao{
 		}
 		return result;
 	}
-
-	
-	/*@Override
-	public User searchUser(String userNickname) {
-		return userviceMapper.searchUser(userNickname);
-	}*/
-	
-
-	
-
-	
-
 }

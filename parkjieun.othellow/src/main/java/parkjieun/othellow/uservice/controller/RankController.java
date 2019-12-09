@@ -31,10 +31,12 @@ public class RankController{
 		return rankUsers;
 	}
 
-	/*@RequestMapping(value="/searchUser", method=RequestMethod.GET)
+	@RequestMapping(value="/searchUser", method=RequestMethod.GET)
 	@ResponseBody
-	public User searchUser(String userNickname) {
-		return rankService.searchUser(userNickname);
-	}*/
+	public List<User> searchUser(String userNickname) {
+		List<User> searchUser = new ArrayList<User>();
+		searchUser = rankService.searchUser(userNickname);
+		return searchUser;
+	}
 	
 }

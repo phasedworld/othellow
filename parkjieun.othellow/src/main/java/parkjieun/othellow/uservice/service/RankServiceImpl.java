@@ -16,9 +16,9 @@ public class RankServiceImpl implements RankService{
 		return userviceDao.rankUsers();
 	}
 
-	/*@Override
-	public User searchUser(String userNickname) {
+	@Override
+	public List<User> searchUser(String userNickname) {
 		return userviceDao.searchUser(userNickname);
 	}
-*/
+
 }
