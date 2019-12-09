@@ -120,20 +120,6 @@ nav li a {
 </style>
 
 <style>
-@font-face {
-	font-family: 'Ddukkubi';
-	src: url('../resources/font/Ddukkubi.ttf');
-}
-
-@font-face {
-	font-family: 'NotoSansBold';
-	src: url('../resources/font/NotoSansBold.otf');
-}
-
-@font-face {
-	font-family: 'YoonGothic';
-	src: url('../resources/font/YoonGothic.otf');
-}
 
 body {
 	margin: 0;
@@ -184,29 +170,24 @@ body {
 }
 
 #rank_Header {
-	padding: 0;
-	height: 100px;
-	width: 100% margin: 30px 0 30px 0;
-	background: #d0beb7;
-	display: flex;
-	align-items: center;
+	height: 120px;
+	width: 100%;
 }
 
 .rk_search {
-	width: 99%;
-	height: 94%;
+	height: 80%;
 	margin: 0 auto;
-	border: 1px dashed;
-	border-color: white;
+	background: white;
+	border:1px solid gray;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	border-radius: 5px;
+	box-shadow: 2px 2px 3px 3px lightgray;
 }
 
 .rk_search2 {
 	width: 99%;
 	height: 94%;
-	margin: 0 auto;
 	border-color: white;
 	display: flex;
 	align-items: center;
@@ -224,25 +205,31 @@ body {
 .rk_search_form {
 	width: 300px;
 	display: flex;
-	justify-content: space-around;
-}
-
-.search_txt2 {
-	margin: 0px;
-	line-height: 30px;
-	flex-grow: 2;
-	text-align: center;
+	height: 30px;
 }
 
 .search_input {
-	flex-grow: 3;
 	margin: 0 10px 0 10px;
+	outline:none;
+}
+
+.search_input:hover{
+	border: 2px solid #c0c962;
 }
 
 .search_btn {
 	background-position: -571px -24px;
-	background: white;
-	flex-grow: 2;
+	border:none;
+	border-radius: 5px;
+	background: #fafafa;
+	font-family: 'YoonGothic';
+	font-size: 15px;
+	width:90px;
+	border: 1px solid lightgray;
+	outline:none;
+}
+.search_btn:hover {
+	border: 2px solid #c0c962;
 }
 
 .rank {
@@ -301,14 +288,17 @@ body {
 		})
 	}
 	function searchUser(){ 
-		if("$('#search_input').val()" == null){
+		if($('#search_input').val() == ''){
 			alert('닉네임을 입력하세요!', 'warning')
-		}else{  
+		}else{ 
 			$.ajax({
 				method:"GET",
 				url:"searchUser",
 				data:{userNickname:$('#search_input').val()},
 				success:function(result){
+				if(result == ''){
+						alert('그런 사용자 없습니다!', 'warning');
+					}else{  
 					$("tbody").empty();
 					$(result).each(
 							function(idx){
@@ -323,10 +313,10 @@ body {
 										+'</td></tr>'	
 								);
 							});
+					}
 				},error: function(a, b, errMsg){
 					alert('실패'+ errMsg);
 				}
-				
 			})
 		}
 	}
@@ -360,8 +350,8 @@ body {
 				<div class="rk_search2">
 					<div class="search_txt1">랭킹 검색</div>
 					<div class="rk_search_form">
-						<h4 class="search_txt2">검색</h4>
-						<input id="search_input" class="search_input" type="text" placeholder="닉네임을 입력하세요">
+						
+						<input id="search_input" class="search_input" type="text" placeholder="닉네임을 입력하세요" onkeypress="enterSubmit()" required>
 						<input class="search_btn" value="검색" type="submit" onclick="searchUser()">
 					</div>
 				</div>
