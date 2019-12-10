@@ -142,7 +142,7 @@ nav li a {
 					<input class="txt_in" type="text" id="userId" name="userId" placeholder="아이디를 입력하세요." required>
 	         	</div>
 	      		
-				<div class="button_wrap">
+				<div id="button_wrap" class="button_wrap">
 					<button type="button" id="findBtn" >find</button>
 					<button type="button" id="cancelBtn" onclick="location.href='../'">Cancel</button>
 				</div>
@@ -185,6 +185,11 @@ function startFindPw(){
 }
 
 function sendEmailPw(){
+	$('#findBtn').off('click');
+	$('#findBtn').css('background','#ccc');
+	$('#findBtn').css('border','4px');
+	$('#findBtn').css('cursor','wait');
+	alert('임시비밀번호를 메일로 전송중입니다...')	
 	$.ajax({
 		method:'GET',
 		url:"rearrangePw",
