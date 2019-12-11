@@ -238,6 +238,17 @@ a {
 }
 
 </style>
+<script type="text/javascript">
+var win = ${user.userWin};
+var lose = ${user.userLose};
+var exp = 100*win/(win+lose); 
+var str = exp.toFixed(2)
+$(function(){
+	$("#exp").html(" "+str);	
+});
+
+
+</script>
 </head>
 
 <body>
@@ -283,7 +294,8 @@ a {
 						<div class="row2">${user.userNickname}</div>
 					</span> <span class="col">
 						<div class="row1">승률</div>
-						<div class="row2">${user.userWin+user.userLose}전 ${user.userWin}승 ${user.userLose}패 (${user.userWin/(user.userWin+user.userLose)}%)</div>
+						<div class="row2">${user.userWin+user.userLose}전 ${user.userWin}승 ${user.userLose}패 
+						(<b id="exp"></b>%)</div>
 					</span> <span class="col">
 						<div class="row1">랭킹</div>
 						<div class="row2"><p>${user.userRank}</p></div>
