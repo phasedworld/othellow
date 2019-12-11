@@ -7,8 +7,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -69,16 +71,9 @@ public class CommunityController {
 		return "redirect:/community/list";
 	}
 	
-	
-	
-	@RequestMapping(value="/post", method = RequestMethod.GET)
-	public Community viewPost(int seq){
-		return communityService.get(seq);
-	}
-	
-	@RequestMapping(value="/myPost", method = RequestMethod.GET)
-	public Community myPost(int seq){
-		return communityService.get(seq);
+	@RequestMapping(value="/viewPost", method = RequestMethod.GET)
+	public void post(@RequestParam("seq") int seq, Model model){
+		model.addAttribute("community", communityService.get(seq));
 	}
 	
 	@RequestMapping(value="/updatePost", method = RequestMethod.POST)
