@@ -69,26 +69,24 @@ public class CommunityController {
 		return "redirect:/community/list";
 	}
 	
-	@RequestMapping("/post")
-	@ResponseBody
+	
+	
+	@RequestMapping(value="/post", method = RequestMethod.GET)
 	public Community viewPost(int seq){
-		return communityService.findViewPost(seq);
+		return communityService.get(seq);
 	}
 	
-	@RequestMapping("/myPost")
-	@ResponseBody
+	@RequestMapping(value="/myPost", method = RequestMethod.GET)
 	public Community myPost(int seq){
-		return communityService.findMyPost(seq);
+		return communityService.get(seq);
 	}
 	
-	@RequestMapping("/updatePost")
-	@ResponseBody
+	@RequestMapping(value="/updatePost", method = RequestMethod.POST)
 	public boolean updatePost(Community community){
 		return communityService.updatePost(community);
 	}
 	
-	@RequestMapping("/delPost")
-	@ResponseBody
+	@RequestMapping(value="/delPost", method = RequestMethod.POST)
 	public boolean delPost(int seq){
 		return communityService.delPost(seq);
 	}
