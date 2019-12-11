@@ -10,6 +10,7 @@ public class User {
 	private int userLose;
 	private int userExp;
 	private String userRank;
+	private int rNum;
 	
 	public User() {}
 	public User(String userId, int userExp) {
@@ -70,6 +71,12 @@ public class User {
 	}
 	public void setUserRank(String userRank) {
 		this.userRank = userRank;
+	}
+	public int getrNum() {
+		return rNum;
+	}
+	public void setrNum(int rNum) {
+		this.rNum = rNum;
 	}
 	
 }

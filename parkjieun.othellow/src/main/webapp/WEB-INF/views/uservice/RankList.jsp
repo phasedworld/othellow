@@ -272,7 +272,7 @@ body {
 				$(result).each(
 						function(idx){
 							$("tbody").append(
-									'<tr><td class="rank">'+result[idx].rnum +'</td><td class="character">'
+									'<tr><td class="rank">'+result[idx].rNum +'</td><td class="character">'
 									+'<div class="character_child"><div class="character_child1"><img height="60px" src=""></div>'
 									+'<div class="character_child2">'+result[idx].userNickname + '</div></div></td>'
 									+'<td>'+ result[idx].userRank + '</td>'
