@@ -141,7 +141,7 @@ nav li a {
 	      		
 				<div class="button_wrap">
 					<button type="button" id="findBtn" >find</button>
-					<button type="button" id="cancelBtn" onclick="history.go(-1);">Cancel</button>
+					<button type="button" id="cancelBtn" onclick="location.href='../'">Cancel</button>
 				</div>
 		</div>		
 				
@@ -174,10 +174,10 @@ $('#findBtn').on('click',function(){
 				alert('이메일 주소를 한번 더 확인해주세요.', 'warning')
 			else
 				$('#change-box').html("<div class='label'>ID찾기 결과 </div>"+
-									  "<div class='label_help'>입력하신 이메일과 일치하는 ID 입니다. </div>" +
+									  "<div class='label_help'>입력하신 Email과 일치하는 ID 입니다. </div>" +
 									  "<h2 class='foundId'>"+data+"</h2>" +
 									  "<div class='button_wrap'>" +
-									  "<button type='button' id='loginBtn' onclick='history.go(-1);'>login</button>" +
+									  "<button type='button' id='loginBtn' onclick='location.href=\"../\";'>login</button>" +
 									  "</div>");				
 		},
 		complete:function(){
@@ -240,6 +240,7 @@ $('#findBtn').on('click',function(){
 }
 /*ajax*/
 .foundId{
+  outline:none;
   margin-left: 20px;
   margin-top: 20px;
   margin-bottom:50px;
@@ -250,6 +251,7 @@ $('#findBtn').on('click',function(){
   text-align:center;
   }
 #loginBtn{
+  outline:none;
   display:inline-block;
   background: #c0c962;
   width:400px;
@@ -269,33 +271,35 @@ $('#findBtn').on('click',function(){
 /*end ajax*/
   
 #findBtn{
-display:inline-block;
-background: #c0c962;
-width:300px;
-padding:17px 30px;
-font-size:19px;
-font-weight:900px;
-border:2px solid #c0c962;
-border-radius:30px;
-color:white;
-cursor:pointer;
-transition:0.3s;
+  outline:none;
+  display:inline-block;
+  background: #c0c962;
+  width:300px;
+  padding:17px 30px;
+  font-size:19px;
+  font-weight:900px;
+  border:2px solid #c0c962;
+  border-radius:30px;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
 }
 #findBtn:hover{
   background: #959f2c;
   border:2px solid #959f2c;
 }
 #cancelBtn{
-display:inline-block;
-background: #ccc;
-width:300px;
-padding:17px 30px;
-font-size:19px;
-border:2px solid #ccc;
-border-radius:30px;
-color:white;
-cursor:pointer;
-transition:0.3s;
+  outline:none;
+  display:inline-block;
+  background: #ccc;
+  width:300px;
+  padding:17px 30px;
+  font-size:19px;
+  border:2px solid #ccc;
+  border-radius:30px;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
 }
 
 #cancelBtn:hover{

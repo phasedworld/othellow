@@ -270,6 +270,7 @@ function sendEmailPw(){
   margin-left: 20px;
   margin-top: 20px;
   margin-bottom:50px;
+  outline:none;
   width: 500px;
 }
 .button_wrap{
@@ -279,6 +280,7 @@ function sendEmailPw(){
 #loginBtn{
   display:inline-block;
   background: #c0c962;
+  outline:none;
   width:400px;
   padding:17px 30px;
   font-size:19px;
@@ -296,6 +298,7 @@ function sendEmailPw(){
 /*end ajax*/
   
 #findBtn{
+outline:none;
 display:inline-block;
 background: #c0c962;
 width:300px;
@@ -313,6 +316,7 @@ transition:0.3s;
   border:2px solid #959f2c;
 }
 #cancelBtn{
+outline:none;
 display:inline-block;
 background: #ccc;
 width:300px;

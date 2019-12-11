@@ -103,7 +103,18 @@ nav li a{
   background-size: 11.31px 11.31px;
 }
 </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+var alert = function(msg, type){
+	swal({
+		title:'',
+		text:msg,
+		icon:type,
+		timer:3000,
+		customClass:'sweet-size',
+		showConfirmButton:false
+	});
+}
 var imgView = function(input){
 	if(input.files && input.files[0]){
 		var reader = new FileReader();
@@ -124,6 +135,10 @@ function upImg(){
 		contentType:false,
 		success:function(){
 			console.log('성공적으로 이미지 업로드!');
+			alert('캐릭터 등록 성공!');
+			setTimeout(function(){
+				location.reload();
+				},1000);
 		}
 	});
 }
@@ -141,8 +156,8 @@ function upImg(){
 			<li><a href="list" class="nav">커뮤니티</a></li>
 		  </ul>
         </nav>
-        <div class="header-replace">헤더 교체</div>
-      </header>
+        <div class="header-replace" onclick="header_upload()">헤더 교체</div>
+    </header>
   </div>
   <div class="header-divider"></div>
   <!--본문-->
@@ -168,6 +183,7 @@ function upImg(){
 
   </div>
 </body>
+
 <style>
 #container{
   width:1000px;
