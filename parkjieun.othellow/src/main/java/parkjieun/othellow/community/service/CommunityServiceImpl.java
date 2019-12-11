@@ -18,6 +18,27 @@ public class CommunityServiceImpl implements CommunityService{
 	public List<Community> communityList() {
 		return communityDao.communityList();
 	}
+	
+	// 게시글 목록을 얻는다
+	// return: 게시글 목록
+	@Override
+	public List<Community> informList() {
+		return communityDao.informList();
+	}
+
+	// 게시글 목록을 얻는다
+	// return: 게시글 목록
+	@Override
+	public List<Community> chatList() {
+		return communityDao.chatList();
+	}
+
+	// 게시글 목록을 얻는다
+	// return: 게시글 목록
+	@Override
+	public List<Community> artList() {
+		return communityDao.artList();
+	}
 
 	//게시글 상세보기를 얻는다.
 	@Override
@@ -36,8 +57,8 @@ public class CommunityServiceImpl implements CommunityService{
 	//param: 회원 아이디
 	@Transactional
 	@Override
-	public boolean register(Community community) {
-		return communityDao.addPost(community)>0;
+	public void insertPost(Community community) {
+		communityDao.insertSelectKey(community);
 	}
 
 	//게시글을 수정한다.

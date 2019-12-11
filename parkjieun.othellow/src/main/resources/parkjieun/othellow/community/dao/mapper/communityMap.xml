@@ -6,7 +6,6 @@
 		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
 		from users u join community c
 		on u.user_id = c.user_id
-		where u.user_id=c.user_id
 		order by c.seq desc
 	</select>
 	
@@ -14,7 +13,7 @@
 		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
 		from users u join community c
 		on u.user_id = c.user_id
-		where u.user_id=c.user_id and c.sort="공지"
+		where c.sort='공지'
 		order by c.seq desc
 	</select>
 	
@@ -22,7 +21,7 @@
 		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
 		from users u join community c
 		on u.user_id = c.user_id
-		where u.user_id=c.user_id and c.sort="잡담"
+		where c.sort='잡담'
 		order by c.seq desc
 	</select>
 	
@@ -30,7 +29,7 @@
 		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
 		from users u join community c
 		on u.user_id = c.user_id
-		where u.user_id=c.user_id and c.sort="팬아트"
+		where c.sort='팬아트'
 		order by c.seq desc
 	</select>
 	
@@ -47,8 +46,16 @@
 		where users.user_id = community.user_id and seq = #{seq}
 	</select>
 	
-	<insert id="addPost" parameterType="string">
-		insert into community(seq, title, contents, image) values (seq.nextval, #{title}, #{content}, #{image})
+	<insert id="addPost">
+		insert into community(seq, sort, title, contents, image, user_id, reg_date) values (seq_board.nextval, #{sort}, #{title}, #{contents}, #{image}, #{user_id), SYSDATE)
+	</insert>
+	
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="seq" order="BEFORE" resultType="int">
+			select seq_board.nextval from dual
+		</selectKey>
+			insert into community(seq, sort, title, contents, user_id, reg_date)
+			values(#{seq}, #{sort}, #{title}, #{contents}, #{userId}, SYSDATE)
 	</insert>
 	
 	<update id="updatePost" parameterType="community">

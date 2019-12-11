@@ -11,6 +11,7 @@
 <script
 	src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script>
 <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
+
 <style>
 @font-face {
    font-family: 'Ddukkubi';
@@ -120,7 +121,7 @@ nav li a {
 <script type="text/javascript">
 	var alert = function(msg, type){
 		swal({
-			title : "오델로W",
+			title : "",
 			text : msg,
 			type: type,
 			timer : 1000,
@@ -128,6 +129,7 @@ nav li a {
 			showConfirmButton : false
 		});
 	}
+	
 	function communityList(){
 		$.ajax({
 			url : "communityList",
@@ -156,7 +158,60 @@ nav li a {
 	}
 	function informList(){
 		$.ajax({
-			url : "communityList",
+			url : "informList",
+			method : "get",
+			success : function(result){
+				$("tbody").empty();
+				$(result).each(
+						function(idx){
+							$("tbody").append(
+									'<tr style = "cursor:pointer;" onClick="location.href="#"> <td>'
+									+ '<div class="subject-header"><font style="color:#e65700;">' + result[idx].sort
+									+ '</font> | No.' + result[idx].seq + '</div><div class="subject">'
+									+ result[idx].title + '</div></td>'
+									+ '<td> <div class="author-header"><font style="color:#e65700;">'
+									+ result[idx].userRank + '</font></div>'
+									+ '<div class="author">' + result[idx].userNickname + '</div></td>'
+									+ '<td>' + result[idx].regDate + '</td>'
+									+ '<td>' + result[idx].hitCount + '</td></tr>'
+									);
+						});
+			},
+			error : function(a, b, errMsg){
+				alert('리스트 출력 실패' + errMsg);
+			}
+		})
+	}
+	function chatList(){
+		$.ajax({
+			url : "chatList",
+			method : "get",
+			success : function(result){
+				$("tbody").empty();
+				$(result).each(
+						function(idx){
+							$("tbody").append(
+									'<tr style = "cursor:pointer;" onClick="location.href="#"> <td>'
+									+ '<div class="subject-header"><font style="color:#e65700;">' + result[idx].sort
+									+ '</font> | No.' + result[idx].seq + '</div><div class="subject">'
+									+ result[idx].title + '</div></td>'
+									+ '<td> <div class="author-header"><font style="color:#e65700;">'
+									+ result[idx].userRank + '</font></div>'
+									+ '<div class="author">' + result[idx].userNickname + '</div></td>'
+									+ '<td>' + result[idx].regDate + '</td>'
+									+ '<td>' + result[idx].hitCount + '</td></tr>'
+									);
+						});
+			},
+			error : function(a, b, errMsg){
+				alert('리스트 출력 실패' + errMsg);
+			}
+		})
+	}
+	
+	function artList(){
+		$.ajax({
+			url : "artList",
 			method : "get",
 			success : function(result){
 				$("tbody").empty();
@@ -183,6 +238,7 @@ nav li a {
 	window.onload=function(){
 		communityList();
 	}
+	
 </script>
 </head>
 <body>
@@ -201,8 +257,15 @@ nav li a {
   <!--본문-->
 
   <div class="table-header"><FONT style="font-size:28px;">커뮤니티</FONT> | 
-  <a href="list"><FONT style="color:#06a545;">전체</FONT></a> | 
-  <a onClick="informList();">공지</a> | <a onClick="chatList();">잡담</a> | <a onClick="artList();">팬아트 </a></div>
+  <form name="sort" class="sort">
+  	<div class="sort-group">
+  		<span class='sortList' id='list' onclick="communityList();">전체</span> | 
+  		<span class='sortList' id='informList' onclick="informList();">공지</span> | 
+  		<span class='sortList' id='chatList' onclick="chatList();">잡담</span> | 
+  		<span class='sortList' id='artList' onclick="artList();">팬아트 </span>
+  	</div>
+  </form>
+  </div>
   <table class="table-wrapper">
   <thead>
     <tr>
@@ -217,17 +280,25 @@ nav li a {
   </table>
   <!--재활용 빈도가 아주 높을 버튼 클래스들-->
   <div class="content-footer">
-    <div class="write-button" style="cursor:pointer;" onClick="location.href='insertPost'">글쓰기</div>
-    <div>
+    <a href='insertPost'><div class="write-button" style="cursor:pointer;">글쓰기</div></a>
+<!--     <div>
        <ul class="paging">
           <li>&lt;</li><li class="selected">1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>&gt;</li>
        </ul>
-    </div>
+    </div> -->
+    
+    
     <div class="search-wrapper">
-      <select><option>제목</option></select>
-      <input placeholder="검색어를 입력하세요"/>
+      <select class="searchType" name="searchType" id="searchType">
+      	<option value="title">제목</option>
+		<option value="Content">본문</option>
+		<option value="reg_id">작성자</option>
+      </select>
+      <input class="keyword" name="keyword" id="keyword" placeholder="검색어를 입력하세요"/>
       <span class="search-button">SEARCH</span>
     </div>
+    
+    
   </div>
 
 </body>
@@ -356,6 +427,21 @@ nav li a {
   font-family:'YoonGothic';
   font-size:18px;
   border-radius:3px;
+}
+
+.sort{
+	display: inline-block;
+}
+
+.sort-group {
+	display: inline-block;
+}
+
+.sortList {
+	justify-content: middle;
+	cursor: pointer;
+	font-size: 13pt;
+	color: #333;
 }
 </style>
 </html>

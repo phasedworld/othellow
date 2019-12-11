@@ -19,6 +19,27 @@ public class CommunityDaoImpl implements CommunityDao{
 		return communityMapper.communityList();
 	}
 
+	// 게시글 목록을 얻는다
+	// return: 게시글 목록
+	@Override
+	public List<Community> informList() {
+		return communityMapper.informList();
+	}
+
+	// 게시글 목록을 얻는다
+	// return: 게시글 목록
+	@Override
+	public List<Community> chatList() {
+		return communityMapper.chatList();
+	}
+
+	// 게시글 목록을 얻는다
+	// return: 게시글 목록
+	@Override
+	public List<Community> artList() {
+		return communityMapper.artList();
+	}
+
 	// 게시글 하나를 찾는다.
 	// param: 게시글 번호
 	@Override
@@ -38,8 +59,13 @@ public class CommunityDaoImpl implements CommunityDao{
 	// return: 추가한 게시글 수
 	// param: 회원 아이디
 	@Override
-	public int addPost(Community community){
-		return communityMapper.addPost(community);
+	public void addPost(Community community){
+		communityMapper.addPost(community);
+	}
+	
+	@Override
+	public void insertSelectKey(Community community){
+		communityMapper.insertSelectKey(community);
 	}
 
 	// 게시글을 수정한다.
