@@ -23,7 +23,6 @@ public class AdminController {
 	
 	@Value("${uploadDir}")
 	private String uploadDir;
-	//t6y73444444444u48hh
 	
 	@RequestMapping("/admin")
 	public String admin(){

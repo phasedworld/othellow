@@ -102,6 +102,108 @@ nav li a{
   background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%, #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
   background-size: 11.31px 11.31px;
 }
+/*헤더 교체 모달*/
+#show-modal.open {
+  display: block;
+}
+#show-modal {
+  display:none;
+  position: fixed;
+  z-index:999;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 750px;
+  height: 500px;
+  border-radius: 0.5rem;
+}
+#close-button {
+  float: right;
+  margin:20px;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+
+}
+.headImg-wrapper{
+  margin:20px;
+  margin-top:50px;
+  width:rgb(255, 0, 0);%;
+  height:200px;
+  border-radius: 0.25rem;
+  background:#ddd;
+  align:center;
+  justify-content: center;
+}
+#modal-input{
+  margin-left:50px;
+  margin-top:30px;
+  margin-bottom:25px;
+}
+.header-name{
+  width:600px;
+  padding:8px 15px;
+  font-size:19px;
+  border:none;
+  border-bottom:1px solid #777;
+  margin-bottom:30px;
+}
+.headFile-name{
+  width:350px;
+  padding:8px 15px;
+  font-size:19px;
+  border:none;
+  border-bottom:1px solid #777;
+}
+.uploadHead-btn{
+  display:inline-block;
+  text-align:center;
+  background:white;
+  cursor:pointer;
+  color:#959f2c;
+  border:2px solid #959f2c;
+  border-radius: 30px;
+  padding:10px 0px;
+  width:230px;
+  margin-left:20px;
+}
+.uploadHead-btn input{
+  position:absolute;
+  left:0px; top:0px;
+  width:230px;
+  opacity:0;
+  line-height:48px;
+  cursor:pointer;
+}
+input:focus{
+  outline:none;
+}
+.confirmHead-btn{
+  margin:0 auto;
+  border-radius:50px;
+  width:180px;
+  text-align:center;
+  padding:10px 50px;
+  background:#c0c962;
+  font-size:22px;
+  cursor:pointer;
+  transition:0.2s;
+}
+.confirmHead-btn:hover{
+  background:#959f2c;
+}
 </style>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
@@ -139,7 +241,7 @@ function upImg(){
 			setTimeout(function(){
 				location.reload();
 				},1000);
-		}
+			}
 	});
 }
 </script>
@@ -157,6 +259,24 @@ function upImg(){
 		  </ul>
         </nav>
         <div class="header-replace" onclick="header_upload()">헤더 교체</div>
+
+        <!-- 헤더교체모달 -->
+        <div id="show-modal">
+			<div id="modal-content">
+		        <span id="close-button" onclick="header_upload()">&times;</span>
+		        <div class="headImg-wrapper">
+		       	 preview<img class="headpreviewImg"/>
+		        </div>
+				<form id="headerForm">
+		        	<div id="modal-input">
+		         		<input type="text" class="header-name" name="headerName" placeholder="헤더 이름"/>
+		          		<input type="text" class="headFile-name" name="headImgLink" placeholder="디렉토리 주소" readonly/>
+		          		<label class="uploadHead-btn">이미지 업로드<input type="file" name="headImg" onChange="imgView(this)"></label>
+		            </div>
+		             <div class="confirmHead-btn" onClick="headUpImg()">등록하기</div>
+		      	</form>
+	      </div>
+		</div>
     </header>
   </div>
   <div class="header-divider"></div>
@@ -183,7 +303,12 @@ function upImg(){
 
   </div>
 </body>
-
+<script>
+	function header_upload(){
+    	document.getElementById("show-modal").classList.toggle('open');
+    	document.getElementById('close-button').classList.toggle('exit');
+ }
+</script>
 <style>
 #container{
   width:1000px;
