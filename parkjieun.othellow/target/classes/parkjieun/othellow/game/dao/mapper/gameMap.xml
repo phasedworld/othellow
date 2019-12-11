@@ -27,7 +27,7 @@
 	</insert>
 	<update id="joinRoom" parameterType="int">
 		update lobby set room_headcount = (room_headcount+1)
-		where room_id=#{roomId}
+		where room_id=#{roomId} and room_headcount &lt; 2
 	</update>
 	<delete id="gamerOut" parameterType="gamer">
 		delete from rooms
@@ -60,5 +60,10 @@
 		from rooms
 		where room_id=#{roomId}
 		order by user_side
+	</select>
+	<select id="getCharacter" parameterType="int" resultType="string">
+		select image_link imageLink
+		from character
+		where character_no=#{characterNo}
 	</select>
 </mapper>
