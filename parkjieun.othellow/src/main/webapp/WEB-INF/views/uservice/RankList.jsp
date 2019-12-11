@@ -251,6 +251,8 @@ body {
 }
 </style>
 <script type="text/javascript">
+
+
 	var alert = function(msg, type){
 	swal({
 		title : "오델로W",
@@ -270,14 +272,13 @@ body {
 				$(result).each(
 						function(idx){
 							$("tbody").append(
-									'<tr><td class="rank">'+(idx+1) +'</td><td class="character">'
+									'<tr><td class="rank">'+result[idx].rnum +'</td><td class="character">'
 									+'<div class="character_child"><div class="character_child1"><img height="60px" src=""></div>'
 									+'<div class="character_child2">'+result[idx].userNickname + '</div></div></td>'
 									+'<td>'+ result[idx].userRank + '</td>'
 									+'<td class="exp">' + result[idx].userExp +'</td>'
 									+'<td class="win_lose">'+ (result[idx].userWin+result[idx].userLose)+'전'+'&nbsp'
-									+result[idx].userWin + '승'+'&nbsp' + result[idx].userLose+ '패' 
-									/* +'('+(result[idx].userWin/(result[idx].userWin + result[idx].userLose))+')' */
+									+result[idx].userWin + '승'+'&nbsp' + result[idx].userLose+ '패'  
 									+'</td></tr>'	
 							);
 						});
@@ -287,6 +288,7 @@ body {
 			}
 		})
 	}
+	
 	function searchUser(){ 
 		if($('#search_input').val() == ''){
 			alert('닉네임을 입력하세요!', 'warning')
@@ -303,7 +305,7 @@ body {
 					$(result).each(
 							function(idx){
 								$("tbody").append(
-										'<tr><td class="rank">'+(idx+1) +'</td><td class="character">'
+										'<tr><td class="rank">'+result[idx].rnum +'</td><td class="character">'
 										+'<div class="character_child"><div class="character_child1"><img height="60px" src=""></div>'
 										+'<div class="character_child2">'+result[idx].userNickname + '</div></div></td>'
 										+'<td>'+ result[idx].userRank + '</td>'
@@ -380,6 +382,7 @@ body {
 				<tbody id="rankUsers">
 				</tbody>
 			</table>
+			
 		</div>
 	</div>
 </body>
