@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import parkjieun.othellow.admin.domain.Character;
 import parkjieun.othellow.admin.service.CharacterService;
+import parkjieun.othellow.game.service.GameService;
 import parkjieun.othellow.user.domain.User;
 import parkjieun.othellow.user.service.UserService;
 
@@ -24,6 +25,7 @@ import parkjieun.othellow.user.service.UserService;
 public class UserController {
 	@Autowired CharacterService characterService;
 	@Autowired UserService userService;
+	@Autowired GameService gameService;
 	
 	@RequestMapping("user/signup")
 	public String signin(Model model){
@@ -48,7 +50,9 @@ public class UserController {
 		user.setUserId(userId);
 		user.setUserPassword(userPassword);
 		if(userService.getUser(user)!=null){
-			session.setAttribute("user", userService.getUser(user));
+			user = userService.getUser(user);
+			session.setAttribute("user", user);
+			session.setAttribute("imageLink", gameService.getCharacter(user.getCharacterNo()));
 			result =0;
 		}else{
 			result =1;

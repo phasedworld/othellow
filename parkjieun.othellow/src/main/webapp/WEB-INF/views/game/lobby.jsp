@@ -366,7 +366,7 @@ function joinRoom(roomNo){
 	  </div><!-- room_wrapper shadow -->
 	  <div class="button_wrap">
 	    <button type="submit" id=findBtn onClick="showModal()">방만들기 </button>
-	    <button type="button" id="cancelBtn" onclick="history.go(-1);">나가기</button>
+	    <button type="button" id="cancelBtn" onclick="self.close();">나가기</button>
 	  </div>
 </div><!-- end shadow -->
 </body>

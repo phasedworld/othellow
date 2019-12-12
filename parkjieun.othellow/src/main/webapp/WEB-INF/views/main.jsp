@@ -298,7 +298,7 @@ nav li a{
       <%}else{%>
       <div class="loginbox">
         <div class="userinfo">
-          <div class="user-img" style="background-image:url('')"></div>
+          <div class="user-img" style="background-image:url('img/${imageLink}')"></div>
           <span class="user-name"><img width=30px height=30px> ${user.userNickname}</span>
           <div class="user-winlose"><span class="winlabel">승</span><span class="winrateval">${user.userWin}</span><span class="loselabel">패</span><span class="winrateval">${user.userLose}</span></div>
         </div>
