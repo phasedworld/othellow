@@ -198,11 +198,11 @@ a {
 	display: flex;
 }
 
-.mypage_Img img {
+#char{
 	align-items: center;
 	margin: auto;
 	width: 330px;
-	height: 330px;
+	height: 170px;
 }
 
 .mypage_Rank {
@@ -286,7 +286,7 @@ $(function(){
 		<div class="mypage">
 			<div class="mypage_list">
 				<div class="mypage_Img">
-					<img height="170px;" src="">
+					<div id="char" style="background-image:url('img/${imageLink}')"></div>
 				</div>
 				<div class="mypage_Rank">
 					<span class="col">
