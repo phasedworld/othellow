@@ -171,7 +171,7 @@ nav li a {
 			<div class="profil_wrap">
 				<div class="profil_img">
 					<!-- <img src=""> -->
-					<c:out value="${community.userNickname }"/>
+					<c:out value="${community.imageLink }"/>
 				</div>
 			</div>
 		</div>

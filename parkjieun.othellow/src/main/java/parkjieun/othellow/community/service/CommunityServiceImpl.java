@@ -72,4 +72,9 @@ public class CommunityServiceImpl implements CommunityService{
 	public boolean delPost(int seq) {
 		return communityDao.delPost(seq) == 1;
 	}
+	
+	@Override
+	public boolean hitCountUpdate(int seq){
+		return communityDao.hitCountUpdate(seq);
+	}
 }

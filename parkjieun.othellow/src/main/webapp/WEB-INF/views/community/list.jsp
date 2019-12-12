@@ -202,8 +202,10 @@ nav li a {
 	</table>
 	<!--재활용 빈도가 아주 높을 버튼 클래스들-->
 	<div class="content-footer">
-		<a href='insertPost'><div class="write-button"
-				style="cursor: pointer;">글쓰기</div></a>
+		<div class="write-button"
+				style="cursor: pointer; text-decoration:none" onclick="location.href='insertPost'">
+				글쓰기
+				</div>
 		<!--     <div>
        <ul class="paging">
           <li>&lt;</li><li class="selected">1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>&gt;</li>

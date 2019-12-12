@@ -75,5 +75,10 @@ public class CommunityDaoImpl implements CommunityDao{
 	public int delPost(int seq){
 		return communityMapper.delPost(seq);
 	}
+	
+	@Override
+	public boolean hitCountUpdate(int seq){
+		return communityMapper.hitCountUpdate(seq);
+	}
 
 }

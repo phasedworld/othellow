@@ -94,6 +94,8 @@ public class CommunityController {
 	@RequestMapping(value={"/updatePost"}, method = RequestMethod.GET)
 	public void updatePost(@RequestParam("seq") int seq, Model model){
 		model.addAttribute("community", communityService.viewPost(seq));
+		
+		communityService.hitCountUpdate(seq);
 	}
 
 	@RequestMapping(value="/updatePost", method = RequestMethod.POST)

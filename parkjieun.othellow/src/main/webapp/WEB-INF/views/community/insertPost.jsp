@@ -165,6 +165,17 @@ nav li a {
 	</div>
 	<div class="header-divider"></div>
 	<!--본문-->
+	
+	<%
+		if (session.getAttribute("user")==null){
+	%>
+	<script>
+		alert("로그인 해주세요")
+		setTimeout(location.href="list", 1500)
+	</script>
+	<%
+		}else{
+	%>
 
 	<div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT>
@@ -192,7 +203,7 @@ nav li a {
 						</script>
 					</div>
 					
-					<input type="hidden" name="userId" id="userId" value="vitois8bit"/>
+					<input type="hidden" name="userId" id="userId" value="${user.userId}">
 					
 					
 				</form>
@@ -208,6 +219,9 @@ nav li a {
 		<div class="write-button" id="write-button" onClick="insert();">등록하기</div>
 		<div class="back-button" onClick="location.href='list'">목록으로</div>
 	</div>
+	<%
+		}
+	%>
 
 </body>
 

@@ -13,5 +13,5 @@ public interface CommunityService {
 	public void insertPost(Community community);
 	public boolean updatePost(Community community);
 	public boolean delPost(int seq);
-	
+	public boolean hitCountUpdate(int seq);
 }

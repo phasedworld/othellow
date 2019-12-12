@@ -14,4 +14,5 @@ public interface CommunityDao {
 	public void insertSelectKey(Community community);
 	public int updatePost(Community community);	//게시글 수정
 	public int delPost(int seq);	//게시글 삭제
+	public boolean hitCountUpdate(int seq);
 }
