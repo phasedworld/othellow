@@ -179,7 +179,7 @@ margin:0px 10px;
   border:2px solid #aaa;
 }
 
-#make-room-modal{
+#make-room-modal, #full-room-modal{
   background:white;
   position:absolute;
   left:50%; top:50%;
@@ -190,7 +190,7 @@ margin:0px 10px;
   border:2px solid #999;
   display:none;
 }
-#make-room-modal.show, .modal-shadow.show{
+#make-room-modal.show,#full-room-modal.show, .modal-shadow.show{
   display:block;
 }
 #roomName{
@@ -272,7 +272,11 @@ function listLobby(){
 					}
 				});
 				$('#lobby_wrap').html(roomList.join(''));
+			}else{
+				$('#lobby_wrap').html("<div style=\"position:absolute; width:900px; left:0; top:330px; text-align:center; color:#333; font-family: YoonGothic; line-height:200%;\">"+
+				"현재 진행중인 게임방이 없습니다.<br>새로운 방을 생성해주세요.</div>");
 			}
+			setTimeout(listLobby, 3000);
 		}
 	});
 }
@@ -282,6 +286,7 @@ function showModal(){
 }
 function exitModal(){
 	$('#make-room-modal').removeClass('show');
+	$('#full-room-modal').removeClass('show');
 	$('.modal-shadow').removeClass('show');
 }
 function makeRoom(){
@@ -302,8 +307,10 @@ function joinRoom(roomNo){
 		url:'joinRoom',
 		data:allRoomData,
 		success:function(res){
+			console.log(res)
 			if(res==0){
-				alert('방 꽉참..');
+				$('#full-room-modal').addClass('show');
+				$('.modal-shadow').addClass('show');
 			}else{
 				$('#gameIn').attr("action","./room/"+roomNo);
 				$('#gameIn').attr("method","post");
@@ -321,6 +328,10 @@ function joinRoom(roomNo){
     <div class="room-label">생성할 방 이름을 정해주세요</div>
     <input type="text" id="roomName" name="roomName" value="멋진 한 판!">
     <div id="make-room-btn" onClick="makeRoom()">입장</div>
+  </div>
+  <div id="full-room-modal">
+  <span class="modal-exit" onClick="exitModal()">&times;</span>
+    <div class="room-label">선택하신 방은<br>정원 초과로 입장이 불가합니다.</div>
 </div>
 <div class="shadow">
   <div id="room_container">
