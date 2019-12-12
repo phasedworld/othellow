@@ -42,14 +42,8 @@ public class CommunityServiceImpl implements CommunityService{
 
 	//게시글 상세보기를 얻는다.
 	@Override
-	public Community findViewPost(int seq) {
-		return communityDao.getViewPost(seq);
-	}
-
-	//게시글 상세보기를 얻는다.
-	@Override
-	public Community findMyPost(int seq) {
-		return communityDao.getMyPost(seq);
+	public Community get(int seq) {
+		return communityDao.read(seq);
 	}
 	
 	//게시글을 등록한다.

@@ -43,16 +43,8 @@ public class CommunityDaoImpl implements CommunityDao{
 	// 게시글 하나를 찾는다.
 	// param: 게시글 번호
 	@Override
-	public Community getViewPost(int seq) {
-		return communityMapper.getViewPost(seq);
-	}
-	
-
-	// 게시글 하나를 찾는다.
-	// param: 게시글 번호
-	@Override
-	public Community getMyPost(int seq){
-		return communityMapper.getMyPost(seq);
+	public Community read(int seq) {
+		return communityMapper.read(seq);
 	}
 
 	// 게시글을 추가한다.

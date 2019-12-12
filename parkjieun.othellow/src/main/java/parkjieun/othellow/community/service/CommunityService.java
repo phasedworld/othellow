@@ -9,8 +9,7 @@ public interface CommunityService {
 	List<Community> informList();
 	List<Community> chatList();
 	List<Community> artList();
-	Community findViewPost(int seq);
-	Community findMyPost(int seq);
+	public Community get(int seq);
 	public void insertPost(Community community);
 	boolean updatePost(Community community);
 	boolean delPost(int seq);

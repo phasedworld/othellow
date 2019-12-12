@@ -34,10 +34,12 @@
 	</select>
 	
 	<select id="getViewPost" resultType="community">
+	<![CDATA[
 		select sort, title, reg_date regDate, hit_count hitCount, like_count likeCount, user_rank userRank, user_nickname userNickname, contents
 		from users, community, character
 		where users.user_id = community.user_id
 		and users.character_no = character.character_no and seq = #{seq}
+		]]>
 	</select>
 	
 	<select id="getMyPost" resultType="community">

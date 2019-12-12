@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import parkjieun.othellow.admin.domain.Character;
 import parkjieun.othellow.game.dao.GameDao;
 import parkjieun.othellow.game.domain.Gamer;
 import parkjieun.othellow.game.domain.Lobby;
@@ -30,6 +31,11 @@ public class GameServiceImpl implements GameService{
 	public int joinRoom(int roomId, Gamer gamer) {
 		gameDao.gamerIn(gamer);
 		return gameDao.joinRoom(roomId);
+	}
+
+	@Override
+	public String getCharacter(int characterNo) {
+		return gameDao.getCharacter(characterNo);
 	}
 
 }

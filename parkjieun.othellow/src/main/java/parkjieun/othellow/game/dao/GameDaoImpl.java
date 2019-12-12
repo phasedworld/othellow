@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import parkjieun.othellow.admin.domain.Character;
 import parkjieun.othellow.game.dao.mapper.GameMapper;
 import parkjieun.othellow.game.domain.Gamer;
 import parkjieun.othellow.game.domain.Lobby;
@@ -55,6 +56,11 @@ public class GameDaoImpl implements GameDao{
 	@Override
 	public List<Gamer> getCurGamer(int roomId) {
 		return gameMapper.getCurGamer(roomId);
+	}
+
+	@Override
+	public String getCharacter(int characterNo) {
+		return gameMapper.getCharacter(characterNo);
 	}
 
 

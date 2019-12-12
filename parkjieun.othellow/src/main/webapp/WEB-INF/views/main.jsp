@@ -307,7 +307,7 @@ nav li a{
         </div>
       </div>
       <div class="btn loginbtn">
-        <span class="gamestart" onClick="location.href='game/lobby';">게임시작</span>
+        <span class="gamestart" onClick="window.open('game/lobby','width=1500px, height:800px');">게임시작</span>
         <span class="startwave"></span>
         <span class="subwave"></span>
       </div>

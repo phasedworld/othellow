@@ -129,6 +129,13 @@ public class MyHandler extends TextWebSocketHandler{
 			}
 			thisRoom.getBlackUser().sendMessage(new TextMessage(turnOverMsg));
 			thisRoom.getWhiteUser().sendMessage(new TextMessage(turnOverMsg));
+		}else if(received[0]!=null&&received[1].equals("character")){
+			//3:character:black:1
+			Room thisRoom = rooms.get(received[0]);
+			String charMsg = "character:"+received[2]+":";
+			charMsg = charMsg + gameDao.getCharacter(Integer.parseInt(received[3]));
+			thisRoom.getBlackUser().sendMessage(new TextMessage(charMsg));
+			thisRoom.getWhiteUser().sendMessage(new TextMessage(charMsg));
 		}
 	}
 
