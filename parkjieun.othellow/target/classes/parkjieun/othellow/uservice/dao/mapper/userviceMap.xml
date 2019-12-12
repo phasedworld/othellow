@@ -3,21 +3,21 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="parkjieun.othellow.uservice.dao.mapper.UserviceMapper">	
 	<select id="rankUsers" resultType="user">
-		select rNum, character_no characterNo, user_nickname userNickname, user_win
+     	select A.*, B.image_link imageLink from (select rNum, character_no characterNo, user_nickname userNickname, user_win
 		userWin, user_lose userLose, user_exp userExp, user_rank userRank
-		from (select u.* , rownum rNum
-		from(select * from users order by user_exp desc )u
-     	 where user_id != 'admin' and ROWNUM &lt;= 10)
+		from (select  rownum rNum, u.*
+		from(select * from users character order by user_exp desc )u
+     	 where user_id != 'admin' and ROWNUM &lt;= 10))A, character B
+         where A.characterno = B.character_no
 	</select>
 
 	<select id="searchUser" parameterType="string" resultType="user"> 
-		select * from(
-		select rNum, character_no characterNo, user_nickname userNickname, user_win userWin, user_lose 
+		select A.*, B.image_link imageLink from(select rNum, character_no characterNo, user_nickname userNickname, user_win userWin, user_lose 
 		userLose, user_exp userExp, user_rank userRank from(
 		select u.* , rownum rNum from(
 		select * from users order by user_exp desc)u 
-		where user_id != 'admin' ))
-        where userNickname like '%'||#{userNickname}||'%' 
+		where user_id != 'admin' ))A, character B
+        where A.characterno = B.character_no and userNickname like '%'||#{userNickname}||'%' 
 	</select>
 	
 	<update id="nicknameUpdate" parameterType="user">

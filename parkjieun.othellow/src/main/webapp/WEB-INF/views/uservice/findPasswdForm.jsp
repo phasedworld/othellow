@@ -128,82 +128,82 @@ nav li a {
   <div class="title">
     <h3 class="real_title">오델로W 계정 찾기</h3>
   </div>
-	<div id="find_wrap" class="find_wrap">
-		<div id="change-box">
-			<form name="findPasswdForm" action="./findPw method="POST">
-				<div class="input_title">
-					<div class="label">비밀번호 찾기</div>
-	           		<div class="label_help">오델로W에서 사용한 Email주소와 ID를 입력해주세요.</div>
-	        	</div>
-	         	<div class="txt_wrap">
-					<input class="txt_in" type="text" id="userEmail" name="userEmail" placeholder="이메일주소를 입력하세요." required>
-	         	</div>
-	         	<div id="txt_wrap2" >
-					<input class="txt_in" type="text" id="userId" name="userId" placeholder="아이디를 입력하세요." required>
-	         	</div>
-	      		
-				<div id="button_wrap" class="button_wrap">
-					<button type="button" id="findBtn" >find</button>
-					<button type="button" id="cancelBtn" onclick="location.href='../'">Cancel</button>
-				</div>
-		</div>		
-				
-	         	<a class="find-id-pw" href="findIdForm">아이디를 잊어버리셨나요?</a>
-			</form>		
-	</div>
+   <div id="find_wrap" class="find_wrap">
+      <div id="change-box">
+         <form name="findPasswdForm" action="./findPw method="POST">
+            <div class="input_title">
+               <div class="label">비밀번호 찾기</div>
+                    <div class="label_help">오델로W에서 사용한 Email주소와 ID를 입력해주세요.</div>
+              </div>
+               <div class="txt_wrap">
+               <input class="txt_in" type="text" id="userEmail" name="userEmail" placeholder="이메일주소를 입력하세요." required>
+               </div>
+               <div id="txt_wrap2" >
+               <input class="txt_in" type="text" id="userId" name="userId" placeholder="아이디를 입력하세요." required>
+               </div>
+               
+            <div id="button_wrap" class="button_wrap">
+               <button type="button" id="findBtn" >find</button>
+               <button type="button" id="cancelBtn" onclick="location.href='../'">Cancel</button>
+            </div>
+      </div>      
+            
+               <a class="find-id-pw" href="findIdForm">아이디를 잊어버리셨나요?</a>
+         </form>      
+   </div>
 </body>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script>
 var alert = function(msg, type){
-	swal({
-		title:'',
-		text:msg,
-		icon:type,
-		timer:3000,
-		customClass:'sweet-size',
-		showConfirmButton:false
-	});
+   swal({
+      title:'',
+      text:msg,
+      icon:type,
+      timer:3000,
+      customClass:'sweet-size',
+      showConfirmButton:false
+   });
 }
 
 function startFindPw(){
-	$('#findBtn').on('click',function(){
-	$.ajax({
-		method:'POST',
-		url:'pwCheckList',
-		data:{	"userEmail":$('#userEmail').val(),
-				"userId":$('#userId').val()		},
-		success:function(data){
-			if(data==0){
-				alert('Email과 ID를 다시 확인해주세요.', 'warning')
-			}else{
-				sendEmailPw()
-			}
-		}
-		});
-	});
+   $('#findBtn').on('click',function(){
+   $.ajax({
+      method:'POST',
+      url:'pwCheckList',
+      data:{   "userEmail":$('#userEmail').val(),
+            "userId":$('#userId').val()      },
+      success:function(data){
+         if(data==0){
+            alert('Email과 ID를 다시 확인해주세요.', 'error')
+         }else{
+            sendEmailPw()
+         }
+      }
+      });
+   });
 }
 
 function sendEmailPw(){
-	$('#findBtn').off('click');
-	$('#findBtn').css('background','#ccc');
-	$('#findBtn').css('border','4px');
-	$('#findBtn').css('cursor','wait');
-	alert('임시비밀번호를 메일로 전송중입니다...')	
-	$.ajax({
-		method:'GET',
-		url:"rearrangePw",
-		data:{"userEmail":$('#userEmail').val(),
-			  "userId":$('#userId').val()},
-		success:function(){
-			$('#change-box').html("<div class='label'>비밀번호찾기 결과 </div>"+
-					  "<div class='label_help'>이메일을 보냈습니다. 이메일을 확인해주세요.</div>" 	+
-					  "<h3 class='foundPw'> 입력하신 Email로 임시 비밀번호를 보내드렸습니다.</h3>" 	+
-					  "<div class='button_wrap'>" +
-					  "<button type='button' id='loginBtn' onclick='location.href=\"../\";'>login</button>" +
-					  "</div>");
-		}
-	})
+   $('#findBtn').off('click');
+   $('#findBtn').css('background','#ccc');
+   $('#findBtn').css('border','4px');
+   $('#findBtn').css('cursor','wait');
+   alert('임시비밀번호를 메일로 전송중입니다...', 'info')   
+   $.ajax({
+      method:'GET',
+      url:"rearrangePw",
+      data:{"userEmail":$('#userEmail').val(),
+           "userId":$('#userId').val()},
+      success:function(){
+         $('#change-box').html("<div class='label'>비밀번호찾기 결과 </div>"+
+                 "<div class='label_help'>이메일을 보냈습니다. 이메일을 확인해주세요.</div>"   +
+                 "<h3 class='foundPw'> 입력하신 Email로 임시 비밀번호를 보내드렸습니다.</h3>"   +
+                 "<div class='button_wrap'>" +
+                 "<button type='button' id='loginBtn' onclick='location.href=\"../\";'>login</button>" +
+                 "</div>");
+      }
+   })
 }
 </script>
 <style>
