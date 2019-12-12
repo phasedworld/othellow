@@ -1,116 +1,127 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>오델로W</title>
 <meta charset="utf-8">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
 <style>
 @font-face {
-   font-family: 'Ddukkubi';
-   src: url('../font/Ddukkubi.ttf');
+	font-family: 'Ddukkubi';
+	src: url('../../font/Ddukkubi.ttf');
 }
 
 @font-face {
-   font-family: 'NotoSansBold';
-   src: url('../font/NotoSansBold.otf');
+	font-family: 'NotoSansBold';
+	src: url('../../font/NotoSansBold.otf');
 }
 
 @font-face {
-   font-family: 'YoonGothic';
-   src: url('../font/YoonGothic.otf');
+	font-family: 'YoonGothic';
+	src: url('../../font/YoonGothic.otf');
 }
 
 body {
-   margin: 0;
-   font-family: 'NotoSansBold';
+	margin: 0;
+	font-family: 'NotoSansBold';
 }
 
-header{
-  width:1200px;
-  margin:0 auto;
-  height:200px;
-  background:url("");
-  background-size:cover;
-  background-position: center;
+header {
+	width: 1200px;
+	margin: 0 auto;
+	height: 200px;
+	background: url("");
+	background-size: cover;
+	background-position: center;
 }
-.header-wrapper{
-  background: linear-gradient(90deg, #11998e, #38ef7d);
+
+.header-wrapper {
+	background: linear-gradient(90deg, #11998e, #38ef7d);
 }
 
 nav {
-   height: 180px;
+	height: 180px;
 }
 
 nav ul {
-   list-style: none;
-   padding: 0px;
-   margin: 0px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 nav li a {
-   font-size: 25px;
-   color: white;
-   text-decoration: none;
-   text-shadow: 2px 2px 0px black;
-   font-family: 'NotoSansBold';
+	font-size: 25px;
+	color: white;
+	text-decoration: none;
+	text-shadow: 2px 2px 0px black;
+	font-family: 'NotoSansBold';
 }
-#logo{
-  font-style: italic;
-  -webkit-text-stroke: 2px #000;
-  background-color:black;
 
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:none;
-  display:inline-block;
-  width:380px;
-  text-align: center;
-  position:relative;
-  left:10px; top:5px;
+#logo {
+	font-style: italic;
+	-webkit-text-stroke: 2px #000;
+	background-color: black;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-shadow: none;
+	display: inline-block;
+	width: 380px;
+	text-align: center;
+	position: relative;
+	left: 10px;
+	top: 5px;
 }
-#logo:before{
-  content:"오델로";
-  position:absolute;
-  left:-15px; top:-5px;
-  text-align: center;
-  background:-webkit-linear-gradient(white 0%, #aaa 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  width:280px;
+
+#logo:before {
+	content: "오델로";
+	position: absolute;
+	left: -15px;
+	top: -5px;
+	text-align: center;
+	background: -webkit-linear-gradient(white 0%, #aaa 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	width: 280px;
 }
-#w-word{
-  font-style: italic;
-  -webkit-text-stroke: 2px #000;
-  background:black;
-  display:inline-block;
-  width:120px;
-  text-align: center;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:none;
-  position:relative;
+
+#w-word {
+	font-style: italic;
+	-webkit-text-stroke: 2px #000;
+	background: black;
+	display: inline-block;
+	width: 120px;
+	text-align: center;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-shadow: none;
+	position: relative;
 }
-#w-word:before{
-  content:"W";
-  position:absolute;
-  left:-5px; top:-5px;
-  background:-webkit-linear-gradient(rgb(10,155,135) 0%, rgb(214,211,20) 100%);
-  width:120px;
-  text-align: center;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+
+#w-word:before {
+	content: "W";
+	position: absolute;
+	left: -5px;
+	top: -5px;
+	background: -webkit-linear-gradient(rgb(10, 155, 135) 0%,
+		rgb(214, 211, 20) 100%);
+	width: 120px;
+	text-align: center;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
+
 .header-divider {
-   height: 20px;
-   background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
-      #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
-   background-size: 11.31px 11.31px;
+	height: 20px;
+	background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
+		#383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
+	background-size: 11.31px 11.31px;
 }
 </style>
 </head>
@@ -119,11 +130,11 @@ nav li a {
 		<header>
 			<nav>
 				<ul>
-					<li><a href="../uservice/RankList" class="nav">랭킹</a></li>
-					<li class="logo"><a id="logo" href="../"
+					<li><a href="../../uservice/RankList" class="nav">랭킹</a></li>
+					<li class="logo"><a id="logo" href="../../"
 						style="font-size: 75px; font-family: 'Ddukkubi'">오델로<span
 							id="w-word">W</span></a></li>
-					<li><a href="list" class="nav">커뮤니티</a></li>
+					<li><a href='../list' class="nav">커뮤니티</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -133,49 +144,46 @@ nav li a {
 	<!--본문-->
 
 	<div class="table-header">
-		<FONT style="font-size: 28px;">커뮤니티</FONT> | <FONT
-			style="color: #06a545;"><a href="list">전체</a></FONT> | <a
-			href="02.html">공지</a> | <a href="list">잡담</a> | <a href="list">팬아트</a>
+		<FONT style="font-size: 28px;">커뮤니티</FONT>
 	</div>
 
 	<div class="post-wrap">
 		<div class="title">
 			<div class="title-wrap">
 				<div class="subject-header">
-					<FONT style="color: #e65700;">팬아트 </FONT><FONT
+					<FONT style="color: #e65700;"><c:out value="${community.sort }"/> </FONT><FONT
 						style="color: #666; font-size: 13pt; font-weight: bold;">|
-						나 쫌 잘그리는 듯ㅎ</FONT>
+						<c:out value="${community.title }"/></FONT>
 				</div>
 				<div class="subject-bottom">
-					<FONT style="color: #9999;">2019-11-13 | 조회수 : 35 |</FONT><span
-						style="color: red;" class="glyphicon glyphicon-heart"
-						aria-hidden="true"></span><FONT style="color: #9999;"> 15</FONT>
+					<FONT style="color: #9999;"><c:out value="${community.regDate }"/> | 조회수 : <c:out value="${community.hitCount }"/> |</FONT>
+					<FONT style="color: red;">♥</FONT><FONT style="color: #9999;"> <c:out value="${community.likeCount }"/></FONT>
 				</div>
 			</div>
 			<div class="nickname-wrap">
 				<div class="ranking">
-					<FONT style="color: #e65700;">바론</FONT>
+					<FONT style="color: #e65700;"><c:out value="${community.userRank }"/></FONT>
 				</div>
 				<div class="nickname">
-					<FONT style="color: #7779; font-weight: bold;">드랍 더 HAKJUM</FONT>
+					<FONT style="color: #7779; font-weight: bold;"><c:out value="${community.userNickname }"/></FONT>
 				</div>
 			</div>
 			<div class="profil_wrap">
 				<div class="profil_img">
-					<img src="">
+					<!-- <img src=""> -->
+					<c:out value="${community.userNickname }"/>
 				</div>
 			</div>
 		</div>
 		<div class="content-wrap">
 			<div class="contents">
-				<img src=""><br> 돌 그려봤는데 좋아요 많이 눌러주세요><<br> 제가 생각해도
-				저 너무 존잘인듯..ㅠㅠ<br>
-				<br> p,s 불펌 ㄴㄴ해
+				${community.contents }
 			</div>
 			<div class="heart">
-				<div style="font-size: 3em;">
-					<span style="color: pink;" class="glyphicon glyphicon-heart"
-						aria-hidden="true"></span>
+				<div id="heart" style="font-size: 3em;">
+					<!-- <span style="color: pink;" class="glyphicon glyphicon-heart"
+						aria-hidden="true"></span> -->
+						<font>♥</font>
 				</div>
 				<div>
 					<label>좋아요!</label>
@@ -183,7 +191,7 @@ nav li a {
 			</div>
 		</div>
 		<div class="content-footer">
-			<div class="back-button" onClick="location.href='list'">목록으로</div>
+			<div class="back-button" onClick="location.href='../list'">목록으로</div>
 		</div>
 	</div>
 </body>
@@ -283,12 +291,11 @@ nav li a {
 	text-align: center;
 }
 
-.heart img {
-	position: relative;
-	width: 50px;
-	height: 50px;
+#heart{
+	color: red;
 	opacity: 0.3;
 	cursor: pointer;
+	transform: scale(1.8,1);
 }
 
 .heart label {
@@ -297,7 +304,7 @@ nav li a {
 	color: #e65700;
 }
 
-.heart img:hover {
+#heart:hover {
 	opacity: 1;
 }
 

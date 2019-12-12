@@ -137,38 +137,7 @@ nav li a {
 			showConfirmButton : false
 		});
 	}
-
-	/* var isTitle = function(){
-		var result = false;
-		if($('#title').val())
-			result = true;
-		return result;
-	}
-	var isContents = function(){
-		var result = false;
-		if($('#contents').val())
-			result = true;
-		return result;
-	}
 	
-	var insertPost = function() {
-		$('#write-button').bind('click', function() {
-			if (isTitle() && isConents()) {
-				$.ajax({
-					url : 'register',
-					data : $('#reg_post').serialize(),
-					success : function(isGood) {
-						alertResult('글을 등록했습니다.', isGood);
-					},
-					error : function(a, b, errMsg) {
-						alert(errMsg, 'error');
-					}
-				});
-			}
-		});
-	} */
-	
-
 	function insert() {
 		if (document.reg_post.title.value == "") {
 			alert("제목을 입력하세요.", "warning")
@@ -223,7 +192,7 @@ nav li a {
 						</script>
 					</div>
 					
-					<input name="userId" id="userId" value="test1234"/>
+					<input type="hidden" name="userId" id="userId" value="vitois8bit"/>
 					
 					
 				</form>

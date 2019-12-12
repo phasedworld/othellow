@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,188 +122,104 @@ nav li a {
 }
 </style>
 <script type="text/javascript">
-	var alert = function(msg, type){
-		swal({
-			title : "",
-			text : msg,
-			type: type,
-			timer : 1000,
-			customClass : 'sweet-size',
-			showConfirmButton : false
+	$(document).ready(function() {
+		/** 상세조회로 가기 **/
+		$(".move").on("click", function(e) {
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='seq' value='"+$(this).attr("href")+"'>");
+			actionForm.attr("action", "/community/viewPost");
+			actionForm.submit();
 		});
-	}
-	
-	function communityList(){
-		$.ajax({
-			url : "communityList",
-			method : "get",
-			success : function(result){
-				$("tbody").empty();
-				$(result).each(
-						function(idx){
-							$("tbody").append(
-									'<tr style = "cursor:pointer;" onClick="location.href="#"> <td>'
-									+ '<div class="subject-header"><font style="color:#e65700;">' + result[idx].sort
-									+ '</font> | No.' + result[idx].seq + '</div><div class="subject">'
-									+ result[idx].title + '</div></td>'
-									+ '<td> <div class="author-header"><font style="color:#e65700;">'
-									+ result[idx].userRank + '</font></div>'
-									+ '<div class="author">' + result[idx].userNickname + '</div></td>'
-									+ '<td>' + result[idx].regDate + '</td>'
-									+ '<td>' + result[idx].hitCount + '</td></tr>'
-									);
-						});
-			},
-			error : function(a, b, errMsg){
-				alert('리스트 출력 실패' + errMsg);
-			}
-		})
-	}
-	function informList(){
-		$.ajax({
-			url : "informList",
-			method : "get",
-			success : function(result){
-				$("tbody").empty();
-				$(result).each(
-						function(idx){
-							$("tbody").append(
-									'<tr style = "cursor:pointer;" onClick="location.href="#"> <td>'
-									+ '<div class="subject-header"><font style="color:#e65700;">' + result[idx].sort
-									+ '</font> | No.' + result[idx].seq + '</div><div class="subject">'
-									+ result[idx].title + '</div></td>'
-									+ '<td> <div class="author-header"><font style="color:#e65700;">'
-									+ result[idx].userRank + '</font></div>'
-									+ '<div class="author">' + result[idx].userNickname + '</div></td>'
-									+ '<td>' + result[idx].regDate + '</td>'
-									+ '<td>' + result[idx].hitCount + '</td></tr>'
-									);
-						});
-			},
-			error : function(a, b, errMsg){
-				alert('리스트 출력 실패' + errMsg);
-			}
-		})
-	}
-	function chatList(){
-		$.ajax({
-			url : "chatList",
-			method : "get",
-			success : function(result){
-				$("tbody").empty();
-				$(result).each(
-						function(idx){
-							$("tbody").append(
-									'<tr style = "cursor:pointer;" onClick="location.href="#"> <td>'
-									+ '<div class="subject-header"><font style="color:#e65700;">' + result[idx].sort
-									+ '</font> | No.' + result[idx].seq + '</div><div class="subject">'
-									+ result[idx].title + '</div></td>'
-									+ '<td> <div class="author-header"><font style="color:#e65700;">'
-									+ result[idx].userRank + '</font></div>'
-									+ '<div class="author">' + result[idx].userNickname + '</div></td>'
-									+ '<td>' + result[idx].regDate + '</td>'
-									+ '<td>' + result[idx].hitCount + '</td></tr>'
-									);
-						});
-			},
-			error : function(a, b, errMsg){
-				alert('리스트 출력 실패' + errMsg);
-			}
-		})
-	}
-	
-	function artList(){
-		$.ajax({
-			url : "artList",
-			method : "get",
-			success : function(result){
-				$("tbody").empty();
-				$(result).each(
-						function(idx){
-							$("tbody").append(
-									'<tr style = "cursor:pointer;" onClick="location.href="#"> <td>'
-									+ '<div class="subject-header"><font style="color:#e65700;">' + result[idx].sort
-									+ '</font> | No.' + result[idx].seq + '</div><div class="subject">'
-									+ result[idx].title + '</div></td>'
-									+ '<td> <div class="author-header"><font style="color:#e65700;">'
-									+ result[idx].userRank + '</font></div>'
-									+ '<div class="author">' + result[idx].userNickname + '</div></td>'
-									+ '<td>' + result[idx].regDate + '</td>'
-									+ '<td>' + result[idx].hitCount + '</td></tr>'
-									);
-						});
-			},
-			error : function(a, b, errMsg){
-				alert('리스트 출력 실패' + errMsg);
-			}
-		})
-	}
-	window.onload=function(){
-		communityList();
-	}
-	
+	});
 </script>
 </head>
 <body>
-  <div class="header-wrapper">
+	<div class="header-wrapper">
 		<header>
 			<nav>
 				<ul>
 					<li><a href="../uservice/RankList" class="nav">랭킹</a></li>
-					<li class="logo"><a id="logo" href="../" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
+					<li class="logo"><a id="logo" href="../"
+						style="font-size: 75px; font-family: 'Ddukkubi'">오델로<span
+							id="w-word">W</span></a></li>
 					<li><a href='list' class="nav">커뮤니티</a></li>
 				</ul>
 			</nav>
 		</header>
 	</div>
-  <div class="header-divider"></div>
-  <!--본문-->
+	<div class="header-divider"></div>
+	<!--본문-->
 
-  <div class="table-header"><FONT style="font-size:28px;">커뮤니티</FONT> | 
-  <form name="sort" class="sort">
-  	<div class="sort-group">
-  		<span class='sortList' id='list' onclick="communityList();">전체</span> | 
-  		<span class='sortList' id='informList' onclick="informList();">공지</span> | 
-  		<span class='sortList' id='chatList' onclick="chatList();">잡담</span> | 
-  		<span class='sortList' id='artList' onclick="artList();">팬아트 </span>
-  	</div>
-  </form>
-  </div>
-  <table class="table-wrapper">
-  <thead>
-    <tr>
-    	<th>제목</th>
-    	<th>작성자</th>
-    	<th>작성일</th>
-    	<th>조회수</th>
-    </tr>
-    </thead>
-    <tbody id='communityList'>
-    </tbody>
-  </table>
-  <!--재활용 빈도가 아주 높을 버튼 클래스들-->
-  <div class="content-footer">
-    <a href='insertPost'><div class="write-button" style="cursor:pointer;">글쓰기</div></a>
-<!--     <div>
+	<div class="table-header">
+		<FONT style="font-size: 28px;">커뮤니티</FONT> |
+		<form name="sort" class="sort">
+			<div class="sort-group">
+				<span class='sortList' id='list' onclick="communityList();">전체</span>
+				| <span class='sortList' id='informList' onclick="informList();">공지</span>
+				| <span class='sortList' id='chatList' onclick="chatList();">잡담</span>
+				| <span class='sortList' id='artList' onclick="artList();">팬아트
+				</span>
+			</div>
+		</form>
+	</div>
+	<table class="table-wrapper">
+		<thead>
+			<tr>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
+		<tbody id='communityList'>
+			<c:forEach items="${communityList }" var="community">
+		 		<tr class="move" style="cursor: pointer;" onClick="location.href='<c:out  value="viewPost/${community.seq }"/>'">
+				<%-- <tr style="cursor: pointer;" class='move' onClick="location.href='/community/viewPost?seq=<c:out value="${community.seq }"/>'"> --%>
+					<td>
+						<div class="subject-header">
+							<FONT style="color: #e65700;"><c:out
+									value="${community.sort}" /></FONT> | No.
+							<c:out value="${community.seq}" />
+						</div>
+						<div class="subject">
+							<c:out value="${community.title}" />
+						</div>
+					</td>
+					<td>
+						<div class="author-header">
+							<FONT style="color: #e65700;"><c:out
+									value="${community.userRank}" /></FONT>
+						</div>
+						<div class="author">
+							<c:out value="${community.userNickname}" />
+						</div>
+					</td>
+					<td><c:out value="${community.regDate}" /></td>
+					<td><c:out value="${community.hitCount}" /></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<!--재활용 빈도가 아주 높을 버튼 클래스들-->
+	<div class="content-footer">
+		<a href='insertPost'><div class="write-button"
+				style="cursor: pointer;">글쓰기</div></a>
+		<!--     <div>
        <ul class="paging">
           <li>&lt;</li><li class="selected">1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>&gt;</li>
        </ul>
     </div> -->
-    
-    
-    <div class="search-wrapper">
-      <select class="searchType" name="searchType" id="searchType">
-      	<option value="title">제목</option>
-		<option value="Content">본문</option>
-		<option value="reg_id">작성자</option>
-      </select>
-      <input class="keyword" name="keyword" id="keyword" placeholder="검색어를 입력하세요"/>
-      <span class="search-button">SEARCH</span>
-    </div>
-    
-    
-  </div>
 
+
+		<div class="search-wrapper">
+			<select class="searchType" name="searchType" id="searchType">
+				<option value="title">제목</option>
+				<option value="Content">본문</option>
+				<option value="reg_id">작성자</option>
+			</select> <input class="keyword" name="keyword" id="keyword"
+				placeholder="검색어를 입력하세요" /> <span class="search-button">SEARCH</span>
+		</div>
+	</div>
 </body>
 <style>
 .table-header, .table-wrapper, .content-footer{
