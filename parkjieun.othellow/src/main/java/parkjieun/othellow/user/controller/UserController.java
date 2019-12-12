@@ -1,6 +1,7 @@
 package parkjieun.othellow.user.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,8 +26,8 @@ public class UserController {
 	@Autowired UserService userService;
 	
 	@RequestMapping("user/signup")
-	public String signin(Model model, Character character){
-		characterService.getCharacters();
+	public String signin(Model model){
+		List<Character> character = characterService.getCharacters();
 		model.addAttribute("character", character);
 		return "user/signUp";
 	}

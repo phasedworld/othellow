@@ -301,10 +301,14 @@ function joinRoom(roomNo){
 	$.ajax({
 		url:'joinRoom',
 		data:allRoomData,
-		success:function(){
-			$('#gameIn').attr("action","./room/"+roomNo);
-			$('#gameIn').attr("method","post");
-			$('#gameIn').submit();
+		success:function(res){
+			if(res==0){
+				alert('방 꽉참..');
+			}else{
+				$('#gameIn').attr("action","./room/"+roomNo);
+				$('#gameIn').attr("method","post");
+				$('#gameIn').submit();
+			}
 		}
 	});
 }

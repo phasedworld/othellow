@@ -12,9 +12,9 @@
 
 	<select id="searchUser" parameterType="string" resultType="user"> 
 		select * from(
-		select rownum rNum, character_no characterNo, user_nickname userNickname, user_win userWin, user_lose 
+		select rNum, character_no characterNo, user_nickname userNickname, user_win userWin, user_lose 
 		userLose, user_exp userExp, user_rank userRank from(
-		select u.* , rownum from(
+		select u.* , rownum rNum from(
 		select * from users order by user_exp desc)u 
 		where user_id != 'admin' ))
         where userNickname like '%'||#{userNickname}||'%' 

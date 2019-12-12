@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,10 +134,13 @@ nav li a{
 
     <div class="input-help">당신의 캐릭터를 선택하세요!</div>
     <div class="character-wrap">
-      <div class="character-img" style="background-image:url(\"\");" onClick="chooseImg(1)"></div>
+      <!-- <div class="character-img" style="background-image:url(\"\");" onClick="chooseImg(1)"></div>
       <div class="character-img" style="background-image:url(\"\");" onClick="chooseImg(2)"></div>
-      <div class="character-img" style="background-image:url(\"\");" onClick="chooseImg(3)"></div>
-      <input type="hidden" name="userPic" id="userPic"/>
+      <div class="character-img" style="background-image:url(\"\");" onClick="chooseImg(3)"></div> -->
+      <c:forEach var="cha" items="${character}">
+      <div class="character-img" style="background-image:url(../img/${cha.imageLink});" onClick="chooseImg(${cha.characterNo})"></div>
+      </c:forEach>
+      <input type="hidden" name="characterNo" id="userPic"/>
     </div>
 
     <div class="input-help">닉네임</div>
@@ -193,10 +197,7 @@ var alert = function(msg, type){
 }
 
 function chooseImg(num){
-	var imgsrc="img/profile"+num+".png";
-	$('.character-img').removeClass('selected');
-	$('.character-img').eq(num-1).addClass('selected');
-	$('#userPic').val(imgsrc);
+	$('#userPic').val(num);
 }
 
 function idVerify(){
@@ -413,19 +414,28 @@ javascript의 classList.add() 또는 jQuery의 addClass() 메소드를
 }
 
 .character-wrap{
-  display:flex;
-  justify-content: space-between;
+  display:block;
+  perspective: 600px;
+  perspective-origin: center;
+  transform-origin:right;
+  width:700px;
+  padding:50px;
+  white-space:nowrap;
+  overflow:hidden;
 }
 
 .character-img{
   background:#eee;
-  flex-grow:1;
-  margin:0px 10px;
+  width:255px;
   height:300px;
-  float:left;
+  display:inline-block;
+  position:relative;
+  z-index:1;
+  margin:0px -60px;
   background-position:center;
   background-size:contain;
   background-repeat: no-repeat;
+  transition:0.5s ease;
 }
 
 .character-img.selected{
@@ -449,4 +459,24 @@ javascript의 classList.add() 또는 jQuery의 addClass() 메소드를
 }
 
 </style>
+<script>
+var selImg = 0;
+showCharImg();
+$('.character-img').on("click",function(){
+  selImg = $(this).index();
+  $('.character-wrap').css('background-position','70px');
+  showCharImg();
+});
+
+function showCharImg(){
+  for(var i=0;i<${character.size()};i++){
+    $('.character-img').eq(i).css('transform','translateX('+(-(selImg-2)*140)+'px) scale(0.9) rotateY('+(selImg-i)*40+'deg)');
+    $('.character-img').eq(i).css('z-index',${character.size()}-Math.abs(selImg-i));
+  }
+  $('.character-img').removeClass('selected');
+  $('.character-img').eq(selImg).addClass('selected');
+  $('.character-img').eq(selImg).css('transform','translateX('+-(selImg-2)*140+'px) scale(1.2) rotateY(0deg)');
+}
+
+</script>
 </html>

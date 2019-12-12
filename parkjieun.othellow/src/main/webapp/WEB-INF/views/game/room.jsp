@@ -258,6 +258,24 @@ margin:0px 10px;
 #make-room-modal.show, .modal-shadow.show{
   display:block;
 }
+.character{
+  position:absolute;
+  left:5%;
+  bottom:0px;
+  width:420px;
+  height:500px;
+  opacity:0.5;
+  background-position:center;
+  background-size:contain;
+  background-repeat:no-repeat;
+}
+.character.black{
+  transform:scaleX(-1);
+}
+.character.white{
+  left:auto;
+  right:5%;
+}
 </style>
 <script>
 window.onload = function(){
@@ -330,6 +348,7 @@ function onMessage(msg) {
         		dropStone($(this).attr('id'));
     		});
     	}
+    	sock.send("${roomNo}:"+"character:"+$('#mySide').val()+":<%=user.getCharacterNo()%>");
     }else if(message[0]=='black'){
     	var idx = 1;
     	var blackScore = 0; var whiteScore = 0;
@@ -358,6 +377,15 @@ function onMessage(msg) {
     	}else{
     		$('.clickable').off();
     	}
+    	if(message[1]=="black"){
+    		//블랙 캐릭터이미지 업
+    		$('.character').css('opacity','0.5');
+    		$('.character.black').css('opacity','1');
+    	}else if(message[1]=="white"){
+    		//화이트 캐릭터이미지 업
+    		$('.character').css('opacity','0.5');
+    		$('.character.white').css('opacity','1');
+    	}
     }else if(message[0]=='gameend'){
     	var resultLabel = "";
     	if(message[1]==message[2]){
@@ -376,6 +404,12 @@ function onMessage(msg) {
     	$('#totalscore').text('부전승');
     	$('#make-room-modal').addClass('show');
     	$('.modal-shadow').addClass('show');
+    }else if(message[0]=='character'){
+    	if(message[1]=='black'){
+    		$('.character.black').css('background-image','url(../../img/'+message[2]+')');
+    	}else if(message[1]=='white'){
+    		$('.character.white').css('background-image','url(../../img/'+message[2]+')');
+    	}
     }
 }
 // 서버와 연결을 끊었을 때
@@ -410,6 +444,8 @@ function dropStone(idx){
   <div class="scoreboard">0 : 0</div>
   <div class="username white btn" id="whiteName">유저 대기중...</div>
 </div>
+<div class="character black"></div>
+<div class="character white"></div>
 <input type="hidden" id="mySide" value="">
 <input type="hidden" id="blackNick" value="">
 <input type="hidden" id="whiteNick" value="">
