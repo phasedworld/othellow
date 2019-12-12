@@ -42,10 +42,10 @@
 		]]>
 	</select>
 	
-	<!-- <updatee id="hitCountUpdate" parameterType="int">
-		update community set hitCount=hitCount+1
+	<update id="hitCountUpdate" parameterType="int" >
+		update community set hit_count=#{hitCount}+1
 		where seq=#{seq}
-	</updatee> -->
+	</update>
 	
 	<insert id="addPost">
 		insert into community(seq, sort, title, contents, image, user_id, reg_date) values (seq_board.nextval, #{sort}, #{title}, #{contents}, #{image}, #{user_id), SYSDATE)
