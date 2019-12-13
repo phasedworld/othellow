@@ -37,10 +37,11 @@ header {
 	background: url("");
 	background-size: cover;
 	background-position: center;
+	backcground-image: url('../img/headerImg.png');
 }
 
 .header-wrapper {
-	background: linear-gradient(90deg, #11998e, #38ef7d);
+	background: black;
 }
 
 nav {
@@ -146,7 +147,6 @@ nav li a {
 	<div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT>
 	</div>
-
 	<div class="post-wrap">
 		<div class="title">
 			<div class="title-wrap">
@@ -171,7 +171,7 @@ nav li a {
 			<div class="profil_wrap">
 				<div class="profil_img">
 					<!-- <img src=""> -->
-					<c:out value="${community.imageLink }"/>
+					<%-- <c:out value="${community.imageLink }"/> --%>
 				</div>
 			</div>
 		</div>
