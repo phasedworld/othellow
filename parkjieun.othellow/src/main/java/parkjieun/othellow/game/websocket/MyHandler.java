@@ -180,23 +180,32 @@ public class MyHandler extends TextWebSocketHandler{
 				//탈주자가 화이트 [runaway]:[white]
 				System.out.println(key+"번 방 화이트 유저 퇴장");
 				String action="";
-				if(rooms.get(key).getGameStatus()==1){
-					action = "runaway";
-					List<Gamer> gamer = gameDao.getCurGamer(Integer.parseInt(key));
-					gameDao.gainExp(new User(gamer.get(0).getUserId(),10));
-					gameDao.gainExp(new User(gamer.get(1).getUserId(),1));
-				}else{
-					action = "leave";
-				}
-				rooms.get(key).setWhiteUser(null);
+				
 				Gamer gamer = new Gamer();
 				gamer.setRoomId(Integer.parseInt(key));
 				gamer.setUserSide("white");
-				gameDao.gamerOut(gamer);
 				
+				if(rooms.get(key).getGameStatus()==1){
+					action = "runaway";
+					List<Gamer> gamers = gameDao.getCurGamer(Integer.parseInt(key));
+					gameDao.gainExp(new User(gamers.get(0).getUserId(),10));
+					gameDao.gainExp(new User(gamers.get(1).getUserId(),1));
+					gamer.setUserSide("black"); //전체 유저를 날리기 위한 조치
+					gameDao.gamerOut(gamer);
+					gameDao.deleteRoom(gamer);
+					System.out.println("냐냐냐냠");
+				}else{
+					rooms.get(key).setWhiteUser(null);
+					action = "leave";
+					gameDao.gamerOut(gamer);
+				}
 				if(rooms.get(key).getBlackUser()!=null){
 					rooms.get(key).getBlackUser().sendMessage(new TextMessage(action+":white"));
+					if(action.equals("runaway")){
+						rooms.remove(key);
+					}
 				}
+				
 			}
 		}
 		System.out.println("연결 끊김");
