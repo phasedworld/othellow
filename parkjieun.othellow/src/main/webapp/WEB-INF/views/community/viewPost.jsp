@@ -270,8 +270,8 @@ nav li a {
 	box-shadow: 2px 5px 5px #959f2c;
 	float: right;
 	margin-right: 20px;
-	background-imaeg:url('../img/${imaegLink}');
-	background-position-center;
+	background-image:url('../../img/${imageLink}');
+	background-position:center;
 	background-size:contain;
 	background-repeat:no-repeat;
 }
