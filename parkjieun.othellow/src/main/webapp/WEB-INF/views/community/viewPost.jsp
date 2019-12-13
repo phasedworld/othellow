@@ -175,7 +175,7 @@ nav li a {
 				</div>
 			</div>
 			<div class="profil_wrap">
-				<div class="profil_img">
+				<div class="profil_img" style="background-image:url('../../img/${community.imageLink}')";>
 				</div>
 			</div>
 		</div>
@@ -266,7 +266,6 @@ nav li a {
 	box-shadow: 2px 5px 5px #959f2c;
 	float: right;
 	margin-right: 20px;
-	background-image:url('../../img/${imageLink}');
 	background-position : center;
 	background-size:contain;
 	background-repeat:no-repeat;
