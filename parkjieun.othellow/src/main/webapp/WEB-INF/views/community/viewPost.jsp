@@ -34,10 +34,9 @@ header {
 	width: 1200px;
 	margin: 0 auto;
 	height: 200px;
-	background: url("");
 	background-size: cover;
 	background-position: center;
-	backcground-image: url('../img/headerImg.png');
+	background-image: url('../../img/headerImg.png');
 }
 
 .header-wrapper {
@@ -151,21 +150,28 @@ nav li a {
 		<div class="title">
 			<div class="title-wrap">
 				<div class="subject-header">
-					<FONT style="color: #e65700;"><c:out value="${community.sort }"/> </FONT><FONT
+					<FONT style="color: #e65700;"><c:out
+							value="${community.sort }" /> </FONT><FONT
 						style="color: #666; font-size: 13pt; font-weight: bold;">|
-						<c:out value="${community.title }"/></FONT>
+						<c:out value="${community.title }" />
+					</FONT>
 				</div>
 				<div class="subject-bottom">
-					<FONT style="color: #9999;"><c:out value="${community.regDate }"/> | 조회수 : <c:out value="${community.hitCount }"/> |</FONT>
-					<FONT style="color: red;">♥</FONT><FONT style="color: #9999;"> <c:out value="${community.likeCount }"/></FONT>
+					<FONT style="color: #9999;"><c:out
+							value="${community.regDate }" /> | 조회수 : <c:out
+							value="${community.hitCount }" /> |</FONT> <FONT style="color: red;">♥</FONT><FONT
+						style="color: #9999;"> <c:out
+							value="${community.likeCount }" /></FONT>
 				</div>
 			</div>
 			<div class="nickname-wrap">
 				<div class="ranking">
-					<FONT style="color: #e65700;"><c:out value="${community.userRank }"/></FONT>
+					<FONT style="color: #e65700;"><c:out
+							value="${community.userRank }" /></FONT>
 				</div>
 				<div class="nickname">
-					<FONT style="color: #7779; font-weight: bold;"><c:out value="${community.userNickname }"/></FONT>
+					<FONT style="color: #7779; font-weight: bold;"><c:out
+							value="${community.userNickname }" /></FONT>
 				</div>
 			</div>
 			<div class="profil_wrap">
@@ -176,14 +182,12 @@ nav li a {
 			</div>
 		</div>
 		<div class="content-wrap">
-			<div class="contents">
-				${community.contents }
-			</div>
+			<div class="contents">${community.contents }</div>
 			<div class="heart">
 				<div id="heart" style="font-size: 3em;">
 					<!-- <span style="color: pink;" class="glyphicon glyphicon-heart"
 						aria-hidden="true"></span> -->
-						<font>♥</font>
+					<font>♥</font>
 				</div>
 				<div>
 					<label>좋아요!</label>
@@ -266,12 +270,16 @@ nav li a {
 	box-shadow: 2px 5px 5px #959f2c;
 	float: right;
 	margin-right: 20px;
+	background-imaeg:url('../img/${imaegLink}');
+	background-position-center;
+	background-size:contain;
+	background-repeat:no-repeat;
 }
 
-.profil_img img {
+/* .profil_img img {
 	transform: scale(0.85);
 	width: 100px;
-}
+} */
 
 .content-wrap {
 	padding: 30px 30px;
@@ -291,11 +299,11 @@ nav li a {
 	text-align: center;
 }
 
-#heart{
+#heart {
 	color: red;
 	opacity: 0.3;
 	cursor: pointer;
-	transform: scale(1.8,1);
+	transform: scale(1.8, 1);
 }
 
 .heart label {

@@ -40,10 +40,9 @@ header{
   width:1200px;
   margin:0 auto;
   height:200px;
-  background:url("");
   background-size:cover;
   background-position: center;
-  backcground-image: url('../img/headerImg.png');
+  background-image: url('../img/headerImg.png');
 }
 .header-wrapper{
   background: black;
