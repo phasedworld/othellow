@@ -32,14 +32,13 @@ body {
 	font-family: 'NotoSansBold';
 }
 
-header {
-	width: 1200px;
-	margin: 0 auto;
-	height: 200px;
-	background: url("");
-	background-size: cover;
-	background-position: center;
-	background-image: url('../img/headerImg.png');
+header{
+  width:1200px;
+  margin:0 auto;
+  height:200px;
+  background-size:cover;
+  background-position: center;
+  background-image: url('../img/headerImg.png');
 }
 
 .header-wrapper {
