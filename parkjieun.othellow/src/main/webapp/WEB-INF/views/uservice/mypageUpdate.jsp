@@ -41,12 +41,12 @@ header{
   width:1200px;
   margin:0 auto;
   height:200px;
-  background:url("");
   background-size:cover;
   background-position: center;
+  background-image: url('../img/headerImg.png');
 }
 .header-wrapper{
-  background: linear-gradient(90deg, #11998e, #38ef7d);
+  background: black;
 }
 
 nav {
@@ -273,6 +273,10 @@ a {
 	height: 100px;
 	text-align: center;
 	display: flex;
+	background-image:url('../img/${imageLink}');
+	background-size:contain;
+	background-position:center;
+	background-repeat:no-repeat;
 }
 
 #char{
@@ -724,7 +728,6 @@ a {
 						<th>사진</th>
 						<td>
 							<div class="mypage_Img">
-								<div id="char" style="background-image:url('img/${imageLink}')"></div>
 							</div>
 							<div id="add-pic-area">
 								<p>

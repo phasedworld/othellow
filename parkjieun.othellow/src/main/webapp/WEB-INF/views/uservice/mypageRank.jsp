@@ -36,12 +36,12 @@ header{
   width:1200px;
   margin:0 auto;
   height:200px;
-  background:url("");
   background-size:cover;
   background-position: center;
+  background-image: url('../img/headerImg.png');
 }
 .header-wrapper{
-  background: linear-gradient(90deg, #11998e, #38ef7d);
+  background: black;
 }
 
 nav {
@@ -196,6 +196,10 @@ a {
 	border-radius: 100%;
 	text-align: center;
 	display: flex;
+	background-image:url('../img/${imageLink}');
+	background-position:center;
+	background-size:contain;
+	background-repeat:no-repeat;
 }
 
 #char{
@@ -286,7 +290,6 @@ $(function(){
 		<div class="mypage">
 			<div class="mypage_list">
 				<div class="mypage_Img">
-					<div id="char" style="background-image:url('img/${imageLink}')"></div>
 				</div>
 				<div class="mypage_Rank">
 					<span class="col">
