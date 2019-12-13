@@ -275,7 +275,7 @@ a {
 	display: flex;
 }
 
-.mypage_Img img {
+#char{
 	align-items: center;
 	margin: auto;
 }
@@ -724,7 +724,7 @@ a {
 						<th>사진</th>
 						<td>
 							<div class="mypage_Img">
-								<img height="90" src="">
+								<div id="char" style="background-image:url('img/${imageLink}')"></div>
 							</div>
 							<div id="add-pic-area">
 								<p>

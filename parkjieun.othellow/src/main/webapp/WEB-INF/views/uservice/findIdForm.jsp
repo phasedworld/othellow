@@ -128,62 +128,62 @@ nav li a {
   <div class="title">
     <h3 class="real_title">오델로W 계정 찾기</h3>
   </div>
-	<div id="find_wrap" class="find_wrap">
-		<div id="change-box">
-			<form name="findIdForm" action="./findId" method="POST">
-				<div class="input_title">
-					<div class="label">아이디 찾기</div>
-	           		<div class="label_help">오델로W에서 사용한 Email주소를 입력해주세요.</div>
-	        	</div>
-	         	<div class="txt_wrap">
-					<input class="txt_in" type="text" id="userEmail" name="userEmail" placeholder="이메일주소를 입력하세요." required>
-	         	</div>
-	      		
-				<div class="button_wrap">
-					<button type="button" id="findBtn" >find</button>
-					<button type="button" id="cancelBtn" onclick="location.href='../'">Cancel</button>
-				</div>
-		</div>		
-				
-	         	<a class="find-id-pw" href="findPasswdForm">비밀번호를 잊어버리셨나요?</a>
-			</form>		
-	</div>
+   <div id="find_wrap" class="find_wrap">
+      <div id="change-box">
+         <form name="findIdForm" action="./findId" method="POST">
+            <div class="input_title">
+               <div class="label">아이디 찾기</div>
+                    <div class="label_help">오델로W에서 사용한 Email주소를 입력해주세요.</div>
+              </div>
+               <div class="txt_wrap">
+               <input class="txt_in" type="text" id="userEmail" name="userEmail" placeholder="이메일주소를 입력하세요." required>
+               </div>
+               
+            <div class="button_wrap">
+               <button type="button" id="findBtn" >find</button>
+               <button type="button" id="cancelBtn" onclick="location.href='../'">Cancel</button>
+            </div>
+      </div>      
+            
+               <a class="find-id-pw" href="findPasswdForm">비밀번호를 잊어버리셨나요?</a>
+         </form>      
+   </div>
 </body>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script>
 var alert = function(msg, type){
-	swal({
-		title:'',
-		text:msg,
-		icon:type,
-		timer:3000,
-		customClass:'sweet-size',
-		showConfirmButton:false
-	});
+   swal({
+      title:'',
+      text:msg,
+      icon:type,
+      timer:3000,
+      customClass:'sweet-size',
+      showConfirmButton:false
+   });
 }
 function startFindId(){
 $('#findBtn').on('click',function(){
-	$.ajax({
-		method:'POST',
-		url:'findId',
-		data:{userEmail:$('#userEmail').val()},
-		dataType:'json',
-		success:function(data){
-			if(data==0)
-				alert('이메일 주소를 한번 더 확인해주세요.', 'warning')
-			else
-				$('#change-box').html("<div class='label'>ID찾기 결과 </div>"+
-									  "<div class='label_help'>입력하신 Email과 일치하는 ID 입니다. </div>" +
-									  "<h2 class='foundId'>"+data+"</h2>" +
-									  "<div class='button_wrap'>" +
-									  "<button type='button' id='loginBtn' onclick='location.href=\"../\";'>login</button>" +
-									  "</div>");				
-		},
-		complete:function(){
-			console.log($('#userEmail').val()+'를 userEmail로 송신!');
-		}
-	});
+   $.ajax({
+      method:'POST',
+      url:'findId',
+      data:{userEmail:$('#userEmail').val()},
+      dataType:'json',
+      success:function(data){
+         if(data==0)
+            alert('이메일 주소를 한번 더 확인해주세요.', 'error')
+         else
+            $('#change-box').html("<div class='label'>ID찾기 결과 </div>"+
+                             "<div class='label_help'>입력하신 Email과 일치하는 ID 입니다. </div>" +
+                             "<h2 class='foundId'>"+data+"</h2>" +
+                             "<div class='button_wrap'>" +
+                             "<button type='button' id='loginBtn' onclick='location.href=\"../\";'>login</button>" +
+                             "</div>");            
+      },
+      complete:function(){
+         console.log($('#userEmail').val()+'를 userEmail로 송신!');
+      }
+   });
 });
 }
 </script>

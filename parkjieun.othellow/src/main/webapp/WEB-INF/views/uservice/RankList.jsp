@@ -271,8 +271,10 @@ body {
 						function(idx){
 							$("tbody").append(
 									'<tr><td class="rank">'+result[idx].rNum +'</td><td class="character">'
-									+'<div class="character_child"><div class="character_child1"><img height="60px" src=""></div>'
-									+'<div class="character_child2">'+result[idx].userNickname + '</div></div></td>'
+									+'<div class="character_child"><div class="character_child1"><img height="60px" src="'
+									+result[idx].imageLink
+									+'"></div>'
+									+'<div class="character_child2">'+result[idx].userNickname + result[idx].characterNo +'</div></div></td>'
 									+'<td>'+ result[idx].userRank + '</td>'
 									+'<td class="exp">' + result[idx].userExp +'</td>'
 									+'<td class="win_lose">'+ (result[idx].userWin+result[idx].userLose)+'전'+'&nbsp'
@@ -304,7 +306,9 @@ body {
 							function(idx){
 								$("tbody").append(
 										'<tr><td class="rank">'+result[idx].rNum +'</td><td class="character">'
-										+'<div class="character_child"><div class="character_child1"><img height="60px" src=""></div>'
+										+'<div class="character_child"><div class="character_child1"><img height="60px" src="'
+										+result[idx].imageLink
+										+'"></div>'
 										+'<div class="character_child2">'+result[idx].userNickname + '</div></div></td>'
 										+'<td>'+ result[idx].userRank + '</td>'
 										+'<td class="exp">' + result[idx].userExp +'</td>'

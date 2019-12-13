@@ -31,9 +31,10 @@ header{
   height:400px;
   background-position: center;
   background-size: cover;
+  background-image: url('img/headerImg.png');
 }
 .header-wrapper{
-  background: linear-gradient(90deg, #11998e, #38ef7d);
+  background: black;
 }
 nav{
   height:180px;

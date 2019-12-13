@@ -137,38 +137,7 @@ nav li a {
 			showConfirmButton : false
 		});
 	}
-
-	/* var isTitle = function(){
-		var result = false;
-		if($('#title').val())
-			result = true;
-		return result;
-	}
-	var isContents = function(){
-		var result = false;
-		if($('#contents').val())
-			result = true;
-		return result;
-	}
 	
-	var insertPost = function() {
-		$('#write-button').bind('click', function() {
-			if (isTitle() && isConents()) {
-				$.ajax({
-					url : 'register',
-					data : $('#reg_post').serialize(),
-					success : function(isGood) {
-						alertResult('글을 등록했습니다.', isGood);
-					},
-					error : function(a, b, errMsg) {
-						alert(errMsg, 'error');
-					}
-				});
-			}
-		});
-	} */
-	
-
 	function insert() {
 		if (document.reg_post.title.value == "") {
 			alert("제목을 입력하세요.", "warning")
@@ -196,6 +165,17 @@ nav li a {
 	</div>
 	<div class="header-divider"></div>
 	<!--본문-->
+	
+	<%
+		if (session.getAttribute("user")==null){
+	%>
+	<script>
+		alert("로그인 해주세요")
+		setTimeout(location.href="list", 1500)
+	</script>
+	<%
+		}else{
+	%>
 
 	<div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT>
@@ -223,7 +203,7 @@ nav li a {
 						</script>
 					</div>
 					
-					<input name="userId" id="userId" value="test1234"/>
+					<input type="hidden" name="userId" id="userId" value="${user.userId}">
 					
 					
 				</form>
@@ -239,6 +219,9 @@ nav li a {
 		<div class="write-button" id="write-button" onClick="insert();">등록하기</div>
 		<div class="back-button" onClick="location.href='list'">목록으로</div>
 	</div>
+	<%
+		}
+	%>
 
 </body>
 

@@ -30,9 +30,10 @@ header{
   background:url("");
   background-size:cover;
   background-position: center;
+  background-image: url('img/headerImg.png');
 }
 .header-wrapper{
-  background: linear-gradient(90deg, #11998e, #38ef7d);
+  background: black;
 }
 nav{
   height:180px;
@@ -137,10 +138,14 @@ nav li a{
   background-color: lightgray;
 
 }
+.previewHeadImg{
+  max-width:400px;
+  max-height:200px;
+}
 .headImg-wrapper{
   margin:20px;
   margin-top:50px;
-  width:rgb(255, 0, 0);%;
+  width:95%;
   height:200px;
   border-radius: 0.25rem;
   background:#ddd;
@@ -167,7 +172,7 @@ nav li a{
   border:none;
   border-bottom:1px solid #777;
 }
-.uploadHead-btn{
+.headUpload-btn{
   display:inline-block;
   text-align:center;
   background:white;
@@ -179,7 +184,7 @@ nav li a{
   width:230px;
   margin-left:20px;
 }
-.uploadHead-btn input{
+.headUpload-btn input{
   position:absolute;
   left:0px; top:0px;
   width:230px;
@@ -190,7 +195,7 @@ nav li a{
 input:focus{
   outline:none;
 }
-.confirmHead-btn{
+.headConfirm-btn{
   margin:0 auto;
   border-radius:50px;
   width:180px;
@@ -201,48 +206,55 @@ input:focus{
   cursor:pointer;
   transition:0.2s;
 }
-.confirmHead-btn:hover{
+.headConfirm-btn:hover{
   background:#959f2c;
 }
 </style>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 var alert = function(msg, type){
-	swal({
-		title:'',
-		text:msg,
-		icon:type,
-		timer:3000,
-		customClass:'sweet-size',
-		showConfirmButton:false
-	});
+   swal({
+      title:'',
+      text:msg,
+      icon:type,
+      timer:3000,
+      customClass:'sweet-size',
+      showConfirmButton:false
+   });
 }
 var imgView = function(input){
-	if(input.files && input.files[0]){
-		var reader = new FileReader();
-		reader.readAsDataURL(input.files[0]);
-		reader.addEventListener('load',function(){
-			$('.previewImg').attr('src',reader.result);
-			$('.file-name').val(input.files[0].name);
-		},false);
-	}
+   if(input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.readAsDataURL(input.files[0]);
+      reader.addEventListener('load',function(){
+         $('.previewImg').attr('src',reader.result);
+         $('.file-name').val(input.files[0].name);
+      },false);
+   }
 }
 function upImg(){
-	var charImg = new FormData($("#charForm")[0]);
-	$.ajax({
-		url:'uploadchar',
-		method:'post',
-		data:charImg,
-		processData:false,
-		contentType:false,
-		success:function(){
-			console.log('성공적으로 이미지 업로드!');
-			alert('캐릭터 등록 성공!');
-			setTimeout(function(){
-				location.reload();
-				},1000);
-			}
-	});
+   var charImg = new FormData($("#charForm")[0]);
+   if($('.charImg')[0].files[0]!=null){
+      $.ajax({
+         url:'uploadchar',
+         method:'post',
+         data:charImg,
+         processData:false,
+         contentType:false,
+         success:function(){
+            console.log('성공적으로 이미지 업로드!');
+            alert('캐릭터 등록 성공!', 'success');
+            setTimeout(function(){
+               location.reload();
+               },2000);
+            }
+      });
+   }else{
+      alert('캐릭터 이미지를 등록하세요!', 'error');
+      setTimeout(function(){
+         location.reload();
+      },2000);
+   }
 }
 </script>
 </head>
@@ -251,32 +263,32 @@ function upImg(){
     <header>
         <nav>
           <ul>
-			<li><a href="../uservice/RankList" class="nav">랭킹</a></li>
-			<li class="logo"><a id="logo" href="../main"
-				style="font-size: 75px; font-family: 'Ddukkubi'">오델로<span
-					id="w-word">W</span></a></li>
-			<li><a href="list" class="nav">커뮤니티</a></li>
-		  </ul>
+         <li><a href="../uservice/RankList" class="nav">랭킹</a></li>
+         <li class="logo"><a id="logo" href="./"
+            style="font-size: 75px; font-family: 'Ddukkubi'">오델로<span
+               id="w-word">W</span></a></li>
+         <li><a href="list" class="nav">커뮤니티</a></li>
+        </ul>
         </nav>
         <div class="header-replace" onclick="header_upload()">헤더 교체</div>
 
         <!-- 헤더교체모달 -->
         <div id="show-modal">
-			<div id="modal-content">
-		        <span id="close-button" onclick="header_upload()">&times;</span>
-		        <div class="headImg-wrapper">
-		       	 preview<img class="headpreviewImg"/>
-		        </div>
-				<form id="headerForm">
-		        	<div id="modal-input">
-		         		<input type="text" class="header-name" name="headerName" placeholder="헤더 이름"/>
-		          		<input type="text" class="headFile-name" name="headImgLink" placeholder="디렉토리 주소" readonly/>
-		          		<label class="uploadHead-btn">이미지 업로드<input type="file" name="headImg" onChange="imgView(this)"></label>
-		            </div>
-		             <div class="confirmHead-btn" onClick="headUpImg()">등록하기</div>
-		      	</form>
-	      </div>
-		</div>
+         <div id="modal-content">
+              <span id="close-button" onclick="header_upload()">&times;</span>
+              <div class="headImg-wrapper">
+                 preview<img class="previewHeadImg"/>
+              </div>
+            <form id="headerForm" enctype="multipart/form-data">
+                 <div id="modal-input">
+                     <input type="text" class="header-name" name="headerName" placeholder="헤더 이름"/>
+                      <input type="text" class="headFile-name" name="headImgLink" placeholder="디렉토리 주소" readonly/>
+                      <label class="headUpload-btn">이미지 업로드<input type="file" name="headImg" class="headImg" onChange="headImgView(this)"></label>
+                  </div>
+                   <div class="headConfirm-btn" onClick="upHeadImg()">등록하기</div>
+               </form>
+         </div>
+      </div>
     </header>
   </div>
   <div class="header-divider"></div>
@@ -295,7 +307,7 @@ function upImg(){
       <form id="charForm">
         <input type="text" class="char-name" name="characterName" placeholder="캐릭터 이름"/>
         <input type="text" class="file-name" name="imageLink" placeholder="디렉토리 주소" readonly/>
-        <label class="upload-btn">이미지 업로드<input type="file" name="charImg" onChange="imgView(this)"></label>
+        <label class="upload-btn">이미지 업로드<input type="file" name="charImg" class="charImg" onChange="imgView(this)"></label>
         <div class="confirm-btn" onClick="upImg()">등록하기</div>
       </form>
       </div>
@@ -303,11 +315,44 @@ function upImg(){
 
   </div>
 </body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-	function header_upload(){
-    	document.getElementById("show-modal").classList.toggle('open');
-    	document.getElementById('close-button').classList.toggle('exit');
- }
+function header_upload(){
+      document.getElementById("show-modal").classList.toggle('open');
+      document.getElementById('close-button').classList.toggle('exit');
+}
+var headImgView = function(input){
+   if(input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.readAsDataURL(input.files[0]);
+      reader.addEventListener('load',function(){
+         $('.previewHeadImg').attr('src',reader.result);
+         $('.headFile-name').val(input.files[0].name);
+      },false);
+   }
+}
+function upHeadImg(){
+   var headImg = new FormData($("#headerForm")[0]);
+   console.log($('.headImg')[0].files[0]);
+   if($('.headImg')[0].files[0]!=null){
+      $.ajax({
+         url:'headUpload',
+         method:'post',
+         data:headImg,
+         processData:false,
+         contentType:false,
+         success:function(){
+            console.log('성공적으로 이미지 업로드!');
+            alert('헤더 등록 성공!', 'success');
+            setTimeout(function(){
+               location.reload();
+               },2000); 
+            }
+      });      
+   }else{
+      alert('헤더 이미지를 등록하세요!', 'error');         
+      }
+}
 </script>
 <style>
 #container{
@@ -409,6 +454,7 @@ input:focus{
   top:150px;
   border:1px solid #333;
   cursor:pointer;
+  background:rgba(255,255,255,0.3);
 }
 .header-replace:hover{
   background:rgba(255,255,255,0.5);

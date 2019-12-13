@@ -33,20 +33,19 @@
 		order by c.seq desc
 	</select>
 	
-	<select id="getViewPost" resultType="community">
+	<select id="read" parameterType="int" resultType="community">
 	<![CDATA[
-		select sort, title, reg_date regDate, hit_count hitCount, like_count likeCount, user_rank userRank, user_nickname userNickname, contents
-		from users, community, character
-		where users.user_id = community.user_id
-		and users.character_no = character.character_no and seq = #{seq}
+		select c.sort, c.title, c.reg_date regDate, c.hit_count hitCount, c.like_count likeCount, u.user_rank userRank, u.user_nickname userNickname, c.contents, i.image_link
+		from users u, community c, character i
+		where u.user_id = c.user_id
+		and u.character_no = i.character_no and seq = #{seq}
 		]]>
 	</select>
 	
-	<select id="getMyPost" resultType="community">
-		select sort, title, reg_date regDate, hit_count hitCount, like_count likeCount, contents, users.user_id userID
-		from users, community
-		where users.user_id = community.user_id and seq = #{seq}
-	</select>
+	<update id="hitCountUpdate" parameterType="int" >
+		update community set hit_count=#{hitCount}+1
+		where seq=#{seq}
+	</update>
 	
 	<insert id="addPost">
 		insert into community(seq, sort, title, contents, image, user_id, reg_date) values (seq_board.nextval, #{sort}, #{title}, #{contents}, #{image}, #{user_id), SYSDATE)

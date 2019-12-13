@@ -42,7 +42,7 @@ public class CommunityServiceImpl implements CommunityService{
 
 	//게시글 상세보기를 얻는다.
 	@Override
-	public Community get(int seq) {
+	public Community viewPost(int seq) {
 		return communityDao.read(seq);
 	}
 	
@@ -61,7 +61,7 @@ public class CommunityServiceImpl implements CommunityService{
 	@Transactional
 	@Override
 	public boolean updatePost(Community community) {
-		return communityDao.updatePost(community)>0;
+		return communityDao.updatePost(community) == 1;
 	}
 
 	//게시글을 삭제한다.
@@ -70,6 +70,11 @@ public class CommunityServiceImpl implements CommunityService{
 	@Transactional
 	@Override
 	public boolean delPost(int seq) {
-		return communityDao.delPost(seq)>0;
+		return communityDao.delPost(seq) == 1;
+	}
+	
+	@Override
+	public boolean hitCountUpdate(int seq){
+		return communityDao.hitCountUpdate(seq);
 	}
 }
