@@ -176,8 +176,6 @@ nav li a {
 			</div>
 			<div class="profil_wrap">
 				<div class="profil_img">
-					<!-- <img src=""> -->
-					<%-- <c:out value="${community.imageLink }"/> --%>
 				</div>
 			</div>
 		</div>
@@ -185,8 +183,6 @@ nav li a {
 			<div class="contents">${community.contents }</div>
 			<div class="heart">
 				<div id="heart" style="font-size: 3em;">
-					<!-- <span style="color: pink;" class="glyphicon glyphicon-heart"
-						aria-hidden="true"></span> -->
 					<font>♥</font>
 				</div>
 				<div>
@@ -270,7 +266,7 @@ nav li a {
 	box-shadow: 2px 5px 5px #959f2c;
 	float: right;
 	margin-right: 20px;
-	background-imaeg:url('../img/${imaegLink}');
+	background-image:url('../img/${imageLink}');
 	background-position-center;
 	background-size:contain;
 	background-repeat:no-repeat;
