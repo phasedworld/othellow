@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import parkjieun.othellow.admin.domain.Character;
+import parkjieun.othellow.character.domain.Character;
 import parkjieun.othellow.game.dao.mapper.GameMapper;
 import parkjieun.othellow.game.domain.Gamer;
 import parkjieun.othellow.game.domain.Lobby;

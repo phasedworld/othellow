@@ -1,8 +1,8 @@
-package parkjieun.othellow.admin.dao;
+package parkjieun.othellow.character.dao;
 
 import java.util.List;
 
-import parkjieun.othellow.admin.domain.Character;
+import parkjieun.othellow.character.domain.Character;
 
 public interface CharacterDao {
 	int addCharacter(Character character);

@@ -1,12 +1,12 @@
-package parkjieun.othellow.admin.dao;
+package parkjieun.othellow.character.dao;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import parkjieun.othellow.admin.dao.mapper.CharacterMapper;
-import parkjieun.othellow.admin.domain.Character;
+import parkjieun.othellow.character.dao.mapper.CharacterMapper;
+import parkjieun.othellow.character.domain.Character;
 
 @Repository
 public class CharacterDaoImpl implements CharacterDao{

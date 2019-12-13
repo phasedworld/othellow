@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="parkjieun.othellow.admin.dao.mapper.CharacterMapper">
+<mapper namespace="parkjieun.othellow.character.dao.mapper.CharacterMapper">
 	<insert id="addCharacter" parameterType="character">
 	insert into character
 	(character_no, character_name, image_link)

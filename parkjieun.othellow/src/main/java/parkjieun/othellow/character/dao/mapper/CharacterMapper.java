@@ -1,8 +1,8 @@
-package parkjieun.othellow.admin.dao.mapper;
+package parkjieun.othellow.character.dao.mapper;
 
 import java.util.List;
 
-import parkjieun.othellow.admin.domain.Character;
+import parkjieun.othellow.character.domain.Character;
 
 public interface CharacterMapper {
 	int addCharacter(Character character);

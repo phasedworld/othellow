@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import parkjieun.othellow.admin.domain.Character;
-import parkjieun.othellow.admin.service.CharacterService;
+import parkjieun.othellow.character.domain.Character;
+import parkjieun.othellow.character.service.CharacterService;
 import parkjieun.othellow.game.service.GameService;
 import parkjieun.othellow.user.domain.User;
 import parkjieun.othellow.user.service.UserService;

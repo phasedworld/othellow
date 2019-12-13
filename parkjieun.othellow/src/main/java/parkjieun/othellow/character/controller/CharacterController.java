@@ -1,4 +1,4 @@
-package parkjieun.othellow.admin.controller;
+package parkjieun.othellow.character.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import parkjieun.othellow.admin.domain.Character;
-import parkjieun.othellow.admin.service.CharacterService;
+import parkjieun.othellow.character.domain.Character;
+import parkjieun.othellow.character.service.CharacterService;
 
 @Controller
-public class AdminController {
+public class CharacterController {
    @Autowired CharacterService characterService;
    
    @Value("${uploadDir}")
@@ -49,19 +49,5 @@ public class AdminController {
    
    private void save(String fileFullName, MultipartFile uploadFile) throws IOException{
       uploadFile.transferTo(new File(fileFullName));
-   }
-   
-   @RequestMapping(value="/headUpload", method=RequestMethod.POST)
-   @ResponseBody
-   public boolean uploadHead(HttpServletRequest request, MultipartFile headImg){
-      boolean isStored = true;
-      String dir = request.getSession().getServletContext().getRealPath(uploadDir);
-      String fileName = "headerImg.png";
-      try {
-         save(dir+"/"+fileName, headImg);
-      } catch (IOException e) {
-         isStored = false;
-      }
-      return isStored;
    }
 }

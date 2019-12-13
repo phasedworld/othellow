@@ -1,4 +1,4 @@
-package parkjieun.othellow.admin.domain;
+package parkjieun.othellow.character.domain;
 
 public class Character {
 	private int characterNo;

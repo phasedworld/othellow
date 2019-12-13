@@ -2,7 +2,7 @@ package parkjieun.othellow.community.domain;
 
 import java.sql.Date;
 
-import parkjieun.othellow.admin.domain.Character;
+import parkjieun.othellow.character.domain.Character;
 import parkjieun.othellow.user.domain.User;
 
 public class Community {

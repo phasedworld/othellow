@@ -2,7 +2,7 @@ package parkjieun.othellow.game.dao.mapper;
 
 import java.util.List;
 
-import parkjieun.othellow.admin.domain.Character;
+import parkjieun.othellow.character.domain.Character;
 import parkjieun.othellow.game.domain.Gamer;
 import parkjieun.othellow.game.domain.Lobby;
 import parkjieun.othellow.user.domain.User;

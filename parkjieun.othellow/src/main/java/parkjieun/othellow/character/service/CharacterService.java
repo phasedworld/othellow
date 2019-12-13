@@ -1,8 +1,8 @@
-package parkjieun.othellow.admin.service;
+package parkjieun.othellow.character.service;
 
 import java.util.List;
 
-import parkjieun.othellow.admin.domain.Character;
+import parkjieun.othellow.character.domain.Character;
 
 public interface CharacterService {
 	int addCharacter(Character character);
