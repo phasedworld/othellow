@@ -2,6 +2,8 @@ package parkjieun.othellow.character.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -50,4 +52,13 @@ public class CharacterController {
    private void save(String fileFullName, MultipartFile uploadFile) throws IOException{
       uploadFile.transferTo(new File(fileFullName));
    }
+   
+   @RequestMapping("characterList")
+   @ResponseBody
+   public List<Character> characterList(){
+      List<Character> characterList = new ArrayList<Character>();
+      characterList = characterService.getCharacters();
+      return characterList;
+   }   
+
 }
