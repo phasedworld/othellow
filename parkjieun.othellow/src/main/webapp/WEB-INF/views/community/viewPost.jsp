@@ -1,3 +1,4 @@
+<%@page import="parkjieun.othellow.community.domain.Community"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -146,6 +147,11 @@ nav li a {
 	<div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT>
 	</div>
+
+	<%
+		Community community = new Community();
+		if (session.equals(community.getUserId())){
+	%>
 	<div class="post-wrap">
 		<div class="title">
 			<div class="title-wrap">
@@ -156,44 +162,80 @@ nav li a {
 						<c:out value="${community.title }" />
 					</FONT>
 				</div>
+				<input type="hidden" value="${community.imageLink }">
 				<div class="subject-bottom">
 					<FONT style="color: #9999;"><c:out
 							value="${community.regDate }" /> | 조회수 : <c:out
-							value="${community.hitCount }" /> |</FONT> <FONT style="color: red;">♥</FONT><FONT
+							value="${community.hitCount }" /> |</FONT><FONT
+						style="color: red; font-size: 18pt;"> ♡</FONT><FONT
 						style="color: #9999;"> <c:out
 							value="${community.likeCount }" /></FONT>
 				</div>
 			</div>
-			<div class="nickname-wrap">
-				<div class="ranking">
-					<FONT style="color: #e65700;"><c:out
-							value="${community.userRank }" /></FONT>
-				</div>
-				<div class="nickname">
-					<FONT style="color: #7779; font-weight: bold;"><c:out
-							value="${community.userNickname }" /></FONT>
-				</div>
+			<div class="btn-wrap">
+				<div class="update-button" onClick="location.href='updatePost'">수정</div>
+				<div class="delete-button" onClick="location.href='list'">삭제</div>
 			</div>
-			<div class="profil_wrap">
-				<div class="profil_img" style="background-image:url('../../img/${community.imageLink}')";>
-				</div>
-			</div>
+			
 		</div>
 		<div class="content-wrap">
 			<div class="contents">${community.contents }</div>
-			<div class="heart">
-				<div id="heart" style="font-size: 3em;">
-					<font>♥</font>
+		</div>
+		<%
+			} else {
+		%>
+		<div class="post-wrap">
+			<div class="title">
+				<div class="title-wrap">
+					<div class="subject-header">
+						<FONT style="color: #e65700;"><c:out
+								value="${community.sort }" /> </FONT><FONT
+							style="color: #666; font-size: 13pt; font-weight: bold;">|
+							<c:out value="${community.title }" />
+						</FONT>
+					</div>
+					<div class="subject-bottom">
+						<FONT style="color: #9999;"><c:out
+								value="${community.regDate }" /> | 조회수 : <c:out
+								value="${community.hitCount }" /> |</FONT> <FONT style="color: red;">♡</FONT><FONT
+							style="color: #9999;"> <c:out
+								value="${community.likeCount }" /></FONT>
+					</div>
 				</div>
-				<div>
-					<label>좋아요!</label>
+				<div class="nickname-wrap">
+					<div class="ranking">
+						<FONT style="color: #e65700;"><c:out
+								value="${community.userRank }" /></FONT>
+					</div>
+					<div class="nickname">
+						<FONT style="color: #7779; font-weight: bold;"><c:out
+								value="${community.userNickname }" /></FONT>
+					</div>
+				</div>
+				<div class="profil_wrap">
+					<div class="profil_img"
+						style="background-image:url('../../img/${community.imageLink}')";>
+					</div>
 				</div>
 			</div>
+			<div class="content-wrap">
+				<div class="contents">${community.contents }</div>
+				<div class="heart">
+					<div id="heart" style="font-size: 3em;">
+						<font>♥</font>
+					</div>
+					<div>
+						<label>좋아요!</label>
+					</div>
+				</div>
+			</div>
+			<%
+				}
+			%>
+			<div class="content-footer">
+				<div class="back-button" onClick="location.href='../list'">목록으로</div>
+			</div>
 		</div>
-		<div class="content-footer">
-			<div class="back-button" onClick="location.href='../list'">목록으로</div>
-		</div>
-	</div>
 </body>
 <style>
 .table-header {
@@ -226,6 +268,7 @@ nav li a {
 	display: table;
 	border-top: solid 2.5px #CCC;
 	border-bottom: solid 2.5px #CCC;
+	height: 134px;
 	padding-left: 30px;
 }
 
@@ -266,16 +309,15 @@ nav li a {
 	box-shadow: 2px 5px 5px #959f2c;
 	float: right;
 	margin-right: 20px;
-	background-position : center;
-	background-size:contain;
-	background-repeat:no-repeat;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 /* .profil_img img {
 	transform: scale(0.85);
 	width: 100px;
 } */
-
 .content-wrap {
 	padding: 30px 30px;
 	color: #333;
@@ -328,6 +370,41 @@ nav li a {
 
 .back-button:hover {
 	background: #aaa;
+}
+
+.btn-wrap {
+	display: flex;
+	width: 400px;
+	height: 67px;
+	justify-content: flex-end;
+	padding-left: 20px;
+	align-items: center;
+}
+
+.update-button {
+	font-family: 'YoonGothic';
+	font-size: 15px;
+	background: #ccc;
+	width: 50px;
+	line-height: 30px;
+	cursor: pointer;
+	text-align: center;
+	color: white;
+	border-radius: 5px;
+	margin-right: 10px;
+}
+
+.delete-button {
+	font-family: 'YoonGothic';
+	font-size: 15px;
+	background: #e65700;
+	width: 50px;
+	line-height: 30px;
+	cursor: pointer;
+	text-align: center;
+	color: white;
+	border-radius: 5px;
+	margin-right: 30px;
 }
 </style>
 </html>

@@ -131,6 +131,12 @@ nav li a {
 			actionForm.submit();
 		});
 	});
+	
+	function selChange(){
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="list?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	}
+	
 </script>
 </head>
 <body>
@@ -211,6 +217,27 @@ nav li a {
           <li>&lt;</li><li class="selected">1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>&gt;</li>
        </ul>
     </div> -->
+    
+    <div style="display: block; text-align:center;">
+    	<ul class="paging">
+    	<c:if test="${paging.stargPage != 1 }">
+    		<a href="/list?nowPage=${paging.startPage -1 }&cntPerPage=${paging.cntPerPage}"><li>&lt;</li></a>
+    	</c:if>
+    	<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+    		<c:choose>
+    			<c:when test="${p == paging.nowPage }">
+    				<b><li>${p }</li></b>
+    			</c:when>
+    			<c:when test="${p != paging.nowPage }">
+    				<a href="/list?nowPage=${p }&cntPerPage=${paging.cntPerPage}"><li>${p }</li></a>
+    			</c:when>
+    		</c:choose>
+    	</c:forEach>
+    	<c:if test="${paging.endPage != paging.lastPage}">
+			<a href="/list?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}"><li>&gt;</li></a>
+		</c:if>
+		</ul>
+    </div>
 
 
 		<div class="search-wrapper">

@@ -130,26 +130,24 @@ nav li a {
 	<div class="header-divider"></div>
 	<!--본문-->
 	<div class="table-header">
-		<FONT style="font-size: 28px;">커뮤니티</FONT> | <FONT
-			style="color: #06a545;"><a href="list">전체</a></FONT> | <a
-			href="list">공지</a> | <a href="list">잡담</a> | <a href="list">팬아트</a>
+		<FONT style="font-size: 28px;">커뮤니티</FONT>
 	</div>
+	<form role="form" action="/community/updatePost" method="post">
+		<input type="hidden" name='seq' value='<c:out value="${community.seq }"/>'/>
+	</form>
 	<div class="board-wrapper">
 		<div class="select-wrapper">
 			<select>
 				<option>잡담</option>
 				<option>팬아트</option>
-			</select> <input placeholder="제목을 입력하세요" value="나 쫌 잘그리는 듯ㅎ" />
+			</select> <input placeholder="제목을 입력하세요" value='<c:out value="${community.title }"/>' />
 		</div>
 		<div class="line-div"></div>
 		<div class="edit_wrapper">
 			<form>
 				<div class="inputArea">
 					<textarea name="contents" id="contents" rows="10" cols="80">
-						<img src="../resources/img/stone.png"><br>
-        				돌 그려봤는데 좋아요 많이 눌러주세요><<br>
-        				제가 생각해도 저 너무 존잘인듯..ㅠㅠ<br><br>
-        				p,s 불펌 ㄴㄴ해
+						'<c:out value="${community.contents }"/>'
 					</textarea>
 					<script>
 						CKEDITOR.replace('contents', {
