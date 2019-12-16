@@ -11,4 +11,5 @@ public interface GameService {
 	int makeRoom(Lobby lobby, Gamer gamer);
 	int joinRoom(int roomId, Gamer gamer);
 	String getCharacter(int characterNo);
+	int startGame(int roomNo);
 }

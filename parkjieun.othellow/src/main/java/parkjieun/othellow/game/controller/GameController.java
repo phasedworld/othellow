@@ -46,4 +46,10 @@ public class GameController {
 		return gameService.joinRoom(roomId, gamer);
 	}
 	
+	@RequestMapping("game/startGame")
+	@ResponseBody
+	public int startGame(int roomNo){
+		return gameService.startGame(roomNo);
+	}
+	
 }

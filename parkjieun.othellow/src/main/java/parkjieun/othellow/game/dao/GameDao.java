@@ -17,4 +17,5 @@ public interface GameDao {
 	int gainExp(User user);
 	List<Gamer> getCurGamer(int roomId);
 	String getCharacter(int characterNo);
+	int startGame(int roomNo);
 }

@@ -83,6 +83,7 @@ public class MyHandler extends TextWebSocketHandler{
 			thisRoom.getBlackUser().sendMessage(new TextMessage("start"));
 			thisRoom.getWhiteUser().sendMessage(new TextMessage("start"));
 			rooms.put(received[0], thisRoom);
+			gameDao.startGame(Integer.parseInt(received[0]));
 		}
 		else if(received[0]!=null&&received[1].equals("black")){
 			//black의 턴 넘김 메시지 받음 ex) 3:black:41
