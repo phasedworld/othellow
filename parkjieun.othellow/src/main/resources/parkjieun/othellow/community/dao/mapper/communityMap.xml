@@ -53,7 +53,7 @@
 	
 	<select id="read" parameterType="int" resultType="community">
 	<![CDATA[
-		select c.sort, c.title, c.reg_date regDate, c.hit_count hitCount, c.like_count likeCount, u.user_rank userRank, u.user_nickname userNickname, c.contents, i.image_link imageLink
+		select c.seq ,c.sort, c.title, c.reg_date regDate, c.hit_count hitCount, c.like_count likeCount, u.user_rank userRank, u.user_nickname userNickname, c.contents, i.image_link imageLink
 		from users u, community c, character i
 		where u.user_id = c.user_id
 		and u.character_no = i.character_no and seq = #{seq}
