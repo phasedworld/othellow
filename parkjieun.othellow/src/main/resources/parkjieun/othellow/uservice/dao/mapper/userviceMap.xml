@@ -37,6 +37,12 @@
 		set user_email=#{userEmail}
 		where user_id=#{userId} 
 	</update>
+	
+	<update id="characterUpdate" parameterType="user">
+		update users
+		set character_no=#{characterNo}
+		where user_id=#{userId}
+	</update>
 
 	<select id="nicknameVerify" parameterType="string" resultType="int">
 		select count(user_nickname)

@@ -262,11 +262,13 @@ nav li a{
 
   <div class="header-divider"></div>
   <div id="container">
+  	<div class="today_odelW_wrap">
     <div class="today_odelW">
       <div class="today_odelW_title">#오델로 일짱 되는 방법 알고싶으신?</div>
     </div>
     <div class="today_odelW">
       <div class="today_odelW_title">#콩비바들 때문에 게임 하기 싫습니다 듀크채널만들어주세요</div>
+    </div>
     </div>
 
     <div class="community">
@@ -316,6 +318,7 @@ nav li a{
     </div>
 
   </div>
+ </div>
 </body>
 <script>
 var alert = function(msg, type){
@@ -348,6 +351,32 @@ function enterSubmit(){
 		login();
 	}
 }
+getCommunity();
+function getCommunity(){
+	$.ajax({
+		url:"community/mainlist",
+		success:function(data){
+			communityList = "";
+			for(var i=0;i<7;i++){
+				communityList = communityList+"<a href=\"community/viewPost/"+data[i].seq+"\"><li>["+data[i].sort+"]"+data[i].title+"</li></a>";
+			}
+			$('.community ul').html(communityList);
+		}
+	});
+	
+	$.ajax({
+		url:"community/bestlist",
+		success:function(data){
+			bestList = "";
+			for(var i=0;i<2;i++){
+				bestList = bestList+ "<div class=\"today_odelW\" onClick=\"location.href=\'community/viewPost/"+data[i].seq+"\';\"><div class=\"today_odelW_title\">"+data[i].title+"</div></div>";
+				
+			}
+			$('.today_odelW_wrap').html(bestList);
+		}
+	});
+}
+
 </script>
 <style>
   #container{
@@ -357,6 +386,9 @@ function enterSubmit(){
     flex-direction: row;
     justify-content: center;
     margin-top:30px;
+  }
+  .today_odelW_wrap{
+  display:flex;
   }
   .today_odelW{
     width:210px;

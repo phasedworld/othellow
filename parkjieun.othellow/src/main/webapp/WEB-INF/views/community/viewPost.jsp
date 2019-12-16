@@ -207,6 +207,7 @@ nav li a {
 		<%
 			} else if (user.getUserNickname().equals(userNickname)) {
 		%>
+		</div>
 		<div class="post-wrap">
 			<div class="title">
 				<div class="title-wrap">
@@ -235,6 +236,17 @@ nav li a {
 			</div>
 			<div class="content-wrap">
 				<div class="contents">${community.contents }</div>
+				<div class="heart">
+					<div id="heart" style="font-size: 3em;">
+						<font>♥</font>
+					</div>
+					<div>
+						<label>좋아요!</label>
+					</div>
+				</div>
+			</div>
+			<div class="content-footer">
+				<div class="back-button" onClick="location.href='../list'">목록으로</div>
 			</div>
 		</div>
 		<%

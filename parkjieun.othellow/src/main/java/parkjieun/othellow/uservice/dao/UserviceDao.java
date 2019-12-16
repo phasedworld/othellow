@@ -13,6 +13,7 @@ public interface UserviceDao {
 	int nicknameUpdate(User user);		//닉네임수정
 	int passwordUpdate(User user);		//비밀번호 수정
 	int emailUpdate(User user);			//이메일 수정
+	int characterUpdate(User user);		//사진 수정
 	
 	int nicknameVerify(String userNickname);	//닉네임검사
 	int passwordVerify(String userPassword);	//비밀번호검사
