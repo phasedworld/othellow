@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -122,31 +123,43 @@ public class CommunityController {
            - 처리 : service의 get()호출처리
 	 **/
 	
-	@RequestMapping(value={"/updatePost"}, method = RequestMethod.GET)
+/*	@RequestMapping(value={"/updatePost/{seq}"}, method = RequestMethod.GET)
 	public void updatePost(@PathVariable("seq") int seq, Model model){
 		model.addAttribute("community", communityService.viewPost(seq));
 	}
 	
-	/** 5.3) 게시판 수정 처리 modify( ) 구현
+	*//** 5.3) 게시판 수정 처리 modify( ) 구현
     - 요청타입 :  post
            - 요청매핑: /modify
            - 요청 파라미터 : Community community, RedirectAttributes rttr
            - 리턴값 : redirect:/community/list
            - 처리 : service의 updatePost()호출처리
-	 **/
+	 **//*
 
-	@RequestMapping(value="/updatePost", method = RequestMethod.POST)
-	public String updatePost(Community community, RedirectAttributes rttr){
+	@RequestMapping(value="/updatePost/{seq}", method = RequestMethod.POST)
+	public String updatePost(@PathVariable("seq") int seq, Community community, RedirectAttributes rttr){
 		if(communityService.updatePost(community)){
 			rttr.addFlashAttribute("result", "success");
 		}
 		return "redirect:/community/list";
+	}*/
+	
+	@RequestMapping(value="/updatePost", method=RequestMethod.POST)
+	public String updatePost(@ModelAttribute Community community){
+		communityService.updatePost(community);
+		return "redirect:/community/list";
+	}
+	
+	@RequestMapping("/delPost")
+	public String delPost(@RequestParam int seq){
+		communityService.delPost(seq);
+		return "redirect:/community/list";
 	}
 
-	@RequestMapping(value="/delPost", method = RequestMethod.POST)
+	/*@RequestMapping(value="/delPost", method = RequestMethod.POST)
 	public boolean delPost(int seq){
 		return communityService.delPost(seq);
-	}
+	}*/
 	
 	@RequestMapping(value="/mainlist")
 	@ResponseBody
@@ -159,5 +172,4 @@ public class CommunityController {
 	public List<Community> bestList(){
 		return communityService.bestPost();
 	}
-
 }

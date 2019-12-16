@@ -1,3 +1,4 @@
+<%@page import="parkjieun.othellow.user.domain.User"%>
 <%@page import="parkjieun.othellow.community.domain.Community"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -125,6 +126,8 @@ nav li a {
 	background-size: 11.31px 11.31px;
 }
 </style>
+<script>
+</script>
 </head>
 <body>
 	<div class="header-wrapper">
@@ -147,12 +150,15 @@ nav li a {
 	<div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT>
 	</div>
+	<input type="hidden" value="<c:out value='${community.seq }'/>"/>
+	<%
+		Community community = (Community) request.getAttribute("community");
+		String userNickname = community.getUserNickname();
+		User user = (User) session.getAttribute("user");
+		if (session.getAttribute("user") == null
+				|| !(user.getUserNickname().equals(userNickname))) {
+	%>
 
-	<%-- <%
-		Community community = new Community();
-		if (session.equals(community.getUserId())){
-	%> --%>
-	<c:if test="${user eq community.userId }">
 	<div class="post-wrap">
 		<div class="title">
 			<div class="title-wrap">
@@ -163,27 +169,45 @@ nav li a {
 						<c:out value="${community.title }" />
 					</FONT>
 				</div>
-				<input type="hidden" value="${community.imageLink }">
 				<div class="subject-bottom">
 					<FONT style="color: #9999;"><c:out
 							value="${community.regDate }" /> | 조회수 : <c:out
-							value="${community.hitCount }" /> |</FONT><FONT
-						style="color: red; font-size: 18pt;"> ♡</FONT><FONT
+							value="${community.hitCount }" /> |</FONT> <FONT style="color: red;">♡</FONT><FONT
 						style="color: #9999;"> <c:out
 							value="${community.likeCount }" /></FONT>
 				</div>
 			</div>
-			<div class="btn-wrap">
-				<div class="update-button" onClick="location.href='updatePost'">수정</div>
-				<div class="delete-button" onClick="location.href='list'">삭제</div>
+			<div class="nickname-wrap">
+				<div class="ranking">
+					<FONT style="color: #e65700;"><c:out
+							value="${community.userRank }" /></FONT>
+				</div>
+				<div class="nickname">
+					<FONT style="color: #7779; font-weight: bold;"><c:out
+							value="${community.userNickname }" /></FONT>
+				</div>
 			</div>
-			
+			<div class="profil_wrap">
+				<div class="profil_img"
+					style="background-image:url('../../img/${community.imageLink}')";>
+				</div>
+			</div>
 		</div>
 		<div class="content-wrap">
 			<div class="contents">${community.contents }</div>
+			<div class="heart">
+				<div id="heart" style="font-size: 3em;">
+					<font>♥</font>
+				</div>
+				<div>
+					<label>좋아요!</label>
+				</div>
+			</div>
 		</div>
-		</c:if>
-		<c:if test="${user ne community.userId } || ${user eq null }">
+		<%
+			} else if (user.getUserNickname().equals(userNickname)) {
+		%>
+		</div>
 		<div class="post-wrap">
 			<div class="title">
 				<div class="title-wrap">
@@ -194,29 +218,21 @@ nav li a {
 							<c:out value="${community.title }" />
 						</FONT>
 					</div>
+					<input type="hidden" value="${community.imageLink }">
 					<div class="subject-bottom">
 						<FONT style="color: #9999;"><c:out
 								value="${community.regDate }" /> | 조회수 : <c:out
-								value="${community.hitCount }" /> |</FONT> <FONT style="color: red;">♡</FONT><FONT
+								value="${community.hitCount }" /> |</FONT><FONT
+							style="color: red; font-size: 18pt;"> ♡</FONT><FONT
 							style="color: #9999;"> <c:out
 								value="${community.likeCount }" /></FONT>
 					</div>
 				</div>
-				<div class="nickname-wrap">
-					<div class="ranking">
-						<FONT style="color: #e65700;"><c:out
-								value="${community.userRank }" /></FONT>
-					</div>
-					<div class="nickname">
-						<FONT style="color: #7779; font-weight: bold;"><c:out
-								value="${community.userNickname }" /></FONT>
-					</div>
+				<div class="btn-wrap">
+					<div class="update-button" id="update-button">수정</div>
+					<div class="delete-button" id="delete-button">삭제</div>
 				</div>
-				<div class="profil_wrap">
-					<div class="profil_img"
-						style="background-image:url('../../img/${community.imageLink}')";>
-					</div>
-				</div>
+
 			</div>
 			<div class="content-wrap">
 				<div class="contents">${community.contents }</div>
@@ -229,12 +245,32 @@ nav li a {
 					</div>
 				</div>
 			</div>
-			</c:if>
 			<div class="content-footer">
 				<div class="back-button" onClick="location.href='../list'">목록으로</div>
 			</div>
 		</div>
+		<%
+			}
+		%>
+		<div class="content-footer">
+			<div class="back-button" onClick="location.href='../list'">목록으로</div>
+		</div>
+	</div>
 </body>
+<script>
+	/* $(document).on('click', '#update-button', function(){
+		location.href="../updatePost/${community.seq}"
+	}); */
+	$(document).on("click", function(e){
+					operForm.attr("action","/community/updatePost").submit();
+			});
+		      
+		  	$("#delete-button").on("click", function(e){
+					operForm.find("#seq").remove();
+					operForm.attr("action","/community/list")
+		    		operForm.submit();
+			});
+</script>
 <style>
 .table-header {
 	width: 1200px;

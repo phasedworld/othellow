@@ -132,7 +132,7 @@ nav li a {
 	<div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT>
 	</div>
-	<form role="form" action="/community/updatePost" method="post">
+	<form role="form" action="updatePost" method="post" modelAttribute="community">
 		<input type="hidden" name='seq' value='<c:out value="${community.seq }"/>'/>
 	</form>
 	<div class="board-wrapper">
