@@ -37,6 +37,11 @@ public class UserviceDaoImpl implements UserviceDao{
 	public int emailUpdate(User user) {
 		return userviceMapper.emailUpdate(user);
 	}
+	
+	@Override
+	public int characterUpdate(User user) {
+		return userviceMapper.characterUpdate(user);
+	}
 
 	@Override
 	public int nicknameVerify(String userNickname) {
@@ -52,4 +57,5 @@ public class UserviceDaoImpl implements UserviceDao{
 		}
 		return result;
 	}
+	
 }

@@ -1,6 +1,7 @@
 <%@page import="parkjieun.othellow.user.domain.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	User user = (User) session.getAttribute("user");
 %>
@@ -18,108 +19,117 @@
 <script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
 <style>
 @font-face {
-   font-family: 'Ddukkubi';
-   src: url('../font/Ddukkubi.ttf');
+	font-family: 'Ddukkubi';
+	src: url('../font/Ddukkubi.ttf');
 }
 
 @font-face {
-   font-family: 'NotoSansBold';
-   src: url('../font/NotoSansBold.otf');
+	font-family: 'NotoSansBold';
+	src: url('../font/NotoSansBold.otf');
 }
 
 @font-face {
-   font-family: 'YoonGothic';
-   src: url('../font/YoonGothic.otf');
+	font-family: 'YoonGothic';
+	src: url('../font/YoonGothic.otf');
 }
 
 body {
-   margin: 0;
-   font-family: 'NotoSansBold';
+	margin: 0;
+	font-family: 'NotoSansBold';
 }
 
-header{
-  width:1200px;
-  margin:0 auto;
-  height:200px;
-  background-size:cover;
-  background-position: center;
-  background-image: url('../img/headerImg.png');
+header {
+	width: 1200px;
+	margin: 0 auto;
+	height: 200px;
+	background-size: cover;
+	background-position: center;
+	background-image: url('../img/headerImg.png');
 }
-.header-wrapper{
-  background: black;
+
+.header-wrapper {
+	background: black;
 }
 
 nav {
-   height: 180px;
+	height: 180px;
 }
 
 nav ul {
-   list-style: none;
-   padding: 0px;
-   margin: 0px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 nav li a {
-   font-size: 25px;
-   color: white;
-   text-decoration: none;
-   text-shadow: 2px 2px 0px black;
-   font-family: 'NotoSansBold';
+	font-size: 25px;
+	color: white;
+	text-decoration: none;
+	text-shadow: 2px 2px 0px black;
+	font-family: 'NotoSansBold';
 }
-#logo{
-  font-style: italic;
-  -webkit-text-stroke: 2px #000;
-  background-color:black;
 
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:none;
-  display:inline-block;
-  width:380px;
-  text-align: center;
-  position:relative;
-  left:10px; top:5px;
+#logo {
+	font-style: italic;
+	-webkit-text-stroke: 2px #000;
+	background-color: black;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-shadow: none;
+	display: inline-block;
+	width: 380px;
+	text-align: center;
+	position: relative;
+	left: 10px;
+	top: 5px;
 }
-#logo:before{
-  content:"오델로";
-  position:absolute;
-  left:-15px; top:-5px;
-  text-align: center;
-  background:-webkit-linear-gradient(white 0%, #aaa 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  width:280px;
+
+#logo:before {
+	content: "오델로";
+	position: absolute;
+	left: -15px;
+	top: -5px;
+	text-align: center;
+	background: -webkit-linear-gradient(white 0%, #aaa 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	width: 280px;
 }
-#w-word{
-  font-style: italic;
-  -webkit-text-stroke: 2px #000;
-  background:black;
-  display:inline-block;
-  width:120px;
-  text-align: center;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:none;
-  position:relative;
+
+#w-word {
+	font-style: italic;
+	-webkit-text-stroke: 2px #000;
+	background: black;
+	display: inline-block;
+	width: 120px;
+	text-align: center;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-shadow: none;
+	position: relative;
 }
-#w-word:before{
-  content:"W";
-  position:absolute;
-  left:-5px; top:-5px;
-  background:-webkit-linear-gradient(rgb(10,155,135) 0%, rgb(214,211,20) 100%);
-  width:120px;
-  text-align: center;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+
+#w-word:before {
+	content: "W";
+	position: absolute;
+	left: -5px;
+	top: -5px;
+	background: -webkit-linear-gradient(rgb(10, 155, 135) 0%,
+		rgb(214, 211, 20) 100%);
+	width: 120px;
+	text-align: center;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
+
 .header-divider {
-   height: 20px;
-   background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
-      #383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
-   background-size: 11.31px 11.31px;
+	height: 20px;
+	background-image: linear-gradient(135deg, #383838 37.50%, #303030 37.50%, #303030 50%,
+		#383838 50%, #383838 87.50%, #303030 87.50%, #303030 100%);
+	background-size: 11.31px 11.31px;
 }
 </style>
 <style>
@@ -273,13 +283,13 @@ a {
 	height: 100px;
 	text-align: center;
 	display: flex;
-	background-image:url('../img/${imageLink}');
-	background-size:contain;
-	background-position:center;
-	background-repeat:no-repeat;
+	background-image: url('../img/${imageLink}');
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
-#char{
+#char {
 	align-items: center;
 	margin: auto;
 }
@@ -346,9 +356,9 @@ a {
 	transform: translate(-50%, -50%);
 	background-color: white;
 	padding: 1rem 1.5rem;
-	width: 700px;
-	height: 450px;
+	width: 600px; height : 550px;
 	border-radius: 0.5rem;
+	height: 550px;
 }
 
 #close-button {
@@ -363,18 +373,17 @@ a {
 
 .character-wrap {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
+	height: 330px;
+	padding: 0px 0 30px 0;
 }
 
 .character-img {
 	background: #eee;
-	flex-grow: 1;
-	margin: 0px 10px;
+	width: 255px;
 	height: 300px;
-	float: left;
-	background-position: center;
-	background-size: contain;
-	background-repeat: no-repeat;
+	z-index: 1;
+	cursor: pointer;
 }
 
 .character-img.selected {
@@ -386,7 +395,8 @@ a {
 	text-align: center;
 }
 
-#userPic {
+#pic_submit {
+	cursor:pointer;
 	margin: 0 auto;
 	width: 150px;
 	height: 50px;
@@ -411,7 +421,7 @@ a {
 
 .confirmmsg {
 	margin: 10px 0 0 10px;
-	width:300px;
+	width: 300px;
 }
 
 .confirm-input {
@@ -420,66 +430,48 @@ a {
 	align-items: center;
 }
 
-#change-passwd-area.open {
-	display: block;
+.pic_select_btn {
+	font-size: 80px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	color: #3498db;
+	cursor: pointer;
 }
 
-#change-passwd-area {
-	display: none;
+.picture-box {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
-#passwd-area.exit {
-	display: none;
+.character-wrap li {
+	list-style: none;
 }
-
-#passwd-btn.exit {
-	display: none;
+#back_bt:hover{
+	opacity: 0.5;
 }
-
-#change-nicName-area.open {
-	display: block;
+#next_bt:hover{
+	opacity: 0.5;
 }
+#change-passwd-area.open {display: block;}
+#change-passwd-area {display: none;}
+#passwd-area.exit {display: none;}
+#passwd-btn.exit {display: none;}
 
-#change-nicName-area {
-	display: none;
-}
+#change-nicName-area.open {display: block;}
+#change-nicName-area {display: none;}
+#nicName-area.exit {display: none;}
+#nicName-btn.exit {display: none;}
 
-#nicName-area.exit {
-	display: none;
-}
+#change-email-area.open {display: block;}
+#change-email-area {display: none;}
+#email-area.exit {display: none;}
+#email-btn.exit {display: none;}
 
-#nicName-btn.exit {
-	display: none;
-}
-
-#change-email-area.open {
-	display: block;
-}
-
-#change-email-area {
-	display: none;
-}
-
-#email-area.exit {
-	display: none;
-}
-
-#email-btn.exit {
-	display: none;
-}
-
-#add-pic-area.open {
-	display: block;
-}
-
-#add-pic-area {
-	display: none;
-}
-
-#pic-btn.exit {
-	display: none;
-}
-
+#add-pic-area.open {display: block;}
+#add-pic-area {display: none;}
+#pic-btn.exit {display: none;}
 </style>
 </head>
 <script>
@@ -495,7 +487,9 @@ a {
 		document.getElementById('add-pic-area').classList.toggle('open');
 		document.getElementById('pic-btn').classList.toggle('exit');
 	}
-
+	function chooseImg(num){
+		
+	}
 	function passwd_change_btn_click() {
 		//div를 display: none으로 , innerHtml를 display:none취소
 		document.getElementById('change-passwd-area').classList.toggle('open');
@@ -521,12 +515,13 @@ a {
 		document.getElementById("emailForm").reset();
 		$('#email-msg').text('');
 	}
+	
 </script>
 <script type="text/javascript">
 	var nickDuplicate = 1;
 	var passVerify = 1;
 	var emailVerify = 1;
-
+	var picVerify = 1;
 	var alert = function(msg, type) {
 		swal({
 			title : '',
@@ -672,12 +667,55 @@ a {
 				url:"emailUpdate",
 				data:newMail,
 				success:function(){
+
+					alert('이메일 변경확인', 'success');
 					location.href="../uservice/mypageUpdate";
 				}
 			});
 		}
 	}
 	
+	function characterUpdate(){
+			var newPic = '';
+			newPic ={"userId":"<%=user.getUserId()%>", "characterNo": $('#userPic').val()}
+			$.ajax({
+				method:"GET",
+				url:"characterUpdate",
+				data:newPic,
+				success:function(){
+					alert('성공!','success');
+					location.href="../uservice/mypageUpdate";
+				},error: function(){
+					alert('뭐가 오류떴다!','warning');
+					return;
+				}
+			});
+	}
+	
+</script>
+<script>
+function chooseImg(num){
+	//alert(document.getElementsByClassName('character-img')[num]);
+	document.getElementsByClassName('character-img')[num].classList.toggle('selected');
+	$('#userPic').val(num);
+}
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+   showDivs(slideIndex += n);
+}
+function showDivs(n) {
+	var i;
+	var x = document.getElementsByClassName("character-img");
+	if(n>x.length){slideIndex =1}
+	 if (n < 1) {slideIndex = x.length} ;
+	 for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+   } 
+	 x[slideIndex-1].style.display = "block";
+
+}
 </script>
 <body>
 	<div class="header-wrapper">
@@ -685,7 +723,9 @@ a {
 			<nav>
 				<ul>
 					<li><a href="../uservice/RankList" class="nav">랭킹</a></li>
-					<li class="logo"><a id="logo" href="../" style="font-size:75px; font-family:'Ddukkubi'">오델로<span id="w-word">W</span></a></li>
+					<li class="logo"><a id="logo" href="../"
+						style="font-size: 75px; font-family: 'Ddukkubi'">오델로<span
+							id="w-word">W</span></a></li>
 					<li><a href='../community/list' class="nav">커뮤니티</a></li>
 				</ul>
 			</nav>
@@ -727,8 +767,7 @@ a {
 					<tr>
 						<th>사진</th>
 						<td>
-							<div class="mypage_Img">
-							</div>
+							<div class="mypage_Img"></div>
 							<div id="add-pic-area">
 								<p>
 									회원님을 알릴 수 있는 사진을 등록해 주세요.<br>등록된 사진은 회원님의 게시물이나 댓글에 사용됩니다.
@@ -747,18 +786,28 @@ a {
 									<h2>사진을 선택해 주세요</h2>
 								</div>
 								<div class="character-wrap">
-									<div class="character-img" style="background-image: url(\"
-										\");" onClick="chooseImg(1)"></div>
-									<div class="character-img" style="background-image: url(\"
-										\");" onClick="chooseImg(2)"></div>
-									<div class="character-img" style="background-image: url(\"
-										\");" onClick="chooseImg(3)"></div>
+									<span onclick="plusDivs(-1)" class="pic_select_btn"
+										id="back_bt">&#10094;</span>
+									<ul>
+										<c:forEach var="cha" items="${character}">
+											<li class="picture-box">
+												<div class="character-img"
+													style="background-image:url(../img/${cha.imageLink});"
+													onClick="chooseImg(${cha.characterNo})"></div>
+											</li>
+										</c:forEach>
+									</ul>
+									<span onclick="plusDivs(+1)" class="pic_select_btn"
+										id="next_bt">&#10095;</span>
 								</div>
 								<div id="userPic_input">
-									<input type="submit" name="userPic" class="n-btn2" id="userPic" />
+									<input type="submit" name="characterNo" class="n-btn2"
+										id="pic_submit" value="수정" onclick="characterUpdate()"/>
+										<input  name="characterNo" id="userPic"/>
 								</div>
 							</div>
 						</div>
+
 						<td>
 
 							<div class="n-btn" id="pic-btn" onclick="pic_change_btn_click()">사진
@@ -771,18 +820,18 @@ a {
 						<td></td>
 					</tr>
 					<tr>
-							<th>비밀번호</th>
-							<td>
-								<div id="passwd-area">
-									<strong>******</strong>
-								</div>
-								<form id="passwordForm">
+						<th>비밀번호</th>
+						<td>
+							<div id="passwd-area">
+								<strong>******</strong>
+							</div>
+							<form id="passwordForm">
 								<div id="change-passwd-area">
 									<div class="input">
 										<div class="input_txt">현재 비밀번호</div>
 										<input type="password" id="userPassword" name="userPassword"
 											onKeyup="passwordVerify()">
-											<div id="pwre-msg1" class="confirmmsg"></div>
+										<div id="pwre-msg1" class="confirmmsg"></div>
 									</div>
 									<div class="input">
 										<div class="input_txt">신규 비밀번호</div>
@@ -797,25 +846,24 @@ a {
 									</div>
 									<div class="btn_box2">
 										<div class="n-btn2" onclick="passwd_change_btn_click()">취소</div>
-										<div class="submit_btn"
-											onclick="passwordUpdate()">완료</div>
+										<div class="submit_btn" onclick="passwordUpdate()">완료</div>
 									</div>
 								</div>
-								</form>
-							</td>
-							<td>
-								<div class="n-btn" id="passwd-btn"
-									onclick="passwd_change_btn_click()">비밀번호 변경</div>
-							</td>
+							</form>
+						</td>
+						<td>
+							<div class="n-btn" id="passwd-btn"
+								onclick="passwd_change_btn_click()">비밀번호 변경</div>
+						</td>
 					</tr>
 					<tr>
-						
-							<th>닉네임</th>
-							<td>
-								<div id="nicName-area">
-									<strong>${user.userNickname}</strong>
-								</div>
-								<form id="nicknameForm">
+
+						<th>닉네임</th>
+						<td>
+							<div id="nicName-area">
+								<strong>${user.userNickname}</strong>
+							</div>
+							<form id="nicknameForm">
 								<div id="change-nicName-area">
 									<div class="input">
 										<input type="text" name="userNickname" id="userNickname"
@@ -828,11 +876,11 @@ a {
 										<div class="submit_btn" onclick="nicknameUpdate()">변경</div>
 									</div>
 								</div>
-								</form>
-							</td>
-							<td><div class="n-btn" id="nicName-btn"
-									onclick="nicname_change_btn_click()">닉네임 변경</div></td>
-						
+							</form>
+						</td>
+						<td><div class="n-btn" id="nicName-btn"
+								onclick="nicname_change_btn_click()">닉네임 변경</div></td>
+
 					</tr>
 					<tr>
 						<th>이메일</th>
@@ -840,29 +888,30 @@ a {
 								<strong>${user.userEmail}</strong>
 							</div>
 							<form id="emailForm">
-							<div id="change-email-area">
-								<p>
-									-회원님의 이메일로 이메일인증번호가 적힌 메일이 발송됩니다. <br>
-								</p>
-								<p>-아래에 인증번호를 입력하시면 인증이 완료됩니다.</p>
-								<p></p>
-								<div id="input-box_email">
-									<div class="confirm-input">
-										<input type="text" class="n-input" name="userEmail" id="userEmail" placeholder="이메일 주소 입력" required>
-										<div class="submit_btn" onClick="sendEmail()">인증</div>
+								<div id="change-email-area">
+									<p>
+										-회원님의 이메일로 이메일인증번호가 적힌 메일이 발송됩니다. <br>
+									</p>
+									<p>-아래에 인증번호를 입력하시면 인증이 완료됩니다.</p>
+									<p></p>
+									<div id="input-box_email">
+										<div class="confirm-input">
+											<input type="text" class="n-input" name="userEmail"
+												id="userEmail" placeholder="이메일 주소 입력" required>
+											<div class="submit_btn" onClick="sendEmail()">인증</div>
+										</div>
+										<div class="input">
+											<input type="email" id="email-authnum" name="email-authnum"
+												placeholder="인증번호 5자리" onChange="emailAuth()">
+											<div id="email-msg" class="confirmmsg">이메일 인증을 받아주세요</div>
+										</div>
 									</div>
-									<div class="input">
-										<input type="email" id="email-authnum" name="email-authnum" placeholder="인증번호 5자리" onChange="emailAuth()">
-										<div id="email-msg" class="confirmmsg">이메일 인증을 받아주세요</div>
+									<div class="btn_box2">
+										<div class="n-btn2" onclick="email_change_btn_click()">취소</div>
+										<div class="submit_btn" onclick="emailUpdate()">완료</div>
 									</div>
 								</div>
-								<div class="btn_box2">
-									<div class="n-btn2" onclick="email_change_btn_click()">취소</div>
-									<div class="submit_btn" onclick="emailUpdate()">완료</div>
-								</div>
-							</div>
-							</form>
-							</td>
+							</form></td>
 						<td><div class="n-btn" id="email-btn"
 								onclick="email_change_btn_click()">이메일 변경</div></td>
 					</tr>

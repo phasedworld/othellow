@@ -26,6 +26,11 @@ public class MypageServiceImpl implements MypageService{
 	public int emailUpdate(User user) {
 		return userviceDao.emailUpdate(user);
 	}
+	
+	@Override
+	public int characterUpdate(User user) {
+		return userviceDao.characterUpdate(user);
+	}
 
 	@Override
 	public int nicknameVerify(String userNickname) {
