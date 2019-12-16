@@ -3,13 +3,18 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="parkjieun.othellow.character.dao.mapper.CharacterMapper">
 	<insert id="addCharacter" parameterType="character">
-	insert into character
-	(character_no, character_name, image_link)
-	values((select nvl(max(character_no)+1,1) from character),#{characterName},#{imageLink})
+		insert into character
+		(character_no, character_name, image_link)
+		values((select nvl(max(character_no)+1,1) from character),#{characterName},#{imageLink})
 	</insert>
+	
 	<select id="getCharacters" resultType="character">
-	select character_no characterNo, character_name characterName, image_link imageLink
-	from character
-	order by character_no desc
+		select character_no characterNo, character_name characterName, image_link imageLink
+		from character
+		order by character_no desc
 	</select>
+	
+	<delete id="deleteCharacter" parameterType="int">
+		delete character where character_no=to_number(#{characterNo})
+	</delete>
 </mapper>

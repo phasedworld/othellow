@@ -59,6 +59,11 @@ public class CharacterController {
       List<Character> characterList = new ArrayList<Character>();
       characterList = characterService.getCharacters();
       return characterList;
-   }   
-
+   }
+   
+   @RequestMapping("delCharacter")
+   @ResponseBody
+   public boolean deleteCharacter(int characterNo){
+	   return characterService.deleteCharacter(characterNo);
+   }
 }

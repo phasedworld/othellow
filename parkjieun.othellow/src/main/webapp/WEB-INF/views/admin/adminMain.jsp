@@ -217,7 +217,7 @@ var alert = function(msg, type){
          icon:type,
          timer:3000,
          customClass:'sweet-size',
-         showConfirmButton:false
+         showConfirmButton:false           
       });
 }
 //헤더이미지를 등록한다.
@@ -380,6 +380,8 @@ function upImg(){
             </tbody>
          </table>
       </div>
+      
+      
   </div>
 </body>
 <script>
@@ -400,9 +402,9 @@ function startAdmin(){
               var characterList = [];
               $(character).each(function(idx, character){
                  $("tbody").append(
-                 '<tr>'+
+                 '<tr class="characterItem" onClick="deleteCharacter('+character.characterNo+')">'+
                     '<td>'+ character.characterNo + '</td>'+
-                    '<td><div id="character-img"><img height="80px" src='+'..\/img\/'+character.imageLink+'></div></td>'+
+                    '<td><div id="character-img"><img height="80px" src='+'img\/'+character.imageLink+'></div></td>'+
                     '<td>'+ character.characterName+'</td>'+
                  '</tr>'                    
                  );
@@ -410,11 +412,41 @@ function startAdmin(){
             }
           },
            error:function(){
-             alert('리스트 출력 실패', 'error')
+             alert('리스트 출력 실패', 'error');
            }
         });
      });
    }
+   
+/*캐릭터를 삭제한다.*/   
+function deleteCharacter(charnum){
+	console.log("charnum: "+charnum);
+	swal({title: '캐릭터 삭제',
+		  text: '삭제된 캐릭터는 다시 복구 할 수 없습니다.',
+		  icon: 'warning',
+		  buttons: true
+		}).then((willDelete) => {
+		  if (willDelete) {				  
+			$.ajax({
+				url:'delCharacter',
+				data:{'characterNo':charnum},
+				success:function(data){
+					console.log('characterNo:'+charnum);
+					alert('캐릭터가 삭제되었습니다.', 'success');
+					setTimeout(function(){
+			               location.reload();
+			               },2000);
+				}					
+			});
+		  } else {
+		    swal({title:'삭제 취소',
+		    	  text: '캐릭터 삭제가 취소되었습니다.',
+		    	  icon: 'error',
+		    	  timer: 2000
+		    });
+		  }
+		});	
+}
 </script>
 <style>
 #container{
