@@ -87,5 +87,11 @@
 		delete community where seq=#{seq}
 	</delete>
 	
+	<select id="bestPost" resultType="community">
+		select seq, title
+		from community
+		order by like_count desc
+	</select>
+	
 	
 </mapper>

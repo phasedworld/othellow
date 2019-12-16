@@ -147,5 +147,17 @@ public class CommunityController {
 	public boolean delPost(int seq){
 		return communityService.delPost(seq);
 	}
+	
+	@RequestMapping(value="/mainlist")
+	@ResponseBody
+	public List<Community> mainList(){
+		return communityService.communityList();
+	}
+	
+	@RequestMapping(value="/bestlist")
+	@ResponseBody
+	public List<Community> bestList(){
+		return communityService.bestPost();
+	}
 
 }

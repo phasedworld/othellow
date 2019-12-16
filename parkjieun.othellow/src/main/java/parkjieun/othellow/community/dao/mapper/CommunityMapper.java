@@ -20,4 +20,5 @@ public interface CommunityMapper {
 	public int countPost();
 	// 페이징 처리 게시글 조회
 	public List<Community> selectPost(Paging paging);
+	public List<Community> bestPost();
 }

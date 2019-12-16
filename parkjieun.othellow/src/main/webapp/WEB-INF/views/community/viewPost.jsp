@@ -148,10 +148,7 @@ nav li a {
 		<FONT style="font-size: 28px;">커뮤니티</FONT>
 	</div>
 
-	<%
-		Community community = new Community();
-		if (session.equals(community.getUserId())){
-	%>
+	
 	<div class="post-wrap">
 		<div class="title">
 			<div class="title-wrap">
@@ -181,9 +178,6 @@ nav li a {
 		<div class="content-wrap">
 			<div class="contents">${community.contents }</div>
 		</div>
-		<%
-			} else {
-		%>
 		<div class="post-wrap">
 			<div class="title">
 				<div class="title-wrap">
@@ -229,9 +223,6 @@ nav li a {
 					</div>
 				</div>
 			</div>
-			<%
-				}
-			%>
 			<div class="content-footer">
 				<div class="back-button" onClick="location.href='../list'">목록으로</div>
 			</div>

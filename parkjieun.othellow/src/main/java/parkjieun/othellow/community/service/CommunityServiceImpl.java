@@ -89,4 +89,9 @@ public class CommunityServiceImpl implements CommunityService{
 	public List<Community> selectPost(Paging paging) {
 		return communityDao.selectPost(paging);
 	}
+
+	@Override
+	public List<Community> bestPost() {
+		return communityDao.bestPost();
+	}
 }

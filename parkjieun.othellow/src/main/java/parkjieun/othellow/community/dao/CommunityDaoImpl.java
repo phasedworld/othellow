@@ -91,4 +91,9 @@ public class CommunityDaoImpl implements CommunityDao{
 		return communityMapper.selectPost(paging);
 	}
 
+	@Override
+	public List<Community> bestPost() {
+		return communityMapper.bestPost();
+	}
+
 }
