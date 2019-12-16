@@ -38,4 +38,9 @@ public class GameServiceImpl implements GameService{
 		return gameDao.getCharacter(characterNo);
 	}
 
+	@Override
+	public int startGame(int roomNo) {
+		return gameDao.startGame(roomNo);
+	}
+
 }

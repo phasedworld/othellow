@@ -66,4 +66,8 @@
 		from character
 		where character_no=#{characterNo}
 	</select>
+	<update id="startGame" parameterType="int">
+		update lobby set room_status = 1
+		where room_id=#{roomId}
+	</update>
 </mapper>

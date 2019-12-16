@@ -694,11 +694,6 @@ a {
 	
 </script>
 <script>
-function chooseImg(num){
-	//alert(document.getElementsByClassName('character-img')[num]);
-	document.getElementsByClassName('character-img')[num].classList.toggle('selected');
-	$('#userPic').val(num);
-}
 var slideIndex = 1;
 showDivs(slideIndex);
 
@@ -714,6 +709,7 @@ function showDivs(n) {
        x[i].style.display = "none";
    } 
 	 x[slideIndex-1].style.display = "block";
+	 $('#userPic').val(slideIndex-1);
 
 }
 </script>

@@ -63,5 +63,10 @@ public class GameDaoImpl implements GameDao{
 		return gameMapper.getCharacter(characterNo);
 	}
 
+	@Override
+	public int startGame(int roomNo) {
+		return gameMapper.startGame(roomNo);
+	}
+
 
 }
