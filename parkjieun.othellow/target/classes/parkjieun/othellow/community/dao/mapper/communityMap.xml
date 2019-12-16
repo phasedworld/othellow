@@ -32,6 +32,24 @@
 		where c.sort='팬아트'
 		order by c.seq desc
 	</select>
+
+
+	<!-- 총 게시글 갯수 출력 -->
+	<select id="countPost" resultType="int">
+		SELECT COUNT(*) FROM Community
+	</select>
+
+	<!-- 페이징 처리 후 게시글 조회 -->
+	<select id="selectPost" resultType="community">
+		SELECT * FROM (
+			SELECT ROWNUM RN, A.* FROM (
+				SELECT * FROM Community
+				ORDER BY SEQ DESC
+			) A
+		)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	
 	
 	<select id="read" parameterType="int" resultType="community">
 	<![CDATA[
@@ -43,7 +61,7 @@
 	</select>
 	
 	<update id="hitCountUpdate" parameterType="int" >
-		update community set hit_count=#{hitCount}+1
+		update community set hit_count=hit_count+1
 		where seq=#{seq}
 	</update>
 	

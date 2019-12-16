@@ -30,10 +30,9 @@ header{
   background:url("");
   background-size:cover;
   background-position: center;
-  background-image: url('img/headerImg.png');
 }
 .header-wrapper{
-  background: black;
+  background: linear-gradient(90deg, #11998e, #38ef7d);
 }
 nav{
   height:180px;
@@ -136,7 +135,6 @@ nav li a{
   cursor: pointer;
   border-radius: 0.25rem;
   background-color: lightgray;
-
 }
 .previewHeadImg{
   max-width:400px;
@@ -213,15 +211,53 @@ input:focus{
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 var alert = function(msg, type){
-   swal({
-      title:'',
-      text:msg,
-      icon:type,
-      timer:3000,
-      customClass:'sweet-size',
-      showConfirmButton:false
-   });
+      swal({
+         title:'',
+         text:msg,
+         icon:type,
+         timer:3000,
+         customClass:'sweet-size',
+         showConfirmButton:false
+      });
 }
+//헤더이미지를 등록한다.
+function header_upload(){
+    document.getElementById("show-modal").classList.toggle('open');
+    document.getElementById('close-button').classList.toggle('exit');
+}
+var headImgView = function(input){
+ if(input.files && input.files[0]){
+    var reader = new FileReader();
+    reader.readAsDataURL(input.files[0]);
+    reader.addEventListener('load',function(){
+       $('.previewHeadImg').attr('src',reader.result);
+       $('.headFile-name').val(input.files[0].name);
+    },false);
+ }
+}
+function upHeadImg(){
+ var headImg = new FormData($("#headerForm")[0]);
+ console.log($('.headImg')[0].files[0]);
+ if($('.headImg')[0].files[0]!=null){
+    $.ajax({
+       url:'headUpload',
+       method:'post',
+       data:headImg,
+       processData:false,
+       contentType:false,
+       success:function(){
+          console.log('성공적으로 이미지 업로드!');
+          alert('헤더 등록 성공!', 'success');
+          setTimeout(function(){
+             location.reload();
+             },2000); 
+          }
+    });      
+ }else{
+    alert('헤더 이미지를 등록하세요!', 'error');         
+    }
+}
+//캐릭터이미지를 등록한다.
 var imgView = function(input){
    if(input.files && input.files[0]){
       var reader = new FileReader();
@@ -258,16 +294,18 @@ function upImg(){
 }
 </script>
 </head>
-<body>
+<body onLoad="startAdmin()">
   <div class="header-wrapper">
     <header>
         <nav>
           <ul>
-         <li><a href="../uservice/RankList" class="nav">랭킹</a></li>
-         <li class="logo"><a id="logo" href="./"
-            style="font-size: 75px; font-family: 'Ddukkubi'">오델로<span
-               id="w-word">W</span></a></li>
-         <li><a href="list" class="nav">커뮤니티</a></li>
+         <li><a href="#" onClick="location.reload()" class="nav">랭킹</a></li>
+         <li class="logo">
+            <a id="logo" href="#" onClick="location.reload()" style="font-size: 75px; font-family: 'Ddukkubi'">
+            	오델로<span id="w-word">W</span>
+            </a>
+         </li>
+         <li><a href="#" onClick="location.reload()" class="nav">커뮤니티</a></li>
         </ul>
         </nav>
         <div class="header-replace" onclick="header_upload()">헤더 교체</div>
@@ -289,70 +327,94 @@ function upImg(){
                </form>
          </div>
       </div>
-    </header>
+    </header>    
   </div>
   <div class="header-divider"></div>
+  
   <!--본문-->
   <div id="container">
-    <div class="button-wrap">
-      <div class="nav-btn selected">캐릭터 추가</div>
-      <div class="nav-btn" onClick="location.href='02.html';">캐릭터 삭제</div>
-      <div class="nav-btn" style="float:right; margin:0px;" onClick="location.href='user/logout'">로그아웃</div>
-    </div>
-    <div class="char-sheet">
-      <div class="img-wrapper">
-        preview<img class="previewImg"/>
+    <div id="change-box">
+      <div class="button-wrap">
+        <div class="nav-btn selected" onClick="location.reload()">캐릭터 추가</div>
+        <div class="nav-btn" id="characterDel">캐릭터 삭제</div>
+        <div class="nav-btn" style="float:right; margin:0px;" onClick="location.href='user/logout'">로그아웃</div>
       </div>
-      <div class="char-info">
-      <form id="charForm">
-        <input type="text" class="char-name" name="characterName" placeholder="캐릭터 이름"/>
-        <input type="text" class="file-name" name="imageLink" placeholder="디렉토리 주소" readonly/>
-        <label class="upload-btn">이미지 업로드<input type="file" name="charImg" class="charImg" onChange="imgView(this)"></label>
-        <div class="confirm-btn" onClick="upImg()">등록하기</div>
-      </form>
+      
+      <!-- 캐릭터 추가버튼.html-->
+        <div class="char-sheet">
+          <div class="img-wrapper">
+            preview<img class="previewImg"/>
+          </div>
+          <div class="char-info">
+            <form id="charForm">
+              <input type="text" class="char-name" name="characterName" placeholder="캐릭터 이름"/>
+              <input type="text" class="file-name" name="imageLink" placeholder="디렉토리 주소" readonly/>
+              <label class="upload-btn">이미지 업로드<input type="file" name="charImg" class="charImg" onChange="imgView(this)"></label>
+              <div class="confirm-btn" onClick="upImg()">등록하기</div>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
-
+   
+   <!-- 캐릭터 삭제버튼.html -->
+    <div id="changing-box">
+      <div class="button-wrap2">
+        <div class="nav-btn2 selected" id="characterAdd"onClick="location.reload()">캐릭터 추가</div>
+        <div class="nav-btn2" id="characterDel">캐릭터 삭제</div>
+        <div class="nav-btn2" style="float:right; margin:0px;" onClick="location.href='user/logout'">로그아웃</div>
+      </div>
+         <table class="character-table">
+            <colgroup>
+               <col style="width:200px;">
+               <col style="width:400px">
+               <col style="width:400px">
+            </colgroup>
+            <thead>
+               <tr>
+                  <th>번호</th>
+                  <th>캐릭터 이미지</th>
+                  <th>캐릭터 이름</th>
+               </tr>
+            </thead>
+            <tbody id="characterList">
+            </tbody>
+         </table>
+      </div>
   </div>
 </body>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-function header_upload(){
-      document.getElementById("show-modal").classList.toggle('open');
-      document.getElementById('close-button').classList.toggle('exit');
-}
-var headImgView = function(input){
-   if(input.files && input.files[0]){
-      var reader = new FileReader();
-      reader.readAsDataURL(input.files[0]);
-      reader.addEventListener('load',function(){
-         $('.previewHeadImg').attr('src',reader.result);
-         $('.headFile-name').val(input.files[0].name);
-      },false);
-   }
-}
-function upHeadImg(){
-   var headImg = new FormData($("#headerForm")[0]);
-   console.log($('.headImg')[0].files[0]);
-   if($('.headImg')[0].files[0]!=null){
-      $.ajax({
-         url:'headUpload',
-         method:'post',
-         data:headImg,
-         processData:false,
-         contentType:false,
-         success:function(){
-            console.log('성공적으로 이미지 업로드!');
-            alert('헤더 등록 성공!', 'success');
-            setTimeout(function(){
-               location.reload();
-               },2000); 
+/*캐릭터 삭제화면에서 캐릭터의 리스트를 출력한다.*/
+function startAdmin(){
+      $('#characterDel').on('click',function(){
+        $('#changing-box').css('display','block');
+        $('#change-box').html($('#changing-box'));
+        $('#characterDel').css('background-color','#eee');
+        $('#characterDel').css('border','1px solid #aaa');
+        $('#characterAdd').css('background-color','white');
+        $('#characterList').empty();
+        $.ajax({
+          url:'characterList',
+          method:'get',
+          success:function(character){
+           if(character.length > 0){
+              var characterList = [];
+              $(character).each(function(idx, character){
+                 $("tbody").append(
+                 '<tr>'+
+                    '<td>'+ character.characterNo + '</td>'+
+                    '<td><div id="character-img"><img height="80px" src='+'..\/img\/'+character.imageLink+'></div></td>'+
+                    '<td>'+ character.characterName+'</td>'+
+                 '</tr>'                    
+                 );
+              });
             }
-      });      
-   }else{
-      alert('헤더 이미지를 등록하세요!', 'error');         
-      }
-}
+          },
+           error:function(){
+             alert('리스트 출력 실패', 'error')
+           }
+        });
+     });
+   }
 </script>
 <style>
 #container{
@@ -372,6 +434,12 @@ function upHeadImg(){
   border:1px solid #aaa;
   background:#eee;
 }
+/*캐릭터삭제 버튼이 눌리기 전엔 changing-box 숨겨놓는다. */
+#changing-box{
+  display: none;
+}
+
+/*change-box css*/
 .char-sheet{
   display:flex;
   margin-top:10px;
@@ -454,10 +522,62 @@ input:focus{
   top:150px;
   border:1px solid #333;
   cursor:pointer;
-  background:rgba(255,255,255,0.3);
 }
 .header-replace:hover{
   background:rgba(255,255,255,0.5);
+}
+
+/*changing-box css*/
+.button-wrap2{
+  margin-bottom:10px;
+}
+.nav-btn2{
+  display:inline-block;
+  padding:5px 15px;
+  border:1px solid #ccc;
+  margin-right:10px;
+  cursor:pointer;
+}
+.nav-btn2.selected{
+  border:1px solid #aaa;
+  background:#eee;
+}
+.character-table {
+   width:100%;
+   line-height:1.5px;
+   font-size:14px;
+   border:collapse;
+   table-layout:fixed;
+   border-collapse:collapse;
+}
+.character-table th, td {
+   text-align: center;
+   letter-spacing:-0.5px;
+   line-height:18px;
+   border-bottom:1px solid #ccc;
+}
+.character-table tr:hover td{
+  background:#eee;
+  cursor:pointer;
+}
+.character-table th {
+   padding:21px 0;
+   color:#030303;
+   border-top:2px solid #acacac;
+   border-bottom:2px solid #acacac;
+   background-color:#fff !important;
+}
+.character-table td {
+   height:82px;
+}
+.character-table td:first-child {
+	color:#e65700;
+}
+.character-img {
+   width:60px;
+   height:60px;
+   margin-right:20px;
+   padding:0px 20px;
 }
 </style>
 </html>

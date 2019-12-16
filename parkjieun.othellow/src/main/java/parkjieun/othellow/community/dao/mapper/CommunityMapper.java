@@ -3,6 +3,7 @@ package parkjieun.othellow.community.dao.mapper;
 import java.util.List;
 
 import parkjieun.othellow.community.domain.Community;
+import parkjieun.othellow.community.domain.Paging;
 
 public interface CommunityMapper {
 	public List<Community> communityList();	//커뮤니티 목록
@@ -15,4 +16,8 @@ public interface CommunityMapper {
 	public int updatePost(Community community);	//게시글 수정
 	public int delPost(int seq);	//게시글 삭제
 	public boolean hitCountUpdate(int seq);
+	// 게시물 총 갯수
+	public int countPost();
+	// 페이징 처리 게시글 조회
+	public List<Community> selectPost(Paging paging);
 }

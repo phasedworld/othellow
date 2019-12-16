@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import parkjieun.othellow.community.domain.Community;
+import parkjieun.othellow.community.domain.Paging;
 import parkjieun.othellow.community.service.CommunityService;
 import parkjieun.othellow.user.domain.User;
 
@@ -51,6 +52,27 @@ public class CommunityController {
 	public void artList(Model model){
 		model.addAttribute("artList", communityService.artList());
 	}
+	
+	/**페이징**/
+	@RequestMapping(value="/list")
+	public String list(Paging paging, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage){
+		int total = communityService.countPost();
+		if(nowPage == null && cntPerPage == null){
+			nowPage = "1";
+			cntPerPage = "10";
+		}else if(nowPage == null){
+			nowPage = "1";
+		}else if(cntPerPage == null){
+			cntPerPage = "10";
+		}
+		paging = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", paging);
+		model.addAttribute("viewAll", communityService.selectPost(paging));
+		return "community/paging";
+	}
+	
 
 	/** 게시판 등록 화면 요청 register () 구현
 	         - 요청타입 : get
@@ -78,7 +100,7 @@ public class CommunityController {
 		return "redirect:/community/list";
 	}
 
-	/** 게시판 상세조회 처리 요청 get( ) 구현
+	/** 게시판 상세조회 처리 요청 viewPost( ) 구현
 	         - 요청타입 :  get
                     - 요청매핑: /viewPost?seq={seq}
                     - 요청 파라미터 : @RequestParam("seq") Long bno, Model model
@@ -86,17 +108,32 @@ public class CommunityController {
                     - 처리 : service의 get()호출처리
 	 **/
 	@RequestMapping(value="/viewPost/{seq}", method = RequestMethod.GET)
-	public String get(@PathVariable("seq") int seq, Model model){
+	public String viewPost(@PathVariable("seq") int seq, Model model){
 		model.addAttribute("community", communityService.viewPost(seq));
+		communityService.hitCountUpdate(seq);
 		return "community/viewPost";
 	}
 
+	/** 5.3) 게시판 수정 화면 요청 modify( ) 구현
+    - 요청타입 :  get
+           - 요청매핑: /modify
+           - 요청 파라미터 : @RequestParam("seq") Long bno, Model model
+           - 리턴값 : 없음 , updatePost.jsp 
+           - 처리 : service의 get()호출처리
+	 **/
+	
 	@RequestMapping(value={"/updatePost"}, method = RequestMethod.GET)
-	public void updatePost(@RequestParam("seq") int seq, Model model){
+	public void updatePost(@PathVariable("seq") int seq, Model model){
 		model.addAttribute("community", communityService.viewPost(seq));
-		
-		communityService.hitCountUpdate(seq);
 	}
+	
+	/** 5.3) 게시판 수정 처리 modify( ) 구현
+    - 요청타입 :  post
+           - 요청매핑: /modify
+           - 요청 파라미터 : Community community, RedirectAttributes rttr
+           - 리턴값 : redirect:/community/list
+           - 처리 : service의 updatePost()호출처리
+	 **/
 
 	@RequestMapping(value="/updatePost", method = RequestMethod.POST)
 	public String updatePost(Community community, RedirectAttributes rttr){
