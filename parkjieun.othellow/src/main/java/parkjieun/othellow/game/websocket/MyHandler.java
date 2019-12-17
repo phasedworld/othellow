@@ -107,6 +107,9 @@ public class MyHandler extends TextWebSocketHandler{
 			}
 			thisRoom.getBlackUser().sendMessage(new TextMessage(turnOverMsg));
 			thisRoom.getWhiteUser().sendMessage(new TextMessage(turnOverMsg));
+			if(turnOverMsg.equals("gameend")){
+				rooms.remove(received[0]);
+			}
 		}
 		else if(received[0]!=null&&received[1].equals("white")){
 			//white의 턴 넘김 메시지 받음 ex) 3:white:41
@@ -130,6 +133,9 @@ public class MyHandler extends TextWebSocketHandler{
 			}
 			thisRoom.getBlackUser().sendMessage(new TextMessage(turnOverMsg));
 			thisRoom.getWhiteUser().sendMessage(new TextMessage(turnOverMsg));
+			if(turnOverMsg.equals("gameend")){
+				rooms.remove(received[0]);
+			}
 		}else if(received[0]!=null&&received[1].equals("character")){
 			//3:character:black:1
 			Room thisRoom = rooms.get(received[0]);

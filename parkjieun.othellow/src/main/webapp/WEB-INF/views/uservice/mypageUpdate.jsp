@@ -822,7 +822,7 @@ function showDivs(n) {
                         <div id="userPic_input">
                            <input type="submit" name="characterNo" class="n-btn2"
                               id="pic_submit" value="수정" onclick="characterUpdate()"/>
-                              <input type="text" name="characterNo" id="userPic" value="${sessionScope.user.characterNo}"/>
+                              <input type="hidden" name="characterNo" id="userPic" value="${sessionScope.user.characterNo}"/>
                         </div>
                      </div>
                   </div>

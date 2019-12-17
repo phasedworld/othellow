@@ -9,17 +9,17 @@
 <style>
 @font-face {
 	font-family: 'Ddukkubi';
-	src: url('../font/Ddukkubi.ttf');
+	src: url('../../font/Ddukkubi.ttf');
 }
 
 @font-face {
 	font-family: 'NotoSansBold';
-	src: url('../font/NotoSansBold.otf');
+	src: url('../../font/NotoSansBold.otf');
 }
 
 @font-face {
 	font-family: 'YoonGothic';
-	src: url('../font/YoonGothic.otf');
+	src: url('../../font/YoonGothic.otf');
 }
 
 body {
@@ -177,7 +177,7 @@ nav li a {
 					value='${community.title }' >
 			</div>
 			<div class="line-div"></div>
-			<input type="text" name="image" value=""/>
+			<input type="hidden" name="image" value=""/>
 			<div class="edit_wrapper">
 				<form>
 					<div class="inputArea">
