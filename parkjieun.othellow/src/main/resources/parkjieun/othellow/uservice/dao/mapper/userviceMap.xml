@@ -7,7 +7,7 @@
 		userWin, user_lose userLose, user_exp userExp, user_rank userRank
 		from (select  rownum rNum, u.*
 		from(select * from users character order by user_exp desc )u
-     	 where user_id != 'admin' and ROWNUM &lt;= 10))A, character B
+     	 where user_id != 'admin'))A, character B
          where A.characterno = B.character_no
 	</select>
 
