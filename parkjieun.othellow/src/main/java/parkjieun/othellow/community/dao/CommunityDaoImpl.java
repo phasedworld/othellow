@@ -65,7 +65,7 @@ public class CommunityDaoImpl implements CommunityDao{
 	// return: 수정한 게시글 수
 	// param : community
 	@Override
-	public int updatePost(Community community){
+	public boolean updatePost(Community community){
 		return communityMapper.updatePost(community);
 	}
 
@@ -73,7 +73,7 @@ public class CommunityDaoImpl implements CommunityDao{
 	// return: 삭제한 게시글수
 	// param: 삭제할 게시글 번호
 	@Override
-	public int delPost(int seq){
+	public boolean delPost(int seq){
 		return communityMapper.delPost(seq);
 	}
 	
@@ -94,6 +94,11 @@ public class CommunityDaoImpl implements CommunityDao{
 	@Override
 	public List<Community> bestPost() {
 		return communityMapper.bestPost();
+	}
+	
+	@Override
+	public Community updateForm(int seq){
+		return communityMapper.updateForm(seq);
 	}
 
 }

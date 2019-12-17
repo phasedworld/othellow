@@ -127,6 +127,12 @@ nav li a {
 }
 </style>
 <script>
+	function del(seq){
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk){
+			location.href='delete?seq='+seq;
+		}
+	}
 </script>
 </head>
 <body>
@@ -150,7 +156,7 @@ nav li a {
 	<div class="table-header">
 		<FONT style="font-size: 28px;">커뮤니티</FONT>
 	</div>
-	<input type="hidden" value="<c:out value='${community.seq }'/>"/>
+	<input type="hidden" value="<c:out value='${community.seq }'/>" />
 	<%
 		Community community = (Community) request.getAttribute("community");
 		String userNickname = community.getUserNickname();
@@ -204,73 +210,48 @@ nav li a {
 				</div>
 			</div>
 		</div>
-		<%
-			} else if (user.getUserNickname().equals(userNickname)) {
-		%>
-		</div>
-		<div class="post-wrap">
-			<div class="title">
-				<div class="title-wrap">
-					<div class="subject-header">
-						<FONT style="color: #e65700;"><c:out
-								value="${community.sort }" /> </FONT><FONT
-							style="color: #666; font-size: 13pt; font-weight: bold;">|
-							<c:out value="${community.title }" />
-						</FONT>
-					</div>
-					<input type="hidden" value="${community.imageLink }">
-					<div class="subject-bottom">
-						<FONT style="color: #9999;"><c:out
-								value="${community.regDate }" /> | 조회수 : <c:out
-								value="${community.hitCount }" /> |</FONT><FONT
-							style="color: red; font-size: 18pt;"> ♡</FONT><FONT
-							style="color: #9999;"> <c:out
-								value="${community.likeCount }" /></FONT>
-					</div>
+	</div>
+	<%
+		} else if (user.getUserNickname().equals(userNickname)) {
+	%>
+	<div class="post-wrap">
+		<div class="title">
+			<div class="title-wrap">
+				<div class="subject-header">
+					<FONT style="color: #e65700;"><c:out
+							value="${community.sort }" /> </FONT><FONT
+						style="color: #666; font-size: 13pt; font-weight: bold;">|
+						<c:out value="${community.title }" />
+					</FONT>
 				</div>
-				<div class="btn-wrap">
-					<div class="update-button" id="update-button">수정</div>
-					<div class="delete-button" id="delete-button">삭제</div>
+				<input type="hidden" value="${community.imageLink }">
+				<div class="subject-bottom">
+					<FONT style="color: #9999;"><c:out
+							value="${community.regDate }" /> | 조회수 : <c:out
+							value="${community.hitCount }" /> |</FONT><FONT
+						style="color: red; font-size: 18pt;"> ♡</FONT><FONT
+						style="color: #9999;"> <c:out
+							value="${community.likeCount }" /></FONT>
 				</div>
+			</div>
+			<div class="btn-wrap">
+				<div class="update-button" id="update-button" onclick="location.href='../updateForm/${community.seq}'">수정</div>
+				<div class="delete-button" id="delete-button" onclick="">삭제</div>
+			</div>
 
-			</div>
-			<div class="content-wrap">
-				<div class="contents">${community.contents }</div>
-				<div class="heart">
-					<div id="heart" style="font-size: 3em;">
-						<font>♥</font>
-					</div>
-					<div>
-						<label>좋아요!</label>
-					</div>
-				</div>
-			</div>
-			<div class="content-footer">
-				<div class="back-button" onClick="location.href='../list'">목록으로</div>
-			</div>
 		</div>
-		<%
-			}
-		%>
-		<div class="content-footer">
-			<div class="back-button" onClick="location.href='../list'">목록으로</div>
+		<div class="content-wrap">
+			<div class="contents">${community.contents }</div>
 		</div>
 	</div>
+	<%
+		}
+	%>
+	<div class="content-footer">
+		<div class="back-button" onClick="location.href='../list'">목록으로</div>
+	</div>
+	</div>
 </body>
-<script>
-	/* $(document).on('click', '#update-button', function(){
-		location.href="../updatePost/${community.seq}"
-	}); */
-	$(document).on("click", function(e){
-					operForm.attr("action","/community/updatePost").submit();
-			});
-		      
-		  	$("#delete-button").on("click", function(e){
-					operForm.find("#seq").remove();
-					operForm.attr("action","/community/list")
-		    		operForm.submit();
-			});
-</script>
 <style>
 .table-header {
 	width: 1200px;

@@ -161,9 +161,9 @@ nav li a {
 		<form name="sort" class="sort">
 			<div class="sort-group">
 				<span class='sortList' id='list' onclick="communityList();">전체</span>
-				| <span class='sortList' id='informList' onclick="informList();">공지</span>
-				| <span class='sortList' id='chatList' onclick="chatList();">잡담</span>
-				| <span class='sortList' id='artList' onclick="artList();">팬아트
+				| <span class='sortList' id='informList' onclick="location.href='inform';">공지</span>
+				| <span class='sortList' id='chatList' onclick="location.href='chat';">잡담</span>
+				| <span class='sortList' id='artList' onclick="location.href='art';">팬아트
 				</span>
 			</div>
 		</form>

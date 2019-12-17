@@ -35,23 +35,27 @@ public class CommunityController {
                     - 처리 : service의 communityList()호출
 	 **/
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public void communityList(Model model){
+	public String communityList(Model model){
 		model.addAttribute("communityList", communityService.communityList());
+		return "community/list";
 	}
 
-	@RequestMapping(value="/informList", method=RequestMethod.GET)
-	public void informList(Model model){
-		model.addAttribute("informList", communityService.informList());
+	@RequestMapping(value="/inform", method=RequestMethod.GET)
+	public String informList(Model model){
+		model.addAttribute("communityList", communityService.informList());
+		return "community/list";
 	}
 
-	@RequestMapping(value="/chatList", method=RequestMethod.GET)
-	public void chatList(Model model){
-		model.addAttribute("chatList", communityService.chatList());
+	@RequestMapping(value="/chat", method=RequestMethod.GET)
+	public String chatList(Model model){
+		model.addAttribute("communityList", communityService.chatList());
+		return "community/list";
 	}
 
-	@RequestMapping(value="/artList", method=RequestMethod.GET)
-	public void artList(Model model){
-		model.addAttribute("artList", communityService.artList());
+	@RequestMapping(value="/art", method=RequestMethod.GET)
+	public String artList(Model model){
+		model.addAttribute("communityList", communityService.artList());
+		return "community/list";
 	}
 	
 	/**페이징**/
@@ -123,43 +127,36 @@ public class CommunityController {
            - 처리 : service의 get()호출처리
 	 **/
 	
-/*	@RequestMapping(value={"/updatePost/{seq}"}, method = RequestMethod.GET)
-	public void updatePost(@PathVariable("seq") int seq, Model model){
-		model.addAttribute("community", communityService.viewPost(seq));
+	@RequestMapping(value="/updateForm/{seq}", method = RequestMethod.GET)
+	public String updateForm(@PathVariable("seq") int seq, Model model){
+		model.addAttribute("community", communityService.updateForm(seq));
+		return "community/updatePost";
 	}
 	
-	*//** 5.3) 게시판 수정 처리 modify( ) 구현
-    - 요청타입 :  post
+	/** 5.3) 게시판 수정 처리 modify( ) 구현
+    - 요청타입 :  GET
            - 요청매핑: /modify
            - 요청 파라미터 : Community community, RedirectAttributes rttr
            - 리턴값 : redirect:/community/list
            - 처리 : service의 updatePost()호출처리
-	 **//*
+	 **/
 
-	@RequestMapping(value="/updatePost/{seq}", method = RequestMethod.POST)
-	public String updatePost(@PathVariable("seq") int seq, Community community, RedirectAttributes rttr){
-		if(communityService.updatePost(community)){
-			rttr.addFlashAttribute("result", "success");
-		}
-		return "redirect:/community/list";
-	}*/
-	
-	@RequestMapping(value="/updatePost", method=RequestMethod.POST)
-	public String updatePost(@ModelAttribute Community community){
+	@RequestMapping(value="/updatePost", method = RequestMethod.GET)
+	public void updatePost(@PathVariable("seq") int seq, Model model){
+		model.addAttribute("community", communityService.updateForm(seq));
+	}
+
+	@RequestMapping(value="/updatePost", method = RequestMethod.POST)
+	public String updatePost(Community community){
 		communityService.updatePost(community);
 		return "redirect:/community/list";
 	}
 	
-	@RequestMapping("/delPost")
+	@RequestMapping(value="viewPost/delete", method = RequestMethod.GET)
 	public String delPost(@RequestParam int seq){
 		communityService.delPost(seq);
 		return "redirect:/community/list";
 	}
-
-	/*@RequestMapping(value="/delPost", method = RequestMethod.POST)
-	public boolean delPost(int seq){
-		return communityService.delPost(seq);
-	}*/
 	
 	@RequestMapping(value="/mainlist")
 	@ResponseBody
