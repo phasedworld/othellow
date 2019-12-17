@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import parkjieun.othellow.community.dao.mapper.CommunityMapper;
 import parkjieun.othellow.community.domain.Community;
-import parkjieun.othellow.community.domain.Paging;
 
 @Repository
 public class CommunityDaoImpl implements CommunityDao{
@@ -84,11 +83,6 @@ public class CommunityDaoImpl implements CommunityDao{
 	@Override
 	public int countPost() {
 		return communityMapper.countPost();
-	}
-
-	@Override
-	public List<Community> selectPost(Paging paging) {
-		return communityMapper.selectPost(paging);
 	}
 
 	@Override

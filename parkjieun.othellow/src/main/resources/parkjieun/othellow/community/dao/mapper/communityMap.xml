@@ -3,53 +3,39 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="parkjieun.othellow.community.dao.mapper.CommunityMapper">
 	<select id="communityList" resultType="community">
-		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
+		<![CDATA[select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
 		from users u join community c
 		on u.user_id = c.user_id
 		order by c.seq desc
+		]]>
 	</select>
 	
 	<select id="informList" resultType="community">
-		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
+		<![CDATA[select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
 		from users u join community c
 		on u.user_id = c.user_id
 		where c.sort='공지'
 		order by c.seq desc
+		]]>
 	</select>
 	
 	<select id="chatList" resultType="community">
-		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
+		<![CDATA[select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
 		from users u join community c
 		on u.user_id = c.user_id
 		where c.sort='잡담'
 		order by c.seq desc
+		]]>
 	</select>
 	
 	<select id="artList" resultType="community">
-		select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
+		<![CDATA[select c.sort, c.seq, c.title, u.user_rank userRank, u.user_nickname userNickname, c.reg_date regDate, c.hit_count hitCount
 		from users u join community c
 		on u.user_id = c.user_id
 		where c.sort='팬아트'
 		order by c.seq desc
+		]]>
 	</select>
-
-
-	<!-- 총 게시글 갯수 출력 -->
-	<select id="countPost" resultType="int">
-		SELECT COUNT(*) FROM Community
-	</select>
-
-	<!-- 페이징 처리 후 게시글 조회 -->
-	<select id="selectPost" resultType="community">
-		SELECT * FROM (
-			SELECT ROWNUM RN, A.* FROM (
-				SELECT * FROM Community
-				ORDER BY SEQ DESC
-			) A
-		)
-		WHERE RN BETWEEN #{start} AND #{end}
-	</select>
-	
 	
 	<select id="read" parameterType="int" resultType="community">
 	<![CDATA[
@@ -66,15 +52,15 @@
 	</update>
 	
 	<insert id="addPost">
-		insert into community(seq, sort, title, contents, image, user_id, reg_date) values (seq_board.nextval, #{sort}, #{title}, #{contents}, #{image}, #{user_id), SYSDATE)
+		insert into community(seq, sort, title, contents, image, user_id, hit_count, reg_date) values (seq_board.nextval, #{sort}, #{title}, #{contents}, #{image}, #{user_id), 0, SYSDATE)
 	</insert>
 	
 	<insert id="insertSelectKey">
 		<selectKey keyProperty="seq" order="BEFORE" resultType="int">
 			select seq_board.nextval from dual
 		</selectKey>
-			insert into community(seq, sort, title, contents, user_id, reg_date)
-			values(#{seq}, #{sort}, #{title}, #{contents}, #{userId}, SYSDATE)
+			insert into community(seq, sort, title, contents, user_id, hit_count, reg_date)
+			values(#{seq}, #{sort}, #{title}, #{contents}, #{userId}, 0, SYSDATE)
 	</insert>
 	
 	<select id="updateForm" parameterType="int" resultType="community">

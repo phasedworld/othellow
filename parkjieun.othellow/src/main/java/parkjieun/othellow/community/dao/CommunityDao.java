@@ -3,7 +3,6 @@ package parkjieun.othellow.community.dao;
 import java.util.List;
 
 import parkjieun.othellow.community.domain.Community;
-import parkjieun.othellow.community.domain.Paging;
 
 public interface CommunityDao {
 	public List<Community> communityList();	//커뮤니티 목록
@@ -18,8 +17,6 @@ public interface CommunityDao {
 	public boolean hitCountUpdate(int seq);
 	// 게시물 총 갯수
 	public int countPost();
-	// 페이징 처리 게시글 조회
-	public List<Community> selectPost(Paging paging);
 	public List<Community> bestPost();
 	
 	public Community updateForm(int seq);

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import parkjieun.othellow.community.domain.Community;
-import parkjieun.othellow.community.domain.Paging;
 import parkjieun.othellow.community.service.CommunityService;
 import parkjieun.othellow.user.domain.User;
 
@@ -58,7 +57,7 @@ public class CommunityController {
 		return "community/list";
 	}
 	
-	/**페이징**/
+/*	*//**페이징**//*
 	@RequestMapping(value="/list")
 	public String list(Paging paging, Model model
 			, @RequestParam(value="nowPage", required=false)String nowPage
@@ -76,7 +75,7 @@ public class CommunityController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("viewAll", communityService.selectPost(paging));
 		return "community/paging";
-	}
+	}*/
 	
 
 	/** 게시판 등록 화면 요청 register () 구현
@@ -153,7 +152,7 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value="viewPost/delete", method = RequestMethod.GET)
-	public String delPost(@RequestParam int seq){
+	public String delPost(@RequestParam(value="seq") int seq){
 		communityService.delPost(seq);
 		return "redirect:/community/list";
 	}

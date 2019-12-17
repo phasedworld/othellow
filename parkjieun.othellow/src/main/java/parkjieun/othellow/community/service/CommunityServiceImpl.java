@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import parkjieun.othellow.community.dao.CommunityDao;
 import parkjieun.othellow.community.domain.Community;
-import parkjieun.othellow.community.domain.Paging;
 
 @Service
 public class CommunityServiceImpl implements CommunityService{
@@ -83,11 +82,6 @@ public class CommunityServiceImpl implements CommunityService{
 	@Override
 	public int countPost() {
 		return communityDao.countPost();
-	}
-
-	@Override
-	public List<Community> selectPost(Paging paging) {
-		return communityDao.selectPost(paging);
 	}
 
 	@Override
