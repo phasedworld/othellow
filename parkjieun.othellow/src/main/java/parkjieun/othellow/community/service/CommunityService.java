@@ -20,4 +20,7 @@ public interface CommunityService {
 	// 페이징 처리 게시글 조회
 	public List<Community> selectPost(Paging paging);
 	public List<Community> bestPost();
+	
+
+	public Community updateForm(int seq);
 }

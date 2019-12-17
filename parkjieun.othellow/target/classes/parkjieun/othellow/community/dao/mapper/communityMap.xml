@@ -53,7 +53,7 @@
 	
 	<select id="read" parameterType="int" resultType="community">
 	<![CDATA[
-		select c.seq ,c.sort, c.title, c.reg_date regDate, c.hit_count hitCount, c.like_count likeCount, u.user_rank userRank, u.user_nickname userNickname, c.contents, i.image_link imageLink
+		select c.seq, c.sort, c.title, c.reg_date regDate, c.hit_count hitCount, c.like_count likeCount, u.user_rank userRank, u.user_nickname userNickname, c.contents, i.image_link imageLink
 		from users u, community c, character i
 		where u.user_id = c.user_id
 		and u.character_no = i.character_no and seq = #{seq}
@@ -77,14 +77,20 @@
 			values(#{seq}, #{sort}, #{title}, #{contents}, #{userId}, SYSDATE)
 	</insert>
 	
+	<select id="updateForm" parameterType="int" resultType="community">
+		select seq, sort ,title, contents, image
+		from community
+		where seq = #{seq}
+	</select>
+	
 	<update id="updatePost" parameterType="community">
 		update community
-		set title=#{title}, contents=#{contents}, image=#{image}
+		set sort=#{sort}, title=#{title}, contents=#{contents}, image=#{image}
 		where seq=#{seq}
 	</update>
 	
 	<delete id="delPost" parameterType="int">
-		delete community where seq=#{seq}
+		delete from community where seq=#{seq}
 	</delete>
 	
 	<select id="bestPost" resultType="community">

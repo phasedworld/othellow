@@ -62,7 +62,7 @@ public class CommunityServiceImpl implements CommunityService{
 	@Transactional
 	@Override
 	public boolean updatePost(Community community) {
-		return communityDao.updatePost(community) == 1;
+		return communityDao.updatePost(community);
 	}
 
 	//게시글을 삭제한다.
@@ -71,7 +71,7 @@ public class CommunityServiceImpl implements CommunityService{
 	@Transactional
 	@Override
 	public boolean delPost(int seq) {
-		return communityDao.delPost(seq) == 1;
+		return communityDao.delPost(seq);
 	}
 	
 	@Override
@@ -93,5 +93,10 @@ public class CommunityServiceImpl implements CommunityService{
 	@Override
 	public List<Community> bestPost() {
 		return communityDao.bestPost();
+	}
+	
+	@Override
+	public Community updateForm(int seq){
+		return communityDao.updateForm(seq);
 	}
 }

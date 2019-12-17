@@ -6,11 +6,8 @@
 <title>오델로W</title>
 <meta charset="UTF-8">
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<link rel='stylesheet'
-	href='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css' />
-<script
-	src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script>
-<script src='http://code.jquery.com/jquery-3.1.1.min.js'></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 
 <style>
 @font-face {
@@ -284,14 +281,14 @@ body {
 						});
 			},
 			error : function(a, b, errMsg){
-				alert('리스트 출력 실패' + errMsg);
+				alert('리스트 출력 실패', 'error');
 			}
 		})
 	}
 	
 	function searchUser(){ 
 		if($('#search_input').val() == ''){
-			alert('닉네임을 입력하세요!', 'warning')
+			alert('닉네임을 입력하세요!', 'error')
 		}else{ 
 			$.ajax({
 				method:"GET",
@@ -299,7 +296,7 @@ body {
 				data:{userNickname:$('#search_input').val()},
 				success:function(result){
 				if(result == ''){
-						alert('그런 사용자 없습니다!', 'warning');
+						alert('그런 사용자 없습니다!', 'error');
 					}else{  
 					$("tbody").empty();
 					$(result).each(
@@ -319,7 +316,7 @@ body {
 							});
 					}
 				},error: function(a, b, errMsg){
-					alert('실패'+ errMsg);
+					alert('실패', 'error');
 				}
 			})
 		}

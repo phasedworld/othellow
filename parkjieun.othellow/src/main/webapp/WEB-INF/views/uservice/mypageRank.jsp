@@ -311,7 +311,7 @@ $(function(){
 		</div>
 		<div class="mypage_sujung_tle">
 			<div class="mypage_sujung">
-				<a href="Rank"><font color="white";>전체 랭킹 보기</font></a>
+				<a href="RankList"><font color="white";>전체 랭킹 보기</font></a>
 			</div>
 		</div>
 		<%
