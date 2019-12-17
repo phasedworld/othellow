@@ -11,13 +11,20 @@ import parkjieun.othellow.character.domain.Character;
 @Repository
 public class CharacterDaoImpl implements CharacterDao{
 	@Autowired CharacterMapper characterMapper;
+	
 	@Override
 	public int addCharacter(Character character) {
 		return characterMapper.addCharacter(character);
 	}
+	
 	@Override
 	public List<Character> getCharacters() {
 		return characterMapper.getCharacters();
+	}
+	
+	@Override
+	public int deleteCharacter(int characterNo) {
+		return characterMapper.deleteCharacter(characterNo);
 	}
 
 }

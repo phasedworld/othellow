@@ -22,4 +22,8 @@ public class CharacterServiceImpl implements CharacterService{
 		return characterDao.getCharacters();
 	}
 
+	@Override
+	public boolean deleteCharacter(int characterNo) {
+		return characterDao.deleteCharacter(characterNo)>0;
+	}
 }

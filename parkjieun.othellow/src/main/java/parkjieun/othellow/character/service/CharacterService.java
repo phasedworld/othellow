@@ -7,5 +7,5 @@ import parkjieun.othellow.character.domain.Character;
 public interface CharacterService {
 	int addCharacter(Character character);
 	List<Character> getCharacters();
-
+	boolean deleteCharacter(int characterNo);
 }
