@@ -12,6 +12,8 @@ public class User {
 	private String userRank;
 	private int rNum;
 	private String imageLink;
+	private int prevExp;
+	
 	
 	public User() {}
 	public User(String userId, int userExp) {
@@ -84,6 +86,12 @@ public class User {
 	}
 	public void setImageLink(String imageLink) {
 		this.imageLink = imageLink;
+	}
+	public int getPrevExp() {
+		return prevExp;
+	}
+	public void setPrevExp(int prevExp) {
+		this.prevExp = prevExp;
 	}
 	
 }

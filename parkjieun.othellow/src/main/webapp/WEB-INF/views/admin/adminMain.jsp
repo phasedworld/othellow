@@ -404,7 +404,7 @@ function startAdmin(){
                  $("tbody").append(
                  '<tr class="characterItem" onClick="deleteCharacter('+character.characterNo+')">'+
                     '<td>'+ character.characterNo + '</td>'+
-                    '<td><div id="character-img"><img height="80px" src='+'img\/'+character.imageLink+'></div></td>'+
+                    '<td><div id="character-img"><img height="80px" src=img\/'+character.imageLink+'></div></td>'+
                     '<td>'+ character.characterName+'</td>'+
                  '</tr>'                    
                  );

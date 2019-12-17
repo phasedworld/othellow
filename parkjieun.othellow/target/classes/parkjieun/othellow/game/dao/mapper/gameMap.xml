@@ -44,6 +44,10 @@
 		delete from lobby where room_id=#{roomId}
 	</delete>
 	<update id="gainExp" parameterType="user">
+		<selectKey keyProperty="prevExp" resultType="int" order="BEFORE">
+		select user_exp from users
+		where user_id=#{userId}
+		</selectKey>
 		update users
 		set
 		<if test="userExp gt 1">
@@ -52,6 +56,19 @@
 		<if test="userExp == 1">
 			user_lose=user_lose+1,
 		</if>
+		<choose>
+			<when test="prevExp lt 3000 and prevExp+userExp gte 3000">
+			user_rank='duke',
+			</when>
+			<when test="prevExp lt 1000 and prevExp+userExp gte 1000">
+			user_rank='count',
+			</when>
+			<when test="prevExp lt 150 and prevExp+userExp gte 150">
+			user_rank='viscount',
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
 		user_exp = user_exp+#{userExp}
 		where user_id=#{userId}
 	</update>
